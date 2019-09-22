@@ -1,4 +1,9 @@
+#[macro_use] extern crate lazy_static;
+
+mod config;
+
+use crate::config::CONFIG;
+
 fn main() {
-    let db_database = env!("DB_DATABASE");
-    println!("Hello, world - {}", db_database);
+    println!("API server will run on {}", CONFIG.app.host.clone());
 }
