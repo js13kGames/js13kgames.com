@@ -5,5 +5,5 @@ mod config;
 use crate::config::CONFIG;
 
 fn main() {
-    println!("API server will run on {}", CONFIG.app.host.clone());
+    println!("API server will run on {}", CONFIG.app.host);
 }
