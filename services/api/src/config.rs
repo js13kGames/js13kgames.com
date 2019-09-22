@@ -1,36 +1,34 @@
-use std::fs::read_to_string;
-
 lazy_static! {
-    pub static ref CONFIG: Config + 'static = Config::new();
+    pub static ref CONFIG: Config = Config::new();
 }
 
-pub struct Config<'a> {
-    pub db: DbConfig<'a>,
-    pub app: App<'a>,
+pub struct Config {
+    pub db: DbConfig,
+    pub app: App,
 }
 
-pub struct DbConfig<'a> {
-    pub host: &'a str,
-    pub password: &'a str,
-    pub user: &'a str,
-    pub name: &'a String,
+pub struct DbConfig {
+    pub host: String,
+    pub password: String,
+    pub user: String,
+    pub name: String,
 }
 
-pub struct App<'a> {
-    pub host: &'a str,
+pub struct App {
+    pub host: String,
 }
 
-impl<'a> Config<'a> {
-    pub fn new() -> Config<'a> {
+impl Config {
+    pub fn new() -> Config {
         Config {
             app: App {
-                host: env!("APP_HOST"),
+                host: env!("APP_HOST").to_string(),
             },
             db: DbConfig {
-                host: env!("DB_HOST"),
-                password: env!("DB_ROOT_PASSWORD"),
-                user: env!("DB_USER"),
-                name: env!("DB_DATABASE"),
+                host: env!("DB_HOST").to_string(),
+                password: env!("DB_ROOT_PASSWORD").to_string(),
+                user: env!("DB_USER").to_string(),
+                name: env!("DB_DATABASE").to_string(),
             },
         }
     }
