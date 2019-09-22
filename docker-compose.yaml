@@ -6,6 +6,8 @@ services:
       - "8000:8000"
     volumes:
       - ./services/api:/usr/src/app
+    env_file:
+      - .env
 
   # web:
   #   image: nginx
