@@ -1,0 +1,11 @@
+[global]
+secret_key = "itlYmFR2vYKrOmFhupMIn/hyB6lYCCTXz4yaQX89XVg="
+address = "0.0.0.0"
+port = 8000
+
+
+[production]
+address = "0.0.0.0"
+port = 80
+log = "critical"
+limits = { forms = 32768 }
