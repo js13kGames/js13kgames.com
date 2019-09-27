@@ -2,6 +2,7 @@
 
 mod config;
 mod context;
+mod query;
 
 use crate::config::CONFIG;
 
