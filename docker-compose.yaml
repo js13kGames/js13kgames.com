@@ -5,7 +5,9 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./services/api:/usr/src/app:delegated
+      - ./services/api/src:/usr/src/app/src
+      - ./services/api/Cargo.toml:/usr/src/app/Cargo.toml
+      - ./services/api/Rocket.toml:/usr/src/app/Rocket.toml
     env_file:
       - .env
 
