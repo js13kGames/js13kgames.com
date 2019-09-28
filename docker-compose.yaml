@@ -5,7 +5,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./services/api:/usr/src/app
+      - ./services/api:/usr/src/app:delegated
     env_file:
       - .env
 
@@ -34,8 +34,8 @@ services:
       MYSQL_PASSWORD: "${DB_PASSWORD}"
       MYSQL_DATABASE: "${DB_DATABASE}"
     volumes:
-    - ./data/db:/var/lib/mysql
-    - ./db/schema.sql:/docker-entrypoint-initdb.d/initial.sql
+    - ./data/db:/var/lib/mysql:delegated
+    - ./db/schema.sql:/docker-entrypoint-initdb.d/initial.sql:cached
 
   adminer:
     image: adminer
