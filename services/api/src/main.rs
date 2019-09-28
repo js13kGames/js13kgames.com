@@ -16,6 +16,7 @@ use rocket::State;
 mod juniper_rocket;
 mod juniper_playground;
 mod config;
+mod utils;
 mod context;
 mod schema;
 
@@ -24,6 +25,9 @@ use crate::{
     schema::{
         query::Query,
         mutation::Mutation,
+    },
+    utils::{
+        cors::Cors,
     },
     config::{
         CONFIG,
@@ -74,6 +78,7 @@ fn post_graphql_handler(
 
 fn rocket() -> rocket::Rocket {
     rocket::ignite()
+        .attach(Cors {})
         .register(catchers![
             error_500,
             error_404,
