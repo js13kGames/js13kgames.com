@@ -10,4 +10,4 @@ graphql_object!(Query: Context |&self| {
     field apiVersion() -> &str {
         "0.1"
     }
-}
+});
