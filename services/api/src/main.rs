@@ -48,6 +48,12 @@ fn error_404(_req: &Request) -> Json<JsonValue> {
 
 type Schema = RootNode<'static, Query, Mutation>;
 
+// PLAYGROUND
+#[get("/")]
+fn graphql_playground() -> content::Html<String> {
+    juniper_rocket::playground_source("/graphql")
+}
+
 #[options("/graphql")]
 fn options_handler<'a>() -> Response<'a> {
     Response::build()
@@ -77,6 +83,7 @@ fn rocket() -> rocket::Rocket {
             Mutation {},
         ))
         .mount("/", routes![
+            graphql_playground,
             post_graphql_handler,
             options_handler,
         ])
