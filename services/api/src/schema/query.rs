@@ -1,5 +1,6 @@
 use crate::{
     context::context::{ Context },
+    schema::resolvers::{ user_resolver::user_resolver },
 };
 
 pub struct Query { }
@@ -9,5 +10,9 @@ graphql_object!(Query: Context |&self| {
 
     field apiVersion() -> &str {
         "0.1"
+    }
+
+    field user() -> String {
+        user_resolver()
     }
 });
