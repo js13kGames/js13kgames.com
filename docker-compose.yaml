@@ -10,6 +10,7 @@ services:
       - ./services/api/Rocket.toml:/usr/src/app/Rocket.toml
     env_file:
       - .env
+    tty: true
 
   # web:
   #   image: nginx
