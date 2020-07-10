@@ -1,0 +1,17 @@
+{
+  "name": "@app/e2e",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "cy": "node -r @app/config/env node_modules/.bin/cypress",
+    "open": "yarn cy open",
+    "run": "yarn cy run",
+    "test": "NODE_ENV=test node -r @app/config/env ./node_modules/.bin/jest"
+  },
+  "devDependencies": {
+    "@cypress/webpack-preprocessor": "^5.1.2",
+    "cypress": "^4.5.0",
+    "jest": "^25.5.4",
+    "webpack": "^4.43.0"
+  }
+}
