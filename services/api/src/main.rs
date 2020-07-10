@@ -19,6 +19,7 @@ mod config;
 mod utils;
 mod context;
 mod schema;
+mod resolvers;
 
 use crate::{
     context::context::Context,
@@ -78,7 +79,7 @@ fn post_graphql_handler(
 
 fn rocket() -> rocket::Rocket {
     rocket::ignite()
-        .attach(Cors {})
+        .attach(Cors { })
         .register(catchers![
             error_500,
             error_404,

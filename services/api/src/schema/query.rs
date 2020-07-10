@@ -1,6 +1,6 @@
 use crate::{
     context::context::{ Context },
-    schema::resolvers::{ user_resolver::user_resolver },
+    resolvers::{ user_resolver::user_resolver },
 };
 
 pub struct Query { }
