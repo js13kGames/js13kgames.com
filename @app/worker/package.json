@@ -1,0 +1,31 @@
+{
+  "name": "@app/worker",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "gw": "cd dist && node -r @app/config/env ../node_modules/.bin/graphile-worker",
+    "build": "tsc -b",
+    "start": "yarn gw",
+    "dev": "cd dist && node -r @app/config/env --inspect=9757 ../node_modules/.bin/graphile-worker --watch",
+    "install-db-schema": "mkdir -p dist && yarn gw --schema-only",
+    "test": "NODE_ENV=test node -r @app/config/env ./node_modules/.bin/jest"
+  },
+  "dependencies": {
+    "@app/config": "0.0.0",
+    "@types/html-to-text": "^5.1.0",
+    "@types/lodash": "^4.14.150",
+    "@types/mjml": "^4.0.4",
+    "@types/nodemailer": "^6.4.0",
+    "aws-sdk": "^2.668.0",
+    "chalk": "^4.0.0",
+    "graphile-worker": "^0.6.0",
+    "html-to-text": "^5.0.0",
+    "lodash": "^4.17.15",
+    "mjml": "^4.6.2",
+    "nodemailer": "^6.4.6",
+    "tslib": "^1.11.1"
+  },
+  "devDependencies": {
+    "jest": "^25.5.4"
+  }
+}
