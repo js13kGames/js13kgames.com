@@ -1,3 +1,19 @@
+drop table if exists app_public.user_roles;
+
+create table app_public.user_roles (
+  id uuid primary key default gen_random_uuid(),
+  name text unique
+);
+
+insert into user_roles (name) VALUES ('user'), ('admin'), ('judge');
+
+comment on table app_public.user_roles is
+  E'You will never believe that - those are user roles!';
+
+-- alter table app_public.
+-- alter table app_public.user_roles enable row level security;
+-- create policy select_all on app_public.users for select using (true);
+
 /*
 
 This project is using Graphile Migrate to manage migrations; please be aware

@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.7 (Ubuntu 11.7-2.pgdg18.04+1)
--- Dumped by pg_dump version 11.7 (Ubuntu 11.7-2.pgdg18.04+1)
+-- Dumped from database version 11.5 (Debian 11.5-1.pgdg90+1)
+-- Dumped by pg_dump version 11.5 (Debian 11.5-1.pgdg90+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -2123,10 +2123,10 @@ CREATE INDEX user_authentications_user_id_idx ON app_public.user_authentications
 
 
 --
--- Name: user_authentications _100_timestamps; Type: TRIGGER; Schema: app_public; Owner: -
+-- Name: users _100_timestamps; Type: TRIGGER; Schema: app_public; Owner: -
 --
 
-CREATE TRIGGER _100_timestamps BEFORE INSERT OR UPDATE ON app_public.user_authentications FOR EACH ROW EXECUTE PROCEDURE app_private.tg__timestamps();
+CREATE TRIGGER _100_timestamps BEFORE INSERT OR UPDATE ON app_public.users FOR EACH ROW EXECUTE PROCEDURE app_private.tg__timestamps();
 
 
 --
@@ -2137,10 +2137,10 @@ CREATE TRIGGER _100_timestamps BEFORE INSERT OR UPDATE ON app_public.user_emails
 
 
 --
--- Name: users _100_timestamps; Type: TRIGGER; Schema: app_public; Owner: -
+-- Name: user_authentications _100_timestamps; Type: TRIGGER; Schema: app_public; Owner: -
 --
 
-CREATE TRIGGER _100_timestamps BEFORE INSERT OR UPDATE ON app_public.users FOR EACH ROW EXECUTE PROCEDURE app_private.tg__timestamps();
+CREATE TRIGGER _100_timestamps BEFORE INSERT OR UPDATE ON app_public.user_authentications FOR EACH ROW EXECUTE PROCEDURE app_private.tg__timestamps();
 
 
 --
@@ -2158,17 +2158,17 @@ CREATE TRIGGER _500_audit_added AFTER INSERT ON app_public.user_emails FOR EACH 
 
 
 --
--- Name: user_authentications _500_audit_removed; Type: TRIGGER; Schema: app_public; Owner: -
---
-
-CREATE TRIGGER _500_audit_removed AFTER DELETE ON app_public.user_authentications FOR EACH ROW EXECUTE PROCEDURE app_private.tg__add_audit_job('unlinked_account', 'user_id', 'service', 'identifier');
-
-
---
 -- Name: user_emails _500_audit_removed; Type: TRIGGER; Schema: app_public; Owner: -
 --
 
 CREATE TRIGGER _500_audit_removed AFTER DELETE ON app_public.user_emails FOR EACH ROW EXECUTE PROCEDURE app_private.tg__add_audit_job('removed_email', 'user_id', 'id', 'email');
+
+
+--
+-- Name: user_authentications _500_audit_removed; Type: TRIGGER; Schema: app_public; Owner: -
+--
+
+CREATE TRIGGER _500_audit_removed AFTER DELETE ON app_public.user_authentications FOR EACH ROW EXECUTE PROCEDURE app_private.tg__add_audit_job('unlinked_account', 'user_id', 'service', 'identifier');
 
 
 --
@@ -2186,17 +2186,17 @@ CREATE TRIGGER _500_gql_update AFTER UPDATE ON app_public.users FOR EACH ROW EXE
 
 
 --
--- Name: user_emails _500_insert_secrets; Type: TRIGGER; Schema: app_public; Owner: -
---
-
-CREATE TRIGGER _500_insert_secrets AFTER INSERT ON app_public.user_emails FOR EACH ROW EXECUTE PROCEDURE app_private.tg_user_email_secrets__insert_with_user_email();
-
-
---
 -- Name: users _500_insert_secrets; Type: TRIGGER; Schema: app_public; Owner: -
 --
 
 CREATE TRIGGER _500_insert_secrets AFTER INSERT ON app_public.users FOR EACH ROW EXECUTE PROCEDURE app_private.tg_user_secrets__insert_with_user();
+
+
+--
+-- Name: user_emails _500_insert_secrets; Type: TRIGGER; Schema: app_public; Owner: -
+--
+
+CREATE TRIGGER _500_insert_secrets AFTER INSERT ON app_public.user_emails FOR EACH ROW EXECUTE PROCEDURE app_private.tg_user_email_secrets__insert_with_user_email();
 
 
 --
@@ -2338,17 +2338,17 @@ ALTER TABLE app_private.user_email_secrets ENABLE ROW LEVEL SECURITY;
 ALTER TABLE app_private.user_secrets ENABLE ROW LEVEL SECURITY;
 
 --
--- Name: user_authentications delete_own; Type: POLICY; Schema: app_public; Owner: -
---
-
-CREATE POLICY delete_own ON app_public.user_authentications FOR DELETE USING ((user_id = app_public.current_user_id()));
-
-
---
 -- Name: user_emails delete_own; Type: POLICY; Schema: app_public; Owner: -
 --
 
 CREATE POLICY delete_own ON app_public.user_emails FOR DELETE USING ((user_id = app_public.current_user_id()));
+
+
+--
+-- Name: user_authentications delete_own; Type: POLICY; Schema: app_public; Owner: -
+--
+
+CREATE POLICY delete_own ON app_public.user_authentications FOR DELETE USING ((user_id = app_public.current_user_id()));
 
 
 --
@@ -2384,13 +2384,6 @@ CREATE POLICY select_all ON app_public.users FOR SELECT USING (true);
 
 
 --
--- Name: organization_memberships select_invited; Type: POLICY; Schema: app_public; Owner: -
---
-
-CREATE POLICY select_invited ON app_public.organization_memberships FOR SELECT USING ((organization_id IN ( SELECT app_public.current_user_invited_organization_ids() AS current_user_invited_organization_ids)));
-
-
---
 -- Name: organizations select_invited; Type: POLICY; Schema: app_public; Owner: -
 --
 
@@ -2398,10 +2391,10 @@ CREATE POLICY select_invited ON app_public.organizations FOR SELECT USING ((id I
 
 
 --
--- Name: organization_memberships select_member; Type: POLICY; Schema: app_public; Owner: -
+-- Name: organization_memberships select_invited; Type: POLICY; Schema: app_public; Owner: -
 --
 
-CREATE POLICY select_member ON app_public.organization_memberships FOR SELECT USING ((organization_id IN ( SELECT app_public.current_user_member_organization_ids() AS current_user_member_organization_ids)));
+CREATE POLICY select_invited ON app_public.organization_memberships FOR SELECT USING ((organization_id IN ( SELECT app_public.current_user_invited_organization_ids() AS current_user_invited_organization_ids)));
 
 
 --
@@ -2412,10 +2405,10 @@ CREATE POLICY select_member ON app_public.organizations FOR SELECT USING ((id IN
 
 
 --
--- Name: user_authentications select_own; Type: POLICY; Schema: app_public; Owner: -
+-- Name: organization_memberships select_member; Type: POLICY; Schema: app_public; Owner: -
 --
 
-CREATE POLICY select_own ON app_public.user_authentications FOR SELECT USING ((user_id = app_public.current_user_id()));
+CREATE POLICY select_member ON app_public.organization_memberships FOR SELECT USING ((organization_id IN ( SELECT app_public.current_user_member_organization_ids() AS current_user_member_organization_ids)));
 
 
 --
@@ -2423,6 +2416,13 @@ CREATE POLICY select_own ON app_public.user_authentications FOR SELECT USING ((u
 --
 
 CREATE POLICY select_own ON app_public.user_emails FOR SELECT USING ((user_id = app_public.current_user_id()));
+
+
+--
+-- Name: user_authentications select_own; Type: POLICY; Schema: app_public; Owner: -
+--
+
+CREATE POLICY select_own ON app_public.user_authentications FOR SELECT USING ((user_id = app_public.current_user_id()));
 
 
 --
@@ -2463,14 +2463,14 @@ ALTER TABLE app_public.users ENABLE ROW LEVEL SECURITY;
 -- Name: SCHEMA app_hidden; Type: ACL; Schema: -; Owner: -
 --
 
-GRANT USAGE ON SCHEMA app_hidden TO graphile_starter_visitor;
+GRANT USAGE ON SCHEMA app_hidden TO js13k_visitor;
 
 
 --
 -- Name: SCHEMA app_public; Type: ACL; Schema: -; Owner: -
 --
 
-GRANT USAGE ON SCHEMA app_public TO graphile_starter_visitor;
+GRANT USAGE ON SCHEMA app_public TO js13k_visitor;
 
 
 --
@@ -2479,8 +2479,8 @@ GRANT USAGE ON SCHEMA app_public TO graphile_starter_visitor;
 
 REVOKE ALL ON SCHEMA public FROM postgres;
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-GRANT ALL ON SCHEMA public TO graphile_starter;
-GRANT USAGE ON SCHEMA public TO graphile_starter_visitor;
+GRANT ALL ON SCHEMA public TO js13k;
+GRANT USAGE ON SCHEMA public TO js13k_visitor;
 
 
 --
@@ -2494,28 +2494,28 @@ REVOKE ALL ON FUNCTION app_private.assert_valid_password(new_password text) FROM
 -- Name: TABLE users; Type: ACL; Schema: app_public; Owner: -
 --
 
-GRANT SELECT ON TABLE app_public.users TO graphile_starter_visitor;
+GRANT SELECT ON TABLE app_public.users TO js13k_visitor;
 
 
 --
 -- Name: COLUMN users.username; Type: ACL; Schema: app_public; Owner: -
 --
 
-GRANT UPDATE(username) ON TABLE app_public.users TO graphile_starter_visitor;
+GRANT UPDATE(username) ON TABLE app_public.users TO js13k_visitor;
 
 
 --
 -- Name: COLUMN users.name; Type: ACL; Schema: app_public; Owner: -
 --
 
-GRANT UPDATE(name) ON TABLE app_public.users TO graphile_starter_visitor;
+GRANT UPDATE(name) ON TABLE app_public.users TO js13k_visitor;
 
 
 --
 -- Name: COLUMN users.avatar_url; Type: ACL; Schema: app_public; Owner: -
 --
 
-GRANT UPDATE(avatar_url) ON TABLE app_public.users TO graphile_starter_visitor;
+GRANT UPDATE(avatar_url) ON TABLE app_public.users TO js13k_visitor;
 
 
 --
@@ -2586,7 +2586,7 @@ REVOKE ALL ON FUNCTION app_private.tg_user_secrets__insert_with_user() FROM PUBL
 --
 
 REVOKE ALL ON FUNCTION app_public.accept_invitation_to_organization(invitation_id uuid, code text) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.accept_invitation_to_organization(invitation_id uuid, code text) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.accept_invitation_to_organization(invitation_id uuid, code text) TO js13k_visitor;
 
 
 --
@@ -2594,7 +2594,7 @@ GRANT ALL ON FUNCTION app_public.accept_invitation_to_organization(invitation_id
 --
 
 REVOKE ALL ON FUNCTION app_public.change_password(old_password text, new_password text) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.change_password(old_password text, new_password text) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.change_password(old_password text, new_password text) TO js13k_visitor;
 
 
 --
@@ -2602,28 +2602,28 @@ GRANT ALL ON FUNCTION app_public.change_password(old_password text, new_password
 --
 
 REVOKE ALL ON FUNCTION app_public.confirm_account_deletion(token text) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.confirm_account_deletion(token text) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.confirm_account_deletion(token text) TO js13k_visitor;
 
 
 --
 -- Name: TABLE organizations; Type: ACL; Schema: app_public; Owner: -
 --
 
-GRANT SELECT ON TABLE app_public.organizations TO graphile_starter_visitor;
+GRANT SELECT ON TABLE app_public.organizations TO js13k_visitor;
 
 
 --
 -- Name: COLUMN organizations.slug; Type: ACL; Schema: app_public; Owner: -
 --
 
-GRANT UPDATE(slug) ON TABLE app_public.organizations TO graphile_starter_visitor;
+GRANT UPDATE(slug) ON TABLE app_public.organizations TO js13k_visitor;
 
 
 --
 -- Name: COLUMN organizations.name; Type: ACL; Schema: app_public; Owner: -
 --
 
-GRANT UPDATE(name) ON TABLE app_public.organizations TO graphile_starter_visitor;
+GRANT UPDATE(name) ON TABLE app_public.organizations TO js13k_visitor;
 
 
 --
@@ -2631,7 +2631,7 @@ GRANT UPDATE(name) ON TABLE app_public.organizations TO graphile_starter_visitor
 --
 
 REVOKE ALL ON FUNCTION app_public.create_organization(slug public.citext, name text) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.create_organization(slug public.citext, name text) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.create_organization(slug public.citext, name text) TO js13k_visitor;
 
 
 --
@@ -2639,7 +2639,7 @@ GRANT ALL ON FUNCTION app_public.create_organization(slug public.citext, name te
 --
 
 REVOKE ALL ON FUNCTION app_public.current_session_id() FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.current_session_id() TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.current_session_id() TO js13k_visitor;
 
 
 --
@@ -2647,7 +2647,7 @@ GRANT ALL ON FUNCTION app_public.current_session_id() TO graphile_starter_visito
 --
 
 REVOKE ALL ON FUNCTION app_public."current_user"() FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public."current_user"() TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public."current_user"() TO js13k_visitor;
 
 
 --
@@ -2655,7 +2655,7 @@ GRANT ALL ON FUNCTION app_public."current_user"() TO graphile_starter_visitor;
 --
 
 REVOKE ALL ON FUNCTION app_public.current_user_id() FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.current_user_id() TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.current_user_id() TO js13k_visitor;
 
 
 --
@@ -2663,7 +2663,7 @@ GRANT ALL ON FUNCTION app_public.current_user_id() TO graphile_starter_visitor;
 --
 
 REVOKE ALL ON FUNCTION app_public.current_user_invited_organization_ids() FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.current_user_invited_organization_ids() TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.current_user_invited_organization_ids() TO js13k_visitor;
 
 
 --
@@ -2671,7 +2671,7 @@ GRANT ALL ON FUNCTION app_public.current_user_invited_organization_ids() TO grap
 --
 
 REVOKE ALL ON FUNCTION app_public.current_user_member_organization_ids() FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.current_user_member_organization_ids() TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.current_user_member_organization_ids() TO js13k_visitor;
 
 
 --
@@ -2679,7 +2679,7 @@ GRANT ALL ON FUNCTION app_public.current_user_member_organization_ids() TO graph
 --
 
 REVOKE ALL ON FUNCTION app_public.delete_organization(organization_id uuid) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.delete_organization(organization_id uuid) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.delete_organization(organization_id uuid) TO js13k_visitor;
 
 
 --
@@ -2687,7 +2687,7 @@ GRANT ALL ON FUNCTION app_public.delete_organization(organization_id uuid) TO gr
 --
 
 REVOKE ALL ON FUNCTION app_public.forgot_password(email public.citext) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.forgot_password(email public.citext) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.forgot_password(email public.citext) TO js13k_visitor;
 
 
 --
@@ -2695,7 +2695,7 @@ GRANT ALL ON FUNCTION app_public.forgot_password(email public.citext) TO graphil
 --
 
 REVOKE ALL ON FUNCTION app_public.invite_to_organization(organization_id uuid, username public.citext, email public.citext) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.invite_to_organization(organization_id uuid, username public.citext, email public.citext) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.invite_to_organization(organization_id uuid, username public.citext, email public.citext) TO js13k_visitor;
 
 
 --
@@ -2703,21 +2703,21 @@ GRANT ALL ON FUNCTION app_public.invite_to_organization(organization_id uuid, us
 --
 
 REVOKE ALL ON FUNCTION app_public.logout() FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.logout() TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.logout() TO js13k_visitor;
 
 
 --
 -- Name: TABLE user_emails; Type: ACL; Schema: app_public; Owner: -
 --
 
-GRANT SELECT,DELETE ON TABLE app_public.user_emails TO graphile_starter_visitor;
+GRANT SELECT,DELETE ON TABLE app_public.user_emails TO js13k_visitor;
 
 
 --
 -- Name: COLUMN user_emails.email; Type: ACL; Schema: app_public; Owner: -
 --
 
-GRANT INSERT(email) ON TABLE app_public.user_emails TO graphile_starter_visitor;
+GRANT INSERT(email) ON TABLE app_public.user_emails TO js13k_visitor;
 
 
 --
@@ -2725,7 +2725,7 @@ GRANT INSERT(email) ON TABLE app_public.user_emails TO graphile_starter_visitor;
 --
 
 REVOKE ALL ON FUNCTION app_public.make_email_primary(email_id uuid) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.make_email_primary(email_id uuid) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.make_email_primary(email_id uuid) TO js13k_visitor;
 
 
 --
@@ -2733,7 +2733,7 @@ GRANT ALL ON FUNCTION app_public.make_email_primary(email_id uuid) TO graphile_s
 --
 
 REVOKE ALL ON FUNCTION app_public.organization_for_invitation(invitation_id uuid, code text) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.organization_for_invitation(invitation_id uuid, code text) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.organization_for_invitation(invitation_id uuid, code text) TO js13k_visitor;
 
 
 --
@@ -2741,7 +2741,7 @@ GRANT ALL ON FUNCTION app_public.organization_for_invitation(invitation_id uuid,
 --
 
 REVOKE ALL ON FUNCTION app_public.organizations_current_user_is_billing_contact(org app_public.organizations) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.organizations_current_user_is_billing_contact(org app_public.organizations) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.organizations_current_user_is_billing_contact(org app_public.organizations) TO js13k_visitor;
 
 
 --
@@ -2749,7 +2749,7 @@ GRANT ALL ON FUNCTION app_public.organizations_current_user_is_billing_contact(o
 --
 
 REVOKE ALL ON FUNCTION app_public.organizations_current_user_is_owner(org app_public.organizations) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.organizations_current_user_is_owner(org app_public.organizations) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.organizations_current_user_is_owner(org app_public.organizations) TO js13k_visitor;
 
 
 --
@@ -2757,7 +2757,7 @@ GRANT ALL ON FUNCTION app_public.organizations_current_user_is_owner(org app_pub
 --
 
 REVOKE ALL ON FUNCTION app_public.remove_from_organization(organization_id uuid, user_id uuid) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.remove_from_organization(organization_id uuid, user_id uuid) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.remove_from_organization(organization_id uuid, user_id uuid) TO js13k_visitor;
 
 
 --
@@ -2765,7 +2765,7 @@ GRANT ALL ON FUNCTION app_public.remove_from_organization(organization_id uuid, 
 --
 
 REVOKE ALL ON FUNCTION app_public.request_account_deletion() FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.request_account_deletion() TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.request_account_deletion() TO js13k_visitor;
 
 
 --
@@ -2773,7 +2773,7 @@ GRANT ALL ON FUNCTION app_public.request_account_deletion() TO graphile_starter_
 --
 
 REVOKE ALL ON FUNCTION app_public.resend_email_verification_code(email_id uuid) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.resend_email_verification_code(email_id uuid) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.resend_email_verification_code(email_id uuid) TO js13k_visitor;
 
 
 --
@@ -2781,7 +2781,7 @@ GRANT ALL ON FUNCTION app_public.resend_email_verification_code(email_id uuid) T
 --
 
 REVOKE ALL ON FUNCTION app_public.reset_password(user_id uuid, reset_token text, new_password text) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.reset_password(user_id uuid, reset_token text, new_password text) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.reset_password(user_id uuid, reset_token text, new_password text) TO js13k_visitor;
 
 
 --
@@ -2789,7 +2789,7 @@ GRANT ALL ON FUNCTION app_public.reset_password(user_id uuid, reset_token text, 
 --
 
 REVOKE ALL ON FUNCTION app_public.tg__graphql_subscription() FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.tg__graphql_subscription() TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.tg__graphql_subscription() TO js13k_visitor;
 
 
 --
@@ -2797,7 +2797,7 @@ GRANT ALL ON FUNCTION app_public.tg__graphql_subscription() TO graphile_starter_
 --
 
 REVOKE ALL ON FUNCTION app_public.tg_user_emails__forbid_if_verified() FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.tg_user_emails__forbid_if_verified() TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.tg_user_emails__forbid_if_verified() TO js13k_visitor;
 
 
 --
@@ -2805,7 +2805,7 @@ GRANT ALL ON FUNCTION app_public.tg_user_emails__forbid_if_verified() TO graphil
 --
 
 REVOKE ALL ON FUNCTION app_public.tg_user_emails__prevent_delete_last_email() FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.tg_user_emails__prevent_delete_last_email() TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.tg_user_emails__prevent_delete_last_email() TO js13k_visitor;
 
 
 --
@@ -2813,7 +2813,7 @@ GRANT ALL ON FUNCTION app_public.tg_user_emails__prevent_delete_last_email() TO 
 --
 
 REVOKE ALL ON FUNCTION app_public.tg_user_emails__verify_account_on_verified() FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.tg_user_emails__verify_account_on_verified() TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.tg_user_emails__verify_account_on_verified() TO js13k_visitor;
 
 
 --
@@ -2821,7 +2821,7 @@ GRANT ALL ON FUNCTION app_public.tg_user_emails__verify_account_on_verified() TO
 --
 
 REVOKE ALL ON FUNCTION app_public.tg_users__deletion_organization_checks_and_actions() FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.tg_users__deletion_organization_checks_and_actions() TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.tg_users__deletion_organization_checks_and_actions() TO js13k_visitor;
 
 
 --
@@ -2829,7 +2829,7 @@ GRANT ALL ON FUNCTION app_public.tg_users__deletion_organization_checks_and_acti
 --
 
 REVOKE ALL ON FUNCTION app_public.transfer_organization_billing_contact(organization_id uuid, user_id uuid) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.transfer_organization_billing_contact(organization_id uuid, user_id uuid) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.transfer_organization_billing_contact(organization_id uuid, user_id uuid) TO js13k_visitor;
 
 
 --
@@ -2837,7 +2837,7 @@ GRANT ALL ON FUNCTION app_public.transfer_organization_billing_contact(organizat
 --
 
 REVOKE ALL ON FUNCTION app_public.transfer_organization_ownership(organization_id uuid, user_id uuid) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.transfer_organization_ownership(organization_id uuid, user_id uuid) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.transfer_organization_ownership(organization_id uuid, user_id uuid) TO js13k_visitor;
 
 
 --
@@ -2845,7 +2845,7 @@ GRANT ALL ON FUNCTION app_public.transfer_organization_ownership(organization_id
 --
 
 REVOKE ALL ON FUNCTION app_public.users_has_password(u app_public.users) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.users_has_password(u app_public.users) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.users_has_password(u app_public.users) TO js13k_visitor;
 
 
 --
@@ -2853,79 +2853,79 @@ GRANT ALL ON FUNCTION app_public.users_has_password(u app_public.users) TO graph
 --
 
 REVOKE ALL ON FUNCTION app_public.verify_email(user_email_id uuid, token text) FROM PUBLIC;
-GRANT ALL ON FUNCTION app_public.verify_email(user_email_id uuid, token text) TO graphile_starter_visitor;
+GRANT ALL ON FUNCTION app_public.verify_email(user_email_id uuid, token text) TO js13k_visitor;
 
 
 --
 -- Name: TABLE organization_memberships; Type: ACL; Schema: app_public; Owner: -
 --
 
-GRANT SELECT ON TABLE app_public.organization_memberships TO graphile_starter_visitor;
+GRANT SELECT ON TABLE app_public.organization_memberships TO js13k_visitor;
 
 
 --
 -- Name: TABLE user_authentications; Type: ACL; Schema: app_public; Owner: -
 --
 
-GRANT SELECT,DELETE ON TABLE app_public.user_authentications TO graphile_starter_visitor;
+GRANT SELECT,DELETE ON TABLE app_public.user_authentications TO js13k_visitor;
 
 
 --
 -- Name: DEFAULT PRIVILEGES FOR SEQUENCES; Type: DEFAULT ACL; Schema: app_hidden; Owner: -
 --
 
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter IN SCHEMA app_hidden REVOKE ALL ON SEQUENCES  FROM graphile_starter;
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter IN SCHEMA app_hidden GRANT SELECT,USAGE ON SEQUENCES  TO graphile_starter_visitor;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k IN SCHEMA app_hidden REVOKE ALL ON SEQUENCES  FROM js13k;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k IN SCHEMA app_hidden GRANT SELECT,USAGE ON SEQUENCES  TO js13k_visitor;
 
 
 --
 -- Name: DEFAULT PRIVILEGES FOR FUNCTIONS; Type: DEFAULT ACL; Schema: app_hidden; Owner: -
 --
 
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter IN SCHEMA app_hidden REVOKE ALL ON FUNCTIONS  FROM PUBLIC;
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter IN SCHEMA app_hidden REVOKE ALL ON FUNCTIONS  FROM graphile_starter;
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter IN SCHEMA app_hidden GRANT ALL ON FUNCTIONS  TO graphile_starter_visitor;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k IN SCHEMA app_hidden REVOKE ALL ON FUNCTIONS  FROM PUBLIC;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k IN SCHEMA app_hidden REVOKE ALL ON FUNCTIONS  FROM js13k;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k IN SCHEMA app_hidden GRANT ALL ON FUNCTIONS  TO js13k_visitor;
 
 
 --
 -- Name: DEFAULT PRIVILEGES FOR SEQUENCES; Type: DEFAULT ACL; Schema: app_public; Owner: -
 --
 
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter IN SCHEMA app_public REVOKE ALL ON SEQUENCES  FROM graphile_starter;
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter IN SCHEMA app_public GRANT SELECT,USAGE ON SEQUENCES  TO graphile_starter_visitor;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k IN SCHEMA app_public REVOKE ALL ON SEQUENCES  FROM js13k;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k IN SCHEMA app_public GRANT SELECT,USAGE ON SEQUENCES  TO js13k_visitor;
 
 
 --
 -- Name: DEFAULT PRIVILEGES FOR FUNCTIONS; Type: DEFAULT ACL; Schema: app_public; Owner: -
 --
 
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter IN SCHEMA app_public REVOKE ALL ON FUNCTIONS  FROM PUBLIC;
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter IN SCHEMA app_public REVOKE ALL ON FUNCTIONS  FROM graphile_starter;
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter IN SCHEMA app_public GRANT ALL ON FUNCTIONS  TO graphile_starter_visitor;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k IN SCHEMA app_public REVOKE ALL ON FUNCTIONS  FROM PUBLIC;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k IN SCHEMA app_public REVOKE ALL ON FUNCTIONS  FROM js13k;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k IN SCHEMA app_public GRANT ALL ON FUNCTIONS  TO js13k_visitor;
 
 
 --
 -- Name: DEFAULT PRIVILEGES FOR SEQUENCES; Type: DEFAULT ACL; Schema: public; Owner: -
 --
 
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter IN SCHEMA public REVOKE ALL ON SEQUENCES  FROM graphile_starter;
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter IN SCHEMA public GRANT SELECT,USAGE ON SEQUENCES  TO graphile_starter_visitor;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k IN SCHEMA public REVOKE ALL ON SEQUENCES  FROM js13k;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k IN SCHEMA public GRANT SELECT,USAGE ON SEQUENCES  TO js13k_visitor;
 
 
 --
 -- Name: DEFAULT PRIVILEGES FOR FUNCTIONS; Type: DEFAULT ACL; Schema: public; Owner: -
 --
 
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter IN SCHEMA public REVOKE ALL ON FUNCTIONS  FROM PUBLIC;
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter IN SCHEMA public REVOKE ALL ON FUNCTIONS  FROM graphile_starter;
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter IN SCHEMA public GRANT ALL ON FUNCTIONS  TO graphile_starter_visitor;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k IN SCHEMA public REVOKE ALL ON FUNCTIONS  FROM PUBLIC;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k IN SCHEMA public REVOKE ALL ON FUNCTIONS  FROM js13k;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k IN SCHEMA public GRANT ALL ON FUNCTIONS  TO js13k_visitor;
 
 
 --
 -- Name: DEFAULT PRIVILEGES FOR FUNCTIONS; Type: DEFAULT ACL; Schema: -; Owner: -
 --
 
-ALTER DEFAULT PRIVILEGES FOR ROLE graphile_starter REVOKE ALL ON FUNCTIONS  FROM PUBLIC;
+ALTER DEFAULT PRIVILEGES FOR ROLE js13k REVOKE ALL ON FUNCTIONS  FROM PUBLIC;
 
 
 --
