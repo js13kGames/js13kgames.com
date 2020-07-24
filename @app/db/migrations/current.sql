@@ -7,13 +7,13 @@ create table app_public.user_roles (
   name text unique
 );
 
-insert into user_roles (name) VALUES ('user'), ('judge');
+insert into app_public.user_roles (name) VALUES ('user'), ('judge');
 
 comment on table app_public.user_roles is
   E'You will never believe that - those are user roles!';
 
 CREATE OR REPLACE FUNCTION get_role_id(name text) RETURNS uuid LANGUAGE SQL AS
-$$ SELECT id FROM user_roles WHERE name = name; $$;
+$$ SELECT id FROM app_public.user_roles WHERE name = name; $$;
 
 alter table app_public.users add column role_id uuid not null default get_role_id('user');
 CREATE INDEX ON "app_public"."users"("role_id");
@@ -21,6 +21,13 @@ ALTER TABLE app_public.users ADD FOREIGN KEY ("role_id") REFERENCES "user_roles"
 alter table app_public.user_roles enable row level security;
 create policy select_all on app_public.user_roles for select using (true);
 grant select on app_public.user_roles to :DATABASE_VISITOR;
+
+CREATE OR REPLACE function app_public.all_users() returns app_public.users as $$
+  select users.* from app_public.users
+$$ language sql stable;
+comment on function app_public.all_users() is
+  E'The currently logged in user (or null if not logged in).';
+
 
 /*
 

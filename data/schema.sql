@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.5 (Debian 11.5-1.pgdg90+1)
--- Dumped by pg_dump version 11.5 (Debian 11.5-1.pgdg90+1)
+-- Dumped from database version 11.8 (Debian 11.8-1.pgdg90+1)
+-- Dumped by pg_dump version 11.8 (Debian 11.8-1.pgdg90+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -2123,10 +2123,10 @@ CREATE INDEX user_authentications_user_id_idx ON app_public.user_authentications
 
 
 --
--- Name: users _100_timestamps; Type: TRIGGER; Schema: app_public; Owner: -
+-- Name: user_authentications _100_timestamps; Type: TRIGGER; Schema: app_public; Owner: -
 --
 
-CREATE TRIGGER _100_timestamps BEFORE INSERT OR UPDATE ON app_public.users FOR EACH ROW EXECUTE PROCEDURE app_private.tg__timestamps();
+CREATE TRIGGER _100_timestamps BEFORE INSERT OR UPDATE ON app_public.user_authentications FOR EACH ROW EXECUTE PROCEDURE app_private.tg__timestamps();
 
 
 --
@@ -2137,10 +2137,10 @@ CREATE TRIGGER _100_timestamps BEFORE INSERT OR UPDATE ON app_public.user_emails
 
 
 --
--- Name: user_authentications _100_timestamps; Type: TRIGGER; Schema: app_public; Owner: -
+-- Name: users _100_timestamps; Type: TRIGGER; Schema: app_public; Owner: -
 --
 
-CREATE TRIGGER _100_timestamps BEFORE INSERT OR UPDATE ON app_public.user_authentications FOR EACH ROW EXECUTE PROCEDURE app_private.tg__timestamps();
+CREATE TRIGGER _100_timestamps BEFORE INSERT OR UPDATE ON app_public.users FOR EACH ROW EXECUTE PROCEDURE app_private.tg__timestamps();
 
 
 --
@@ -2158,17 +2158,17 @@ CREATE TRIGGER _500_audit_added AFTER INSERT ON app_public.user_emails FOR EACH 
 
 
 --
--- Name: user_emails _500_audit_removed; Type: TRIGGER; Schema: app_public; Owner: -
---
-
-CREATE TRIGGER _500_audit_removed AFTER DELETE ON app_public.user_emails FOR EACH ROW EXECUTE PROCEDURE app_private.tg__add_audit_job('removed_email', 'user_id', 'id', 'email');
-
-
---
 -- Name: user_authentications _500_audit_removed; Type: TRIGGER; Schema: app_public; Owner: -
 --
 
 CREATE TRIGGER _500_audit_removed AFTER DELETE ON app_public.user_authentications FOR EACH ROW EXECUTE PROCEDURE app_private.tg__add_audit_job('unlinked_account', 'user_id', 'service', 'identifier');
+
+
+--
+-- Name: user_emails _500_audit_removed; Type: TRIGGER; Schema: app_public; Owner: -
+--
+
+CREATE TRIGGER _500_audit_removed AFTER DELETE ON app_public.user_emails FOR EACH ROW EXECUTE PROCEDURE app_private.tg__add_audit_job('removed_email', 'user_id', 'id', 'email');
 
 
 --
@@ -2186,17 +2186,17 @@ CREATE TRIGGER _500_gql_update AFTER UPDATE ON app_public.users FOR EACH ROW EXE
 
 
 --
--- Name: users _500_insert_secrets; Type: TRIGGER; Schema: app_public; Owner: -
---
-
-CREATE TRIGGER _500_insert_secrets AFTER INSERT ON app_public.users FOR EACH ROW EXECUTE PROCEDURE app_private.tg_user_secrets__insert_with_user();
-
-
---
 -- Name: user_emails _500_insert_secrets; Type: TRIGGER; Schema: app_public; Owner: -
 --
 
 CREATE TRIGGER _500_insert_secrets AFTER INSERT ON app_public.user_emails FOR EACH ROW EXECUTE PROCEDURE app_private.tg_user_email_secrets__insert_with_user_email();
+
+
+--
+-- Name: users _500_insert_secrets; Type: TRIGGER; Schema: app_public; Owner: -
+--
+
+CREATE TRIGGER _500_insert_secrets AFTER INSERT ON app_public.users FOR EACH ROW EXECUTE PROCEDURE app_private.tg_user_secrets__insert_with_user();
 
 
 --
@@ -2338,17 +2338,17 @@ ALTER TABLE app_private.user_email_secrets ENABLE ROW LEVEL SECURITY;
 ALTER TABLE app_private.user_secrets ENABLE ROW LEVEL SECURITY;
 
 --
--- Name: user_emails delete_own; Type: POLICY; Schema: app_public; Owner: -
---
-
-CREATE POLICY delete_own ON app_public.user_emails FOR DELETE USING ((user_id = app_public.current_user_id()));
-
-
---
 -- Name: user_authentications delete_own; Type: POLICY; Schema: app_public; Owner: -
 --
 
 CREATE POLICY delete_own ON app_public.user_authentications FOR DELETE USING ((user_id = app_public.current_user_id()));
+
+
+--
+-- Name: user_emails delete_own; Type: POLICY; Schema: app_public; Owner: -
+--
+
+CREATE POLICY delete_own ON app_public.user_emails FOR DELETE USING ((user_id = app_public.current_user_id()));
 
 
 --
@@ -2384,13 +2384,6 @@ CREATE POLICY select_all ON app_public.users FOR SELECT USING (true);
 
 
 --
--- Name: organizations select_invited; Type: POLICY; Schema: app_public; Owner: -
---
-
-CREATE POLICY select_invited ON app_public.organizations FOR SELECT USING ((id IN ( SELECT app_public.current_user_invited_organization_ids() AS current_user_invited_organization_ids)));
-
-
---
 -- Name: organization_memberships select_invited; Type: POLICY; Schema: app_public; Owner: -
 --
 
@@ -2398,10 +2391,10 @@ CREATE POLICY select_invited ON app_public.organization_memberships FOR SELECT U
 
 
 --
--- Name: organizations select_member; Type: POLICY; Schema: app_public; Owner: -
+-- Name: organizations select_invited; Type: POLICY; Schema: app_public; Owner: -
 --
 
-CREATE POLICY select_member ON app_public.organizations FOR SELECT USING ((id IN ( SELECT app_public.current_user_member_organization_ids() AS current_user_member_organization_ids)));
+CREATE POLICY select_invited ON app_public.organizations FOR SELECT USING ((id IN ( SELECT app_public.current_user_invited_organization_ids() AS current_user_invited_organization_ids)));
 
 
 --
@@ -2412,10 +2405,10 @@ CREATE POLICY select_member ON app_public.organization_memberships FOR SELECT US
 
 
 --
--- Name: user_emails select_own; Type: POLICY; Schema: app_public; Owner: -
+-- Name: organizations select_member; Type: POLICY; Schema: app_public; Owner: -
 --
 
-CREATE POLICY select_own ON app_public.user_emails FOR SELECT USING ((user_id = app_public.current_user_id()));
+CREATE POLICY select_member ON app_public.organizations FOR SELECT USING ((id IN ( SELECT app_public.current_user_member_organization_ids() AS current_user_member_organization_ids)));
 
 
 --
@@ -2423,6 +2416,13 @@ CREATE POLICY select_own ON app_public.user_emails FOR SELECT USING ((user_id = 
 --
 
 CREATE POLICY select_own ON app_public.user_authentications FOR SELECT USING ((user_id = app_public.current_user_id()));
+
+
+--
+-- Name: user_emails select_own; Type: POLICY; Schema: app_public; Owner: -
+--
+
+CREATE POLICY select_own ON app_public.user_emails FOR SELECT USING ((user_id = app_public.current_user_id()));
 
 
 --
