@@ -28,7 +28,48 @@ $$ language sql stable;
 comment on function app_public.all_users() is
   E'The currently logged in user (or null if not logged in).';
 
+drop table if exists app_public.contest;
+drop table if exists app_public.contest_state;
+create table app_public.contest_state (
+  id uuid primary key default gen_random_uuid(),
+  name text unique
+);
 
+comment on table app_public.user_roles is
+  E'Contest state';
+comment on column app_public.user_roles.id is
+  E'Unique identifier for the contest state.';
+comment on column app_public.user_roles.name is
+  E'Unique name for the contest state.';
+
+alter table app_public.contest_state enable row level security;
+create policy select_all on app_public.contest_state for select using (true);
+grant select on app_public.contest_state to :DATABASE_VISITOR;
+
+CREATE OR REPLACE FUNCTION app_public.get_contest_state_id(name text) RETURNS uuid LANGUAGE SQL AS
+$$ SELECT id FROM app_public.contest_state WHERE name = name; $$;
+
+comment on function app_public.get_contest_state_id(name text) is
+  E'Helper method to get contest state id by name.';
+
+insert into app_public.contest_state (name) VALUES ('INITIAL'), ('ONGOING'), ('VOTING'), ('ENDED');
+
+drop table if exists app_public.contest;
+create table app_public.contest (
+  id uuid primary key default gen_random_uuid(),
+  subject text,
+  state_id uuid not null default get_contest_state_id('INITIAL'),
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+CREATE INDEX ON "app_public"."contest"("state_id");
+ALTER TABLE app_public.contest ADD FOREIGN KEY ("state_id") REFERENCES "contest_state" ("id");
+
+alter table app_public.contest enable row level security;
+create policy select_all on app_public.contest for select using (true);
+grant select on app_public.contest to :DATABASE_VISITOR;
+
+insert into app_public.contest (subject) VALUES ('testowy');
 /*
 
 This project is using Graphile Migrate to manage migrations; please be aware

@@ -74,6 +74,147 @@ type ConfirmAccountDeletionPayload {
   success: Boolean
 }
 
+type Contest {
+  createdAt: Datetime!
+  id: UUID!
+
+  """Reads a single `ContestState` that is related to this `Contest`."""
+  state: ContestState
+  stateId: UUID!
+  subject: String
+  updatedAt: Datetime!
+}
+
+"""
+A condition to be used against `Contest` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input ContestCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `stateId` field."""
+  stateId: UUID
+}
+
+"""A connection to a list of `Contest` values."""
+type ContestsConnection {
+  """
+  A list of edges which contains the `Contest` and cursor to aid in pagination.
+  """
+  edges: [ContestsEdge!]!
+
+  """A list of `Contest` objects."""
+  nodes: [Contest!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Contest` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Contest` edge in the connection."""
+type ContestsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Contest` at the end of the edge."""
+  node: Contest!
+}
+
+"""Methods to use when ordering `Contest`."""
+enum ContestsOrderBy {
+  ID_ASC
+  ID_DESC
+  NATURAL
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  STATE_ID_ASC
+  STATE_ID_DESC
+}
+
+type ContestState {
+  """Reads and enables pagination through a set of `Contest`."""
+  contestsByStateId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ContestCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Contest`."""
+    orderBy: [ContestsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ContestsConnection!
+  id: UUID!
+  name: String
+}
+
+"""
+A condition to be used against `ContestState` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input ContestStateCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `name` field."""
+  name: String
+}
+
+"""A connection to a list of `ContestState` values."""
+type ContestStatesConnection {
+  """
+  A list of edges which contains the `ContestState` and cursor to aid in pagination.
+  """
+  edges: [ContestStatesEdge!]!
+
+  """A list of `ContestState` objects."""
+  nodes: [ContestState!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ContestState` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `ContestState` edge in the connection."""
+type ContestStatesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ContestState` at the end of the edge."""
+  node: ContestState!
+}
+
+"""Methods to use when ordering `ContestState`."""
+enum ContestStatesOrderBy {
+  ID_ASC
+  ID_DESC
+  NAME_ASC
+  NAME_DESC
+  NATURAL
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
 """All input for the `createOrganization` mutation."""
 input CreateOrganizationInput {
   """
@@ -269,6 +410,31 @@ type ForgotPasswordPayload {
   query: Query
 }
 
+"""All input for the `getContestStateId` mutation."""
+input GetContestStateIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  name: String!
+}
+
+"""The output of our `getContestStateId` mutation."""
+type GetContestStateIdPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+  uuid: UUID
+}
+
 """All input for the `getRoleId` mutation."""
 input GetRoleIdInput {
   """
@@ -460,6 +626,14 @@ type Mutation {
     """
     input: ForgotPasswordInput!
   ): ForgotPasswordPayload
+
+  """Helper method to get contest state id by name."""
+  getContestStateId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: GetContestStateIdInput!
+  ): GetContestStateIdPayload
   getRoleId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -803,6 +977,67 @@ type PageInfo {
 type Query {
   """The currently logged in user (or null if not logged in)."""
   allUsers: User
+  contest(id: UUID!): Contest
+
+  """Reads and enables pagination through a set of `Contest`."""
+  contests(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ContestCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Contest`."""
+    orderBy: [ContestsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ContestsConnection
+  contestState(id: UUID!): ContestState
+  contestStateByName(name: String!): ContestState
+
+  """Reads and enables pagination through a set of `ContestState`."""
+  contestStates(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ContestStateCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ContestState`."""
+    orderBy: [ContestStatesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ContestStatesConnection
 
   """The currently logged in user (or null if not logged in)."""
   currentUser: User
@@ -1404,9 +1639,12 @@ input UserPatch {
   username: String
 }
 
-"""You will never believe that - those are user roles!"""
+"""Contest state"""
 type UserRole {
+  """Unique identifier for the contest state."""
   id: UUID!
+
+  """Unique name for the contest state."""
   name: String
 
   """Reads and enables pagination through a set of `User`."""
