@@ -62,14 +62,48 @@ create table app_public.contest (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+comment on table app_public.contest is
+  E'Contests table';
+comment on column app_public.contest.id is
+  E'Contest id';
+comment on column app_public.contest.subject is
+  E'Contest subject';
+comment on column app_public.contest.state_id is
+  E'Contest state';
+
 CREATE INDEX ON "app_public"."contest"("state_id");
 ALTER TABLE app_public.contest ADD FOREIGN KEY ("state_id") REFERENCES "contest_state" ("id");
 
 alter table app_public.contest enable row level security;
 create policy select_all on app_public.contest for select using (true);
 grant select on app_public.contest to :DATABASE_VISITOR;
+grant insert on app_public.contest to :DATABASE_VISITOR;
+grant update(subject, state_id) on app_public.contest to :DATABASE_VISITOR;
 
-insert into app_public.contest (subject) VALUES ('testowy');
+-- That is not needed
+-- CREATE OR REPLACE FUNCTION app_public.create_contest_func(name text) RETURNS uuid  AS -- good shit :D
+-- $$ INSERT INTO app_public.contest (subject) VALUES (name) RETURNING id;
+-- $$ LANGUAGE SQL SECURITY DEFINER set search_path to pg_catalog, public, pg_temp;
+
+
+DROP POLICY IF EXISTS create_contest ON app_public.contest;
+
+create policy create_contest on app_public.contest for insert TO :DATABASE_VISITOR WITH CHECK (exists(
+  select 1
+  from app_public.users
+  where id = app_public.current_user_id()
+  and is_admin is true
+));
+
+create policy update_contest on app_public.contest FOR UPDATE TO :DATABASE_VISITOR USING (exists(
+  select 1
+  from app_public.users
+  where id = app_public.current_user_id()
+  and is_admin is true
+));
+
+-- insert into app_public.contest (subject) VALUES ('testowy');
 /*
 
 This project is using Graphile Migrate to manage migrations; please be aware
