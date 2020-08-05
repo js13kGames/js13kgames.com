@@ -57,7 +57,7 @@ insert into app_public.contest_state (name) VALUES ('INITIAL'), ('ONGOING'), ('V
 drop table if exists app_public.contest;
 create table app_public.contest (
   id uuid primary key default gen_random_uuid(),
-  subject text,
+  subject text unique,
   state_id uuid not null default get_contest_state_id('INITIAL'),
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
@@ -102,6 +102,58 @@ create policy update_contest on app_public.contest FOR UPDATE TO :DATABASE_VISIT
   where id = app_public.current_user_id()
   and is_admin is true
 ));
+
+
+drop table if exists app_public.categories;
+create table app_public.categories (
+  id uuid primary key default gen_random_uuid(),
+  name text unique not null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+comment on table app_public.categories is
+  E'Categories table';
+comment on column app_public.categories.id is
+  E'Category id';
+comment on column app_public.categories.name is
+  E'Category name';
+
+alter table app_public.categories enable row level security;
+create policy select_all on app_public.categories for select using (true);
+grant select on app_public.categories to :DATABASE_VISITOR;
+grant insert on app_public.categories to :DATABASE_VISITOR;
+grant update(name) on app_public.categories to :DATABASE_VISITOR;
+
+create policy create_categories on app_public.categories for insert TO :DATABASE_VISITOR WITH CHECK (exists(
+  select 1
+  from app_public.users
+  where id = app_public.current_user_id()
+  and is_admin is true
+));
+
+create policy update_categories on app_public.categories FOR UPDATE TO :DATABASE_VISITOR USING (exists(
+  select 1
+  from app_public.users
+  where id = app_public.current_user_id()
+  and is_admin is true
+));
+
+drop function if exists app_public.delete_category(uuid);
+
+create function app_public.delete_category(category_id uuid) returns void as $$
+begin
+  if exists(
+    select 1
+    from app_public.users
+    where id = app_public.current_user_id()
+    and is_admin is true
+  ) then
+    delete from app_public.categories where id = category_id;
+  end if;
+end;
+$$ language plpgsql volatile security definer set search_path to pg_catalog, public, pg_temp;
+
 
 -- insert into app_public.contest (subject) VALUES ('testowy');
 /*
