@@ -1,0 +1,58 @@
+openapi: "3.0.3"
+info:
+  description: "new js13kGames api"
+  version: "0.0.1"
+  title: "js13kGame API"
+tags:
+- name: "system"
+  description: "System related endpoints"
+paths:
+  /hero_data:
+    get:
+      tags:
+      - "system"
+      summary: "Get Hero Banner data"
+      description: ""
+      operationId: "getHeroData"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HeroData"
+components:
+  schemas:
+    HeroData:
+      type: "object"
+      properties:
+        primaryText:
+          type: "string"
+        secondaryText:
+          type: "string"
+        countdownDate:
+          type: "string"
+          format: "date-time"
+        callToAction:
+          $ref: "#/components/schemas/CTA"
+        socialLinks:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/SocialLinks"
+    CTA:
+      type: "object"
+      properties:
+        text:
+          type: "string"
+        url:
+          type: "string"
+
+    SocialLinks:
+      type: "object"
+      properties:
+        title:
+          type: "string"
+        icon:
+          type: "string"
+        url:
+          type: "string"
