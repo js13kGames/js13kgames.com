@@ -1,0 +1,32 @@
+hero_data:
+  get: "getHeroData"
+  put: "editHeroData"
+info_tiles:
+  get: "getInfoTiles"
+  post: "createInfoTile"
+info_tiles/{id}:
+  get: "getInfoTile"
+  put: "editInfoTile"
+  delete: "deleteInfoTile"
+menu_options:
+  get: "getMenuOptions"
+  post: "createMenuOption"
+menu_options/{id}:
+  get: "getMenuOption"
+  put: "editMenuOption"
+  delete: "deleteMenuOption"
+users:
+  get: "getUsers"
+  post: "createUser"
+users/{id}:
+  get: "getUser"
+  put: "editUser"
+  delete: "deleteUser"
+competitions:
+  get: "getCompetitions"
+  post: "createCompetition"
+competitions/{id}:
+  get: "getCompetition"
+  put: "editCompetition"
+  delete: "deleteCompetition"
+
