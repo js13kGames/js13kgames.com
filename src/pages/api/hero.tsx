@@ -2,5 +2,5 @@
 
 export default (req, res) => {
   res.statusCode = 200
-  res.json({ name: 'John Doe' })
+  res.json( { method: 'https://dd5070fc-6d5b-4660-90bc-f47c62d45223.mock.pstmn.io/hero_data' })
 }
