@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export type RouteHandler = (req: NextApiRequest, res: NextApiResponse) => void;
+export type RouteHandler = (req: NextApiRequest, res: NextApiResponse, options?: any) => void;
 
 export enum RouteHandlerMethods {
     POST = "POST",
