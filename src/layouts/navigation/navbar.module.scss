@@ -1,0 +1,27 @@
+.navWrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #000;
+  width: 100vw;
+  height: 20vh;
+  &Top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: solid 0.35em red;
+    background-color: #fff;
+    height: 50%;
+    text-transform: uppercase;
+    p {
+      margin: 0 2.5em;
+    }
+  }
+  &Bottom {
+    margin: auto;
+    .navItems {
+      display: flex;
+      align-items: center;
+      list-style: none;
+    }
+  }
+}

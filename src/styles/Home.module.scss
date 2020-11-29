@@ -1,0 +1,21 @@
+.heroContainer {
+  display: grid;
+  place-items: center;
+  text-transform: uppercase;
+  // align-items: center;
+  // justify-items: center;
+  // justify-content: center;
+  grid-template: 15% repeat(2, 1fr) / 1fr;
+  //   grid-template-rows: 15% repeat(2, 1fr);
+  //   grid-template-columns: 1fr;
+  // width: 100vw;
+  height: 50vh;
+  background-color: yellow;
+  .middleContainer {
+    text-align: center;
+    font-size: 2em;
+  }
+  .socialIcons {
+    justify-self: end;
+  }
+}

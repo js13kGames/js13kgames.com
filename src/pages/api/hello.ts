@@ -1,4 +1,4 @@
-import { map_routes, RouteHandlerMethods } from '../../server';
+import { map_routes, RouteHandlerMethods } from '../../../server';
 
 export default map_routes({
 	[RouteHandlerMethods.POST]: (req, res) => {
