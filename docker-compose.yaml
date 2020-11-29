@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  web:
+    image: node:lts-alpine
+    ports:
+      - 3000:3000
+    volumes:
+      - ./web:/web:delegated
+    command: /bin/sh -c "cd /web; npm install; npm run dev"
