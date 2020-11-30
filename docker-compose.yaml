@@ -18,5 +18,15 @@ services:
       - ./web:/web:delegated
     command: /bin/sh -c "cd /web; npm install; npm run dev"
 
+  migrator:
+    image: flyway/flyway:6.5.7
+    command: -n -defaultSchema=public -schemas=public -url=jdbc:postgresql://db:5432/postgres -user=postgres -password=postgres
+    environment:
+      - 'DATABASE_URL=postgres://postgres:postgres@db:5432/postgres'
+    volumes:
+      - ./migrator/migrations:/flyway/sql
+    depends_on:
+      - 'db'
+
 volumes:
   pgdata:
