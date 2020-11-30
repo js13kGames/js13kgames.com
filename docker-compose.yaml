@@ -11,12 +11,14 @@ services:
       - 'pgdata:/var/lib/postgresql/data'
 
   web:
-    image: node:lts-alpine
+    image: node:12.18.4-buster-slim
     ports:
       - 3000:3000
     volumes:
       - ./web:/web:delegated
     command: /bin/sh -c "cd /web; npm install; npm run dev"
+    environment:
+      - 'DATABASE_URL=postgres://postgres:postgres@db:5432/postgres'
     depends_on:
       - 'db'
 
