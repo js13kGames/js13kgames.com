@@ -46,6 +46,31 @@ const heroData =
     ]
   };
 
+  const bioData = [
+    {
+      title: "bio",
+      img: "https://picsum.photos/id/400/200/200",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque est mi, faucibus vel ligula a, varius iaculis leo. Fusce vehicula ac orci eleifend tempus. Proin aliquet fringilla lacus sit amet varius.",
+      contentBtn: "cta button",
+      path: "#"
+    },
+    {
+      title: "social",
+      img: "https://picsum.photos/id/401/200/200",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque est mi, faucibus vel ligula a, varius iaculis leo. Fusce vehicula ac orci eleifend tempus. Proin aliquet fringilla lacus sit amet varius.",
+      contentBtn: "cta button",
+      path: "#"
+    },
+    {
+      title: "support us",
+      img: "https://picsum.photos/id/402/200/200",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque est mi, faucibus vel ligula a, varius iaculis leo. Fusce vehicula ac orci eleifend tempus. Proin aliquet fringilla lacus sit amet varius.",
+      contentBtn: "cta button",
+      path: "#"
+    },
+  ]
+  
+
 
 // export const getStaticProps = async () => {
 //   const buffer = await fetch("/homeTestApi")
@@ -60,12 +85,12 @@ const heroData =
 
 export default function Home() {
   return (
-<>
+<div className={styles.homeContainer}>
       <Head>
         <title>js13kGames</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>   
-     <div className={styles.heroContainer}>
+     <section className={styles.heroContainer}>
        <div className={styles.socialIcons}>
          {heroData.socialLinks.map(({url, title, iconName}) => 
 (
@@ -82,7 +107,25 @@ export default function Home() {
          <p>{heroData.secondaryText}: {heroData.countdownDate}</p>
          </div>
        <Button href={heroData.callToAction.url} buttonClass="heroBtn">{heroData.callToAction.text}</Button>
-     </div>
-</>
+     </section>
+<section className={styles.bioWrapper}>
+
+  {bioData.map(({title, img, description, path, contentBtn}) => (
+    
+<div className={styles.item}>
+  <h1>{title}</h1>
+  <img src={img} alt="image" />
+  <p>{description}</p>
+  <Button href={path} buttonClass="bioBtn">{contentBtn}</Button>
+</div>
+
+  ))}
+ 
+
+
+ 
+</section>
+     
+</div>
   )
 }
