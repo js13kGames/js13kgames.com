@@ -2,20 +2,22 @@
   display: grid;
   place-items: center;
   text-transform: uppercase;
-  // align-items: center;
-  // justify-items: center;
-  // justify-content: center;
-  grid-template: 15% repeat(2, 1fr) / 1fr;
-  //   grid-template-rows: 15% repeat(2, 1fr);
-  //   grid-template-columns: 1fr;
-  // width: 100vw;
+  grid-template: 20% repeat(2, 1fr) 10% / 1fr;
   height: 50vh;
-  background-color: yellow;
   .middleContainer {
     text-align: center;
     font-size: 2em;
+    font-weight: bold;
   }
   .socialIcons {
+    display: flex;
     justify-self: end;
+    .iconWrapper {
+      margin-right: 1.5em;
+
+      .icon {
+        height: 0.7em;
+      }
+    }
   }
 }
