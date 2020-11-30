@@ -1,4 +1,4 @@
-.PHONY: migrate start stop types
+.PHONY: migrate start stop types logs
 
 start:
 	docker-compose down \
@@ -13,3 +13,6 @@ migrate:
 
 types:
 	docker-compose exec web /web/bin/generate_types.sh
+
+logs:
+	docker-compose logs -f web
