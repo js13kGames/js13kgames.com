@@ -28,7 +28,8 @@
   .bioWrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    // justify-content: space-evenly;
+    justify-content: center;
     margin: 2em 5em;
     .item {
       display: flex;
@@ -36,13 +37,97 @@
       align-items: center;
       justify-content: space-evenly;
       flex: 0 1 30%;
+      // flex: 0 1 clamp(300px, 30%, 30%);
+      min-width: 220px;
       border: solid 1px black;
       padding: 0 1.4em;
       height: 70vh;
-      margin: 0.35em;
+      margin: 1em;
       img {
-        width: 40%;
+        width: 50%;
       }
+    }
+  }
+  .winnersContainer {
+    display: grid;
+    grid-template: 5em 1fr / 1fr;
+    background-color: #ddd;
+    padding: 0 1em 1em 1em;
+    border: solid 1px black;
+    h1 {
+      margin: auto;
+      text-transform: uppercase;
+    }
+    .winCategoriesContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .winCategoryBox {
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        flex: 0 1 30%;
+        // min-width: 220px;
+        min-width: 350px;
+        border: solid 1px black;
+        padding: 1em 0;
+        margin: 0 1em 1em 1em;
+
+        h3 {
+          text-align: center;
+          text-transform: uppercase;
+        }
+        img {
+          margin: 1em 0;
+          object-fit: cover;
+        }
+        p {
+          margin: 0 1em;
+        }
+      }
+    }
+  }
+  .currentCategoriesWrapper {
+    display: grid;
+    grid-template: 5em 1fr 5em / 1fr;
+    h1 {
+      text-align: center;
+      text-transform: uppercase;
+      align-self: center;
+    }
+    .currentCategories {
+      display: flex;
+      // flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      // height: 80vh
+      &Item {
+        flex: 0 1 30%;
+        height: 35vh;
+        min-width: 300px;
+        background-image: url("https://picsum.photos/id/256/350/200");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin: 0 1em 2em 1em;
+        p {
+          text-align: center;
+          margin: 1.5em;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+  .banner {
+    width: 100%;
+    height: 30vh;
+    background-image: url("https://picsum.photos/id/221/350/200");
+    p {
+      text-align: center;
+      line-height: 30vh;
+      color: #fff;
+      font-size: 5em;
     }
   }
 }

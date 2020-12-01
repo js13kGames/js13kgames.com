@@ -1,7 +1,10 @@
+@import "../../styles/utilities/variables.scss";
+
 .item {
   color: #fff;
   font-size: 1.1em;
   text-transform: uppercase;
+  font-family: $secondary-font;
   + li {
     margin-left: 2em;
   }
