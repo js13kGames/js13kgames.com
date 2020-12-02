@@ -37,7 +37,6 @@
       align-items: center;
       justify-content: space-evenly;
       flex: 0 1 30%;
-      // flex: 0 1 clamp(300px, 30%, 30%);
       min-width: 220px;
       border: solid 1px black;
       padding: 0 1.4em;
@@ -61,14 +60,12 @@
     .winCategoriesContainer {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
 
       .winCategoryBox {
         display: flex;
         flex-direction: column;
         background-color: #fff;
         flex: 0 1 30%;
-        // min-width: 220px;
         min-width: 350px;
         border: solid 1px black;
         padding: 1em 0;
@@ -91,6 +88,7 @@
   .currentCategoriesWrapper {
     display: grid;
     grid-template: 5em 1fr 5em / 1fr;
+
     h1 {
       text-align: center;
       text-transform: uppercase;
@@ -98,15 +96,12 @@
     }
     .currentCategories {
       display: flex;
-      // flex-direction: column;
       flex-wrap: wrap;
       justify-content: center;
-      // height: 80vh
       &Item {
         flex: 0 1 30%;
         height: 35vh;
         min-width: 300px;
-        background-image: url("https://picsum.photos/id/256/350/200");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -121,13 +116,54 @@
   }
   .banner {
     width: 100%;
-    height: 30vh;
+    min-height: 30vh;
     background-image: url("https://picsum.photos/id/221/350/200");
     p {
       text-align: center;
       line-height: 30vh;
       color: #fff;
       font-size: 5em;
+    }
+  }
+  .partnersContainer {
+    display: grid;
+    grid-template: 5em 1fr 5em / 1fr;
+    margin-bottom: 1em;
+    h1 {
+      text-transform: uppercase;
+      text-align: center;
+      align-self: center;
+    }
+    .sponsorsWrapper {
+      .goldPartner {
+        display: flex;
+        justify-content: center;
+        img {
+          width: 20em;
+          height: 10em;
+          margin-bottom: 1.5em;
+        }
+      }
+      .silverPartners {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        img {
+          width: 15em;
+          height: 8em;
+          margin: 1.5em 1em;
+        }
+      }
+      .brownPartners {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        img {
+          width: 12em;
+          height: 6em;
+          margin: 1.5em 1em;
+        }
+      }
     }
   }
 }

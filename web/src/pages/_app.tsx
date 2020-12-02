@@ -1,15 +1,15 @@
-import Navbar from '../layouts/navigation/navbar';
-import '../styles/globals.scss';
+import Footer from "../layouts/footer/footer";
+import Navbar from "../layouts/navigation/navbar";
+import "../styles/globals.scss";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({Component, pageProps}) {
   return (
     <>
-    <Navbar  />
-    <Component {...pageProps} />
-  
+      <Navbar />
+      <Component {...pageProps} />
+      <Footer />
     </>
-  )
-
+  );
 }
 
-export default MyApp
+export default MyApp;

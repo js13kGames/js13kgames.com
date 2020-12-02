@@ -42,6 +42,58 @@ const heroData = {
   ],
 };
 
+const partnersData = {
+  title: "our partners",
+  partners: {
+    gold: [
+      {
+        name: "gold sponsor",
+        img: "https://picsum.photos/id/121/350/200",
+        url: "http://google.com",
+      },
+    ],
+
+    silver: [
+      {
+        name: "silver sponsor 1",
+        img: "https://picsum.photos/id/122/350/200",
+        url: "http://google.com",
+      },
+      {
+        name: "silver sponsor 2",
+        img: "https://picsum.photos/id/123/350/200",
+        url: "http://google.com",
+      },
+    ],
+    brown: [
+      {
+        name: "brown sponsor 1",
+        img: "https://picsum.photos/id/133/350/200",
+        url: "http://google.com",
+      },
+      {
+        name: "brown sponsor 2",
+        img: "https://picsum.photos/id/142/350/200",
+        url: "http://google.com",
+      },
+      {
+        name: "brown sponsor 3",
+        img: "https://picsum.photos/id/215/350/200",
+        url: "http://google.com",
+      },
+      {
+        name: "brown sponsor 4",
+        img: "https://picsum.photos/id/176/350/200",
+        url: "http://google.com",
+      },
+    ],
+  },
+  callToAction: {
+    text: "became a partner",
+    url: "http://google.com",
+  },
+};
+
 const bioData = [
   {
     title: "bio",
@@ -194,6 +246,7 @@ export default function Home() {
         <div className={styles.currentCategories}>
           {categoriesData.map(({title, img}) => (
             <div
+              key={title}
               className={styles.currentCategoriesItem}
               style={{backgroundImage: `url('${img}')`}}>
               <p>{title}</p>
@@ -208,6 +261,35 @@ export default function Home() {
       <div className={styles.banner}>
         <p>banner</p>
       </div>
+      <section className={styles.partnersContainer}>
+        <h1>{partnersData.title}</h1>
+        <div className={styles.sponsorsWrapper}>
+          <div className={styles.goldPartner}>
+            {partnersData.partners.gold.map(({img, url, name}) => (
+              <Link href={url}>
+                <img src={img} alt={name} title={name} />
+              </Link>
+            ))}
+          </div>
+          <div className={styles.silverPartners}>
+            {partnersData.partners.silver.map(({url, name, img}) => (
+              <Link href={url}>
+                <img src={img} alt={name} title={name} />
+              </Link>
+            ))}
+          </div>
+          <div className={styles.brownPartners}>
+            {partnersData.partners.brown.map(({img, name, url}) => (
+              <Link href={url}>
+                <img src={img} alt={name} title={name} />
+              </Link>
+            ))}
+          </div>
+        </div>
+        <Button href={partnersData.callToAction.url} buttonClass="partnersBtn">
+          {partnersData.callToAction.text}
+        </Button>
+      </section>
     </div>
   );
 }
