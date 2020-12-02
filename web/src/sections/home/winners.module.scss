@@ -1,0 +1,38 @@
+.container {
+  display: grid;
+  grid-template: 5em 1fr / 1fr;
+  background-color: #ddd;
+  padding: 0 1em 1em 1em;
+  border: solid 1px black;
+  h1 {
+    margin: auto;
+    text-transform: uppercase;
+  }
+  .categoriesWrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    .categoryBox {
+      display: flex;
+      flex-direction: column;
+      background-color: #fff;
+      flex: 0 1 30%;
+      min-width: 350px;
+      border: solid 1px black;
+      padding: 1em 0;
+      margin: 0 1em 1em 1em;
+
+      h3 {
+        text-align: center;
+        text-transform: uppercase;
+      }
+      img {
+        margin: 1em 0;
+        object-fit: cover;
+      }
+      p {
+        margin: 0 1em;
+      }
+    }
+  }
+}

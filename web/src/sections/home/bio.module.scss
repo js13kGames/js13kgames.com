@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  // justify-content: space-evenly;
+  justify-content: center;
+  margin: 2em 5em;
+  .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    flex: 0 1 30%;
+    min-width: 220px;
+    border: solid 1px black;
+    padding: 0 1.4em;
+    height: 70vh;
+    margin: 1em;
+    img {
+      width: 50%;
+    }
+  }
+}

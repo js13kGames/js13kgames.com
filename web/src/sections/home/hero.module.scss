@@ -1,0 +1,24 @@
+.container {
+  display: grid;
+  place-items: center;
+  text-transform: uppercase;
+  grid-template: 20% repeat(2, 1fr) 10% / 1fr;
+  height: 50vh;
+  border-bottom: solid 1px black;
+  background-color: #ddd;
+  .middleWrapper {
+    text-align: center;
+    font-size: 2.3em;
+    font-weight: bold;
+  }
+  .socialIcons {
+    display: flex;
+    justify-self: end;
+    .iconWrapper {
+      margin-right: 1.8em;
+      .icon {
+        height: 0.8em;
+      }
+    }
+  }
+}

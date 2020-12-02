@@ -1,169 +1,19 @@
-.homeContainer {
+// .homeContainer {
+//   width: 100%;
+
+.banner {
   width: 100%;
-  .heroContainer {
-    display: grid;
-    place-items: center;
-    text-transform: uppercase;
-    grid-template: 20% repeat(2, 1fr) 10% / 1fr;
-    height: 50vh;
-    border-bottom: solid 1px black;
-    background-color: #ddd;
-    .middleContainer {
-      text-align: center;
-      font-size: 2.3em;
-      font-weight: bold;
-    }
-    .socialIcons {
-      display: flex;
-      justify-self: end;
-      .iconWrapper {
-        margin-right: 1.8em;
-
-        .icon {
-          height: 0.8em;
-        }
-      }
-    }
-  }
-  .bioWrapper {
-    display: flex;
-    flex-wrap: wrap;
-    // justify-content: space-evenly;
-    justify-content: center;
-    margin: 2em 5em;
-    .item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-evenly;
-      flex: 0 1 30%;
-      min-width: 220px;
-      border: solid 1px black;
-      padding: 0 1.4em;
-      height: 70vh;
-      margin: 1em;
-      img {
-        width: 50%;
-      }
-    }
-  }
-  .winnersContainer {
-    display: grid;
-    grid-template: 5em 1fr / 1fr;
-    background-color: #ddd;
-    padding: 0 1em 1em 1em;
-    border: solid 1px black;
-    h1 {
-      margin: auto;
-      text-transform: uppercase;
-    }
-    .winCategoriesContainer {
-      display: flex;
-      flex-wrap: wrap;
-
-      .winCategoryBox {
-        display: flex;
-        flex-direction: column;
-        background-color: #fff;
-        flex: 0 1 30%;
-        min-width: 350px;
-        border: solid 1px black;
-        padding: 1em 0;
-        margin: 0 1em 1em 1em;
-
-        h3 {
-          text-align: center;
-          text-transform: uppercase;
-        }
-        img {
-          margin: 1em 0;
-          object-fit: cover;
-        }
-        p {
-          margin: 0 1em;
-        }
-      }
-    }
-  }
-  .currentCategoriesWrapper {
-    display: grid;
-    grid-template: 5em 1fr 5em / 1fr;
-
-    h1 {
-      text-align: center;
-      text-transform: uppercase;
-      align-self: center;
-    }
-    .currentCategories {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      &Item {
-        flex: 0 1 30%;
-        height: 35vh;
-        min-width: 300px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        margin: 0 1em 2em 1em;
-        p {
-          text-align: center;
-          margin: 1.5em;
-          text-transform: uppercase;
-        }
-      }
-    }
-  }
-  .banner {
-    width: 100%;
-    min-height: 30vh;
-    background-image: url("https://picsum.photos/id/221/350/200");
-    p {
-      text-align: center;
-      line-height: 30vh;
-      color: #fff;
-      font-size: 5em;
-    }
-  }
-  .partnersContainer {
-    display: grid;
-    grid-template: 5em 1fr 5em / 1fr;
-    margin-bottom: 1em;
-    h1 {
-      text-transform: uppercase;
-      text-align: center;
-      align-self: center;
-    }
-    .sponsorsWrapper {
-      .goldPartner {
-        display: flex;
-        justify-content: center;
-        img {
-          width: 20em;
-          height: 10em;
-          margin-bottom: 1.5em;
-        }
-      }
-      .silverPartners {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        img {
-          width: 15em;
-          height: 8em;
-          margin: 1.5em 1em;
-        }
-      }
-      .brownPartners {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        img {
-          width: 12em;
-          height: 6em;
-          margin: 1.5em 1em;
-        }
-      }
-    }
+  min-height: 40vh;
+  background-image: url("https://picsum.photos/id/221/350/200");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  p {
+    text-align: center;
+    line-height: 40vh;
+    color: #fff;
+    font-size: 5em;
   }
 }
+
+// }
