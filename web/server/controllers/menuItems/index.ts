@@ -7,27 +7,33 @@ export interface MenuItemPayload {
 }
 
 export const getMenuItems: RouteHandler = async (req, res, options) => {
+	const { query } = req;
+
+	let filters = {};
+
+	// XXX: Restrict `all` to admins only
+	if (!query.all) {
+		filters = { active: true };
+	}
+
 	const menu_items = <Types.menu_items[]>(
-		await options.db.public.menu_items.find(
-			{ active: true },
-			{ fields: ['title', 'url', 'id'] }
-		)
+		await options.db.public.menu_items.find(filters, {
+			fields: ['title', 'url', 'id']
+		})
 	);
 
 	res.json(menu_items);
 };
 
 export const createMenuItem: RouteHandler = async (req, res, options) => {
-	const body: MenuItemPayload = req.body;
+	validate_payload(req, ['title', 'url']);
 
-	await validate_payload(req, ['title', 'url']);
+	const { body } = req;
+	const { title, url }: MenuItemPayload = JSON.parse(body);
 
-	// const menu_items = <Types.menu_items[]>(
-	// 	await options.db.public.menu_items.find(
-	// 		{ active: true },
-	// 		{ fields: ['title', 'url', 'id'] }
-	// 	)
-	// );
+	await options.db.public.menu_items.insert({ title, url });
 
-	res.json(body);
+	res.json({
+		message: 'ok'
+	});
 };
