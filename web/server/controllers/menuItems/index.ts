@@ -1,6 +1,11 @@
 import { RouteHandler, validate_payload } from '../..';
 import * as Types from '../../types';
 
+export interface MenuItemPayload {
+	title: string;
+	url: string;
+}
+
 export const getMenuItems: RouteHandler = async (req, res, options) => {
 	const menu_items = <Types.menu_items[]>(
 		await options.db.public.menu_items.find(
@@ -13,7 +18,7 @@ export const getMenuItems: RouteHandler = async (req, res, options) => {
 };
 
 export const createMenuItem: RouteHandler = async (req, res, options) => {
-	const query = req.body;
+	const body: MenuItemPayload = req.body;
 
 	await validate_payload(req, ['title', 'url']);
 
@@ -24,5 +29,5 @@ export const createMenuItem: RouteHandler = async (req, res, options) => {
 	// 	)
 	// );
 
-	res.json(query);
+	res.json(body);
 };

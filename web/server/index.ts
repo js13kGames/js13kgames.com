@@ -50,7 +50,7 @@ export const map_routes = (route_map: RouteMap) => async (
 			const status_code = error.statusCode || 500;
 			return res.status(status_code).json({
 				error: status_code,
-				message: error.message
+				message: status_code !== 500 ? error.message : 'Internal server error'
 			});
 		}
 	} else {
@@ -73,7 +73,6 @@ export const validate_payload = (
 		throw new ApiError(400, `Couldn't parse payload`);
 	}
 
-	console.log(fields);
 	const has_all_required_fields = required_fields.every((field_name) =>
 		fields.includes(field_name)
 	);
