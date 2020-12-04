@@ -86,3 +86,33 @@ export const validate_payload = (
 		return has_all_required_fields;
 	}
 };
+
+export const get_valid_fields = (
+	request: NextApiRequest,
+	valid_fields: string[]
+) => {
+	const { body } = request;
+	let parsed_body = {};
+	try {
+		parsed_body = JSON.parse(body || '{}');
+	} catch (e) {
+		throw new ApiError(400, `Couldn't parse payload`);
+	}
+
+	let output = valid_fields.reduce((acc: any, field) => {
+		if (parsed_body[field]) {
+			acc[field] = parsed_body[field];
+		}
+
+		return acc;
+	}, {});
+
+	if (!Object.keys(output).length) {
+		throw new ApiError(
+			422,
+			`Couldn't find any valid fields: ${JSON.stringify(valid_fields)}`
+		);
+	} else {
+		return output;
+	}
+};

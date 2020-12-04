@@ -1,4 +1,5 @@
-import { RouteHandler, validate_payload } from '../..';
+import { get_valid_fields, RouteHandler, validate_payload } from '../..';
+import { OK } from '../../responses';
 import * as Types from '../../types';
 
 export interface MenuItemPayload {
@@ -33,7 +34,17 @@ export const createMenuItem: RouteHandler = async (req, res, options) => {
 
 	await options.db.public.menu_items.insert({ title, url });
 
-	res.json({
-		message: 'ok'
-	});
+	res.json(OK);
+};
+
+export const editMenuItem: RouteHandler = async (req, res, options) => {
+	let fields_to_update = get_valid_fields(req, ['title', 'url', 'active']);
+
+	const {
+		query: { id }
+	} = req;
+
+	await options.db.public.menu_items.update({ id }, fields_to_update);
+
+	res.json(OK);
 };
