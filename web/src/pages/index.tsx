@@ -1,9 +1,3 @@
-import {
-  faFacebookF,
-  faInstagram,
-  faSlack,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
 import Head from "next/head";
 import {Bio, Categories, Hero, Partners, Winners} from "../sections";
 import styles from "../styles/Home.module.scss";
@@ -16,34 +10,12 @@ const heroData = {
     text: "sumbit the game",
     url: "http://google.com",
   },
-  socialLinks: [
-    {
-      title: "twitter",
-      iconName: faTwitter,
-      url: "https://twitter.com/js13kGames",
-    },
-    {
-      title: "facebook",
-      iconName: faFacebookF,
-      url: "https://www.facebook.com/js13kGames/",
-    },
-    {
-      title: "slack",
-      iconName: faSlack,
-      url: "https://js13kgames.slack.com/",
-    },
-    {
-      title: "instagram",
-      iconName: faInstagram,
-      url: "https://www.instagram.com/js13kgames/",
-    },
-  ],
 };
 
 const partnersData = {
   title: "our partners",
   partners: {
-    gold: [
+    platinum: [
       {
         name: "gold sponsor",
         img: "https://picsum.photos/id/121/350/200",
@@ -51,7 +23,7 @@ const partnersData = {
       },
     ],
 
-    silver: [
+    gold: [
       {
         name: "silver sponsor 1",
         img: "https://picsum.photos/id/122/350/200",
@@ -63,7 +35,7 @@ const partnersData = {
         url: "http://google.com",
       },
     ],
-    brown: [
+    silver: [
       {
         name: "brown sponsor 1",
         img: "https://picsum.photos/id/133/350/200",
@@ -204,7 +176,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Hero
-        socialLinks={heroData.socialLinks}
         primaryText={heroData.primaryText}
         secondaryText={heroData.secondaryText}
         countdownDate={heroData.countdownDate}
@@ -225,9 +196,9 @@ export default function Home() {
       </div>
       <Partners
         title={partnersData.title}
+        platinum={partnersData.partners.platinum}
         gold={partnersData.partners.gold}
         silver={partnersData.partners.silver}
-        brown={partnersData.partners.brown}
         btnUrl={partnersData.callToAction.url}
         btnText={partnersData.callToAction.text}
       />

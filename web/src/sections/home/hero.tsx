@@ -1,6 +1,4 @@
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-import Button from "../../components/Button/button";
+import {Button, SocialIcons} from "../../components";
 import styles from "./hero.module.scss";
 
 const Hero = ({
@@ -9,30 +7,28 @@ const Hero = ({
   countdownDate,
   btnUrl,
   btnText,
-  socialLinks,
+  mainClass,
+  secondary,
 }) => {
   return (
-    <section className={styles.container}>
-      <div className={styles.socialIcons}>
-        {socialLinks.map(({url, title, iconName}) => (
-          <li className={styles.iconWrapper} key={title}>
-            <Link href={url}>
-              <a title={title}>
-                <FontAwesomeIcon className={styles.icon} icon={iconName} />{" "}
-              </a>
-            </Link>
-          </li>
-        ))}
-      </div>
+    <section
+      className={`${styles.container} ${mainClass && styles[mainClass]}`}>
+      <SocialIcons />
       <div className={styles.middleWrapper}>
-        <p>{primaryText}</p>
-        <p>
-          {secondaryText}: {countdownDate}
-        </p>
+        {secondary ? (
+          <p>{primaryText}</p>
+        ) : (
+          <>
+            <p>{primaryText}</p>
+            <p>
+              {secondaryText}: {countdownDate}
+            </p>
+            <Button href={btnUrl} buttonClass="heroBtn">
+              {btnText}
+            </Button>
+          </>
+        )}
       </div>
-      <Button href={btnUrl} buttonClass="heroBtn">
-        {btnText}
-      </Button>
     </section>
   );
 };

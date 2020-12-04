@@ -1,0 +1,10 @@
+.socialIcons {
+  display: flex;
+  justify-self: end;
+  .iconWrapper {
+    margin-right: 1.8em;
+    .icon {
+      height: 0.8em;
+    }
+  }
+}

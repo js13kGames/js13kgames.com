@@ -11,14 +11,9 @@
     font-size: 2.3em;
     font-weight: bold;
   }
-  .socialIcons {
-    display: flex;
-    justify-self: end;
-    .iconWrapper {
-      margin-right: 1.8em;
-      .icon {
-        height: 0.8em;
-      }
-    }
-  }
+}
+.containerWinners {
+  grid-template: 20% 1fr / 1fr;
+  height: 30vh;
+  background-color: #fff;
 }
