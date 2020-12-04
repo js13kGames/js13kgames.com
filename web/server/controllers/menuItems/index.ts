@@ -38,6 +38,7 @@ export const createMenuItem: RouteHandler = async (req, res, options) => {
 };
 
 export const editMenuItem: RouteHandler = async (req, res, options) => {
+	// XXX: Restrict endpoint to admins only
 	let fields_to_update = get_valid_fields(req, ['title', 'url', 'active']);
 
 	const {
@@ -45,6 +46,18 @@ export const editMenuItem: RouteHandler = async (req, res, options) => {
 	} = req;
 
 	await options.db.public.menu_items.update({ id }, fields_to_update);
+
+	res.json(OK);
+};
+
+export const deleteMenuItem: RouteHandler = async (req, res, options) => {
+	// XXX: Restrict endpoint to admins only
+
+	const {
+		query: { id }
+	} = req;
+
+	await options.db.public.menu_items.deleteOne({ id });
 
 	res.json(OK);
 };
