@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { ApiError } from 'next/dist/next-server/server/api-utils';
 import { create_db_connection } from './db';
 import { PgDbType } from './types';
 
@@ -42,12 +43,47 @@ export const map_routes = (route_map: RouteMap) => async (
 	}
 
 	if (route_map[method] && typeof route_map[method] === 'function') {
-		res.status(200);
-		return route_map[method](req, res, { db });
+		try {
+			res.status(200);
+			return await route_map[method](req, res, { db });
+		} catch (error) {
+			const status_code = error.statusCode || 500;
+			return res.status(status_code).json({
+				error: status_code,
+				message: error.message
+			});
+		}
 	} else {
 		return res.status(404).json({
 			error: 404,
 			message: `Api route ${req.method.toUpperCase()}: ${req.url} doesn't exist`
 		});
+	}
+};
+
+export const validate_payload = (
+	request: NextApiRequest,
+	required_fields: string[]
+) => {
+	const { body } = request;
+	let fields = [];
+	try {
+		fields = Object.keys(JSON.parse(body || '{}'));
+	} catch (e) {
+		throw new ApiError(400, `Couldn't parse payload`);
+	}
+
+	console.log(fields);
+	const has_all_required_fields = required_fields.every((field_name) =>
+		fields.includes(field_name)
+	);
+
+	if (!has_all_required_fields) {
+		throw new ApiError(
+			422,
+			`Couldn't find all required fields: ${JSON.stringify(required_fields)}`
+		);
+	} else {
+		return has_all_required_fields;
 	}
 };

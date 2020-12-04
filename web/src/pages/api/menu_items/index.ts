@@ -1,6 +1,10 @@
 import { map_routes, RouteHandlerMethods } from '../../../../server';
-import { getMenuItems } from '../../../../server/controllers/menuItems';
+import {
+	createMenuItem,
+	getMenuItems
+} from '../../../../server/controllers/menuItems';
 
 export default map_routes({
-	[RouteHandlerMethods.GET]: getMenuItems
+	[RouteHandlerMethods.GET]: getMenuItems,
+	[RouteHandlerMethods.POST]: createMenuItem
 });
