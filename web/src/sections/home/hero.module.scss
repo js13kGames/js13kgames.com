@@ -11,9 +11,31 @@
     font-size: 2.3em;
     font-weight: bold;
   }
+  .middlePrevEd {
+    text-align: start;
+    margin-left: 10%;
+    .description {
+      font-size: 0.35em;
+      width: 35%;
+      font-weight: normal;
+      margin-top: 1em;
+      line-height: 1.8em;
+      text-transform: none;
+    }
+  }
 }
 .containerWinners {
   grid-template: 20% 1fr / 1fr;
   height: 30vh;
   background-color: #fff;
+}
+.containerBlog {
+  grid-template: 20% 1fr 20%/ 1fr;
+  height: 50vh;
+  background-color: #ddd;
+}
+.containerPrevEditions {
+  grid-template: 20% 1fr 20%/ 1fr;
+  height: 50vh;
+  background-color: #ddd;
 }

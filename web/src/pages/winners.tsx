@@ -1,3 +1,4 @@
+import Head from "next/head";
 import {Hero} from "../sections";
 
 const heroData = {
@@ -6,11 +7,17 @@ const heroData = {
 
 const Winners = () => {
   return (
-    <Hero
-      primaryText={heroData.primaryText}
-      secondary
-      mainClass="containerWinners"
-    />
+    <>
+      <Head>
+        <title>Winners</title>
+        {/* <link rel="icon" href="/favicon.ico" /> */}
+      </Head>
+      <Hero
+        primaryText={heroData.primaryText}
+        variant2
+        mainClass="containerWinners"
+      />
+    </>
   );
 };
 
