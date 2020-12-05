@@ -1,6 +1,6 @@
-import { get_valid_fields, RouteHandler, validate_payload } from '../..';
-import { OK } from '../../responses';
-import * as Types from '../../types';
+import { get_valid_fields, RouteHandler, validate_payload } from '..';
+import { OK } from '../responses';
+import * as Types from '../types';
 
 export interface MenuItemPayload {
 	title: string;
