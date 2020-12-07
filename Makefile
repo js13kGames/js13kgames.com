@@ -1,11 +1,14 @@
-.PHONY: migrate start stop types logs
+.PHONY: migrate start stop types logs admin
 
 start:
 	docker-compose down \
-	&& docker-compose up -d web
+	&& docker-compose up -d web admin
 
 stop:
 	docker-compose down
+
+admin:
+	docker-compose up -d admin
 
 migrate:
 	docker-compose build migrator \
@@ -15,4 +18,4 @@ types:
 	docker-compose exec web /web/bin/generate_types.sh
 
 logs:
-	docker-compose logs -f web
+	docker-compose logs -f web admin

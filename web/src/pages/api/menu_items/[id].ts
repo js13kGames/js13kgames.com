@@ -1,10 +1,10 @@
 import { map_routes, RouteHandlerMethods } from '../../../../server';
 import {
-	createMenuItem,
-	getMenuItems
+	deleteMenuItem,
+	editMenuItem
 } from '../../../../server/controllers/menu_items';
 
 export default map_routes({
-	[RouteHandlerMethods.GET]: getMenuItems,
-	[RouteHandlerMethods.POST]: createMenuItem
+	[RouteHandlerMethods.PUT]: editMenuItem,
+	[RouteHandlerMethods.DELETE]: deleteMenuItem
 });

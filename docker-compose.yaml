@@ -22,6 +22,16 @@ services:
     depends_on:
       - 'db'
 
+  admin:
+    image: node:12.18.4-buster-slim
+    ports:
+      - 3310:3310
+    volumes:
+      - ./admin:/admin:delegated
+    command: /bin/sh -c "cd /admin; npm install; npm start"
+    depends_on:
+      - 'db'
+
   migrator:
     image: flyway/flyway:6.5.7
     command: -n -defaultSchema=public -schemas=public -url=jdbc:postgresql://db:5432/postgres -user=postgres -password=postgres
