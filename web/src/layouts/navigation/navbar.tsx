@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {useEffect, useState} from "react";
 import styles from "./navbar.module.scss";
 import NavItem from "./navItem";
@@ -21,8 +22,19 @@ const Navbar = () => {
   return (
     <nav className={styles.navWrapper}>
       <div className={styles.navWrapperTop}>
-        <p>logo js13kgames</p>
-        <p>register / log in</p>
+        <Link href="/">
+          <a>js13kgames logo</a>
+        </Link>
+        <div className={styles.loginWrapper}>
+          <Link href="/register">
+            <a>register</a>
+          </Link>
+          <p> / </p>
+          <Link href="/login">
+            <a>logi in</a>
+          </Link>
+        </div>
+        {/* <p>register / log in</p> */}
       </div>
       <div className={styles.navWrapperBottom}>
         <ul className={styles.navItems}>

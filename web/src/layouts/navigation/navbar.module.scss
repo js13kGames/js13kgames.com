@@ -12,8 +12,18 @@
     background-color: #fff;
     height: 50%;
     text-transform: uppercase;
-    p {
+    a {
       margin: 0 2.5em;
+    }
+    .loginWrapper {
+      display: flex;
+      margin: 2.5em;
+      a {
+        margin: 0;
+      }
+      p {
+        margin: 0 1em;
+      }
     }
   }
   &Bottom {
