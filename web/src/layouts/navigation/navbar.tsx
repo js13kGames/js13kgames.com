@@ -34,7 +34,6 @@ const Navbar = () => {
             <a>logi in</a>
           </Link>
         </div>
-        {/* <p>register / log in</p> */}
       </div>
       <div className={styles.navWrapperBottom}>
         <ul className={styles.navItems}>

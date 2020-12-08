@@ -1,5 +1,5 @@
 import Head from "next/head";
-import {Hero} from "../sections";
+import {Header} from "../layouts";
 
 const heroData = {
   primaryText: "check out 2019's edition entries",
@@ -12,11 +12,7 @@ const Entries = () => {
         <title>Entries</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
-      <Hero
-        primaryText={heroData.primaryText}
-        variant2
-        mainClass="containerWinners"
-      />
+      <Header primaryText={heroData.primaryText} />
     </>
   );
 };

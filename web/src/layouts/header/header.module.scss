@@ -1,0 +1,6 @@
+.container {
+  display: grid;
+  grid-template: 20% 1fr 20% / 1fr;
+  place-items: center;
+  height: 30vh;
+}

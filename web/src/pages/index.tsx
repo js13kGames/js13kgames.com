@@ -2,22 +2,22 @@ import Head from "next/head";
 import {Bio, Categories, Hero, Partners, Winners} from "../sections";
 import styles from "../styles/Home.module.scss";
 
-const heroData = {
-  primaryText: "lead sentence here",
-  secondaryText: "compo ends in:",
-  countdownDate: "xx days xx:xx:xx",
-  callToAction: {
-    text: "sumbit the game",
-    url: "http://google.com",
-  },
-};
+// const heroData = {
+//   primaryText: "lead sentence here",
+//   secondaryText: "compo ends in:",
+//   countdownDate: "xx days xx:xx:xx",
+//   callToAction: {
+//     text: "sumbit the game",
+//     url: "/submit",
+//   },
+// };
 
 const partnersData = {
   title: "our partners",
   partners: {
     platinum: [
       {
-        name: "gold sponsor",
+        name: "platinum sponsor",
         img: "https://picsum.photos/id/121/350/200",
         url: "http://google.com",
       },
@@ -25,34 +25,34 @@ const partnersData = {
 
     gold: [
       {
-        name: "silver sponsor 1",
+        name: "gold sponsor 1",
         img: "https://picsum.photos/id/122/350/200",
         url: "http://google.com",
       },
       {
-        name: "silver sponsor 2",
+        name: "gold sponsor 2",
         img: "https://picsum.photos/id/123/350/200",
         url: "http://google.com",
       },
     ],
     silver: [
       {
-        name: "brown sponsor 1",
+        name: "silver sponsor 1",
         img: "https://picsum.photos/id/133/350/200",
         url: "http://google.com",
       },
       {
-        name: "brown sponsor 2",
+        name: "silver sponsor 2",
         img: "https://picsum.photos/id/142/350/200",
         url: "http://google.com",
       },
       {
-        name: "brown sponsor 3",
+        name: "silver sponsor 3",
         img: "https://picsum.photos/id/215/350/200",
         url: "http://google.com",
       },
       {
-        name: "brown sponsor 4",
+        name: "silver sponsor 4",
         img: "https://picsum.photos/id/176/350/200",
         url: "http://google.com",
       },
@@ -157,18 +157,18 @@ const categoriesData = {
   },
 };
 
-// export const getStaticProps = async () => {
-//   const buffer = await fetch("/homeTestApi")
-//   const data = await buffer.json();
+export const getStaticProps = async () => {
+  const buffer = await fetch("http://localhost:3000/api/hero_data");
+  const data = await buffer.json();
 
-//   return {
-//     props: {
-//       heroData: data,
-//     }
-//   }
-// }
+  return {
+    props: {
+      heroData: data,
+    },
+  };
+};
 
-export default function Home() {
+export default function Home({heroData}) {
   return (
     <div className={styles.homeContainer}>
       <Head>

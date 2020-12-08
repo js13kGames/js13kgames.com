@@ -6,40 +6,39 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./socialIcons.module.scss";
 
-const icons = [
-  {
-    title: "twitter",
-    iconName: faTwitter,
-    url: "https://twitter.com/js13kGames",
-  },
-  {
-    title: "facebook",
-    iconName: faFacebookF,
-    url: "https://www.facebook.com/js13kGames/",
-  },
-  {
-    title: "slack",
-    iconName: faSlack,
-    url: "https://js13kgames.slack.com/",
-  },
-  {
-    title: "instagram",
-    iconName: faInstagram,
-    url: "https://www.instagram.com/js13kgames/",
-  },
-];
+const iconsMap = {
+  twitter: faTwitter,
+  facebook: faFacebookF,
+  slack: faSlack,
+  instagram: faInstagram,
+};
 
 const SocialIcons = () => {
+  const [socialLinks, setSocialLinks] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const buffer = await fetch("/api/hero_data");
+        const data = await buffer.json();
+        setSocialLinks(data.socialLinks);
+      } catch (e) {
+        new Error("error");
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className={styles.socialIcons}>
-      {icons.map(({url, title, iconName}) => (
+      {socialLinks.map(({url, title}) => (
         <li className={styles.iconWrapper} key={title}>
           <Link href={url}>
             <a title={title}>
-              <FontAwesomeIcon className={styles.icon} icon={iconName} />{" "}
+              <FontAwesomeIcon className={styles.icon} icon={iconsMap[title]} />
             </a>
           </Link>
         </li>
