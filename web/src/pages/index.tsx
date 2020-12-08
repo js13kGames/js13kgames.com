@@ -179,8 +179,11 @@ export default function Home({heroData}) {
         primaryText={heroData.primaryText}
         secondaryText={heroData.secondaryText}
         countdownDate={heroData.countdownDate}
+        backgroundImage={heroData.backgroundImage}
         btnUrl={heroData.callToAction.url}
         btnText={heroData.callToAction.text}
+        countdown
+        heroButton
       />
       <Bio data={bioData} />
       <Winners categories={winnersData.categories} title={winnersData.title} />

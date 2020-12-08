@@ -15,7 +15,7 @@ const Blog = () => {
       <Hero
         primaryText={heroData.primaryText}
         variant2
-        mainClass="containerBlog"
+        mainClass="blogContainer"
       />
     </>
   );

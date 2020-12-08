@@ -5,28 +5,27 @@
   grid-template: 20% repeat(2, 1fr) 10% / 1fr;
   height: 50vh;
   border-bottom: solid 1px black;
-  background-color: #ddd;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   .middleWrapper {
     text-align: center;
     font-size: 2.3em;
     font-weight: bold;
   }
-  // .middlePrevEd {
-  //   text-align: start;
-  //   margin-left: 10%;
-  //   .description {
-  //     font-size: 0.35em;
-  //     width: 35%;
-  //     font-weight: normal;
-  //     margin-top: 1em;
-  //     line-height: 1.8em;
-  //     text-transform: none;
-  //   }
-  // }
-}
+  .prevEditionWrapper {
+    text-align: start;
 
-// .containerPrevEditions {
-//   grid-template: 20% 1fr 20%/ 1fr;
-//   height: 50vh;
-//   background-color: #ddd;
-// }
+    margin-left: 10%;
+    .description {
+      font-size: 0.32em;
+      font-weight: normal;
+      width: 30%;
+      line-height: 2em;
+      margin-top: 1em;
+    }
+  }
+}
+.blogContainer {
+  grid-template: 20% 1fr 20% / 1fr;
+}

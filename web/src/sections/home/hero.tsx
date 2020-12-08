@@ -8,8 +8,11 @@ export interface HeroProps {
   btnUrl?: string;
   btnText?: string;
   mainClass?: string;
-  // variant2?: boolean;
-  // variant3?: boolean;
+  variant2?: boolean;
+  countdown?: boolean;
+  backgroundImage?: string;
+  heroButton?: boolean;
+  prevEdition?: string;
   // prevEdClass?: string;
 }
 
@@ -20,20 +23,37 @@ const Hero = ({
   btnUrl,
   btnText,
   mainClass,
+  variant2,
+  countdown,
+  backgroundImage,
+  heroButton,
+  prevEdition,
 }: HeroProps) => {
   return (
     <section
-      className={`${styles.container} ${mainClass && styles[mainClass]}`}>
+      className={`${styles.container} ${mainClass && styles[mainClass]}`}
+      style={{backgroundImage: `url(${backgroundImage})`}}>
       <SocialIcons />
-      <div className={styles.middleWrapper}>
-        <p>{primaryText}</p>
-        <p>
-          {secondaryText} {countdownDate}
-        </p>
-      </div>
-      <Button href={btnUrl} buttonClass="heroBtn">
-        {btnText}
-      </Button>
+      {variant2 ? (
+        <div className={styles.middleWrapper}>
+          <p>{primaryText}</p>
+        </div>
+      ) : (
+        <div
+          className={`${styles.middleWrapper} ${
+            prevEdition && styles[prevEdition]
+          }`}>
+          <p>{primaryText}</p>
+          <p className={styles.description}>
+            {secondaryText} {countdown ? `${countdownDate}` : null}
+          </p>
+        </div>
+      )}
+      {heroButton ? (
+        <Button href={btnUrl} buttonClass="heroBtn">
+          {btnText}
+        </Button>
+      ) : null}
     </section>
   );
 };

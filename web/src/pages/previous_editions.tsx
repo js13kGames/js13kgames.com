@@ -17,10 +17,11 @@ const PriviousEditions = () => {
       <Hero
         primaryText={heroData.primaryText}
         secondaryText={heroData.secondaryText}
-        variant2
-        variant3
-        mainClass="containerPrevEditions"
-        prevEdClass="middlePrevEd"
+        prevEdition="prevEditionWrapper"
+        // variant2
+        // variant3
+        // mainClass="containerPrevEditions"
+        // prevEdClass="middlePrevEd"
       />
     </>
   );
