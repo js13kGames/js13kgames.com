@@ -1,3 +1,4 @@
+import Countdown, {zeroPad} from "react-countdown";
 import {Button, SocialIcons} from "../../components";
 import styles from "./hero.module.scss";
 
@@ -13,7 +14,6 @@ export interface HeroProps {
   backgroundImage?: string;
   heroButton?: boolean;
   prevEdition?: string;
-  // prevEdClass?: string;
 }
 
 const Hero = ({
@@ -29,6 +29,15 @@ const Hero = ({
   heroButton,
   prevEdition,
 }: HeroProps) => {
+  const rerender = ({hours, minutes, days, seconds}) => {
+    return (
+      <span>
+        {days} {days <= 1 ? "day" : "days"} {zeroPad(hours)}:{zeroPad(minutes)}:
+        {zeroPad(seconds)}
+      </span>
+    );
+  };
+
   return (
     <section
       className={`${styles.container} ${mainClass && styles[mainClass]}`}
@@ -45,7 +54,10 @@ const Hero = ({
           }`}>
           <p>{primaryText}</p>
           <p className={styles.description}>
-            {secondaryText} {countdown ? `${countdownDate}` : null}
+            {secondaryText}{" "}
+            {countdown ? (
+              <Countdown date={new Date(countdownDate)} renderer={rerender} />
+            ) : null}
           </p>
         </div>
       )}

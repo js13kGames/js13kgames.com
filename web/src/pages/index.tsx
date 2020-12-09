@@ -168,7 +168,25 @@ export const getStaticProps = async () => {
   };
 };
 
-export default function Home({heroData}) {
+export interface HomeProps {
+  heroData: {
+    primaryText: string;
+    secondaryText?: string;
+    countdownDate?: string;
+    backgroundImage?: string;
+    callToAction: {
+      text: string;
+      url: string;
+    };
+    socialLinks: Array<{
+      title: string;
+      url: string;
+      id: string;
+    }>;
+  };
+}
+
+export default function Home({heroData}: HomeProps) {
   return (
     <div className={styles.homeContainer}>
       <Head>

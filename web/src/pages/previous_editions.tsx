@@ -18,10 +18,6 @@ const PriviousEditions = () => {
         primaryText={heroData.primaryText}
         secondaryText={heroData.secondaryText}
         prevEdition="prevEditionWrapper"
-        // variant2
-        // variant3
-        // mainClass="containerPrevEditions"
-        // prevEdClass="middlePrevEd"
       />
     </>
   );
