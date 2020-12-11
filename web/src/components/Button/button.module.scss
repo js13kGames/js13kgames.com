@@ -23,3 +23,19 @@
   width: 15em;
   margin: auto;
 }
+.item {
+  min-width: 7em;
+  padding: 0.35em 2em;
+  border: solid 1px black;
+  border-radius: 25px;
+  text-align: center;
+  background-color: #fff;
+  outline: none;
+  cursor: pointer;
+  + .item {
+    margin-left: 1em;
+  }
+  &:hover {
+    background-color: #ddd;
+  }
+}

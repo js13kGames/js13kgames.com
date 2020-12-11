@@ -1,3 +1,4 @@
+import {GetStaticProps} from "next";
 import Head from "next/head";
 import {Bio, Categories, Hero, Partners, Winners} from "../sections";
 import styles from "../styles/Home.module.scss";
@@ -157,7 +158,7 @@ const categoriesData = {
   },
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const buffer = await fetch("http://localhost:3000/api/hero_data");
   const data = await buffer.json();
 
