@@ -1,6 +1,6 @@
 import Head from "next/head";
 import {useState} from "react";
-import {Button} from "../components";
+import {Accordian, Button} from "../components";
 import {Header} from "../layouts";
 import styles from "../styles/winners.module.scss";
 
@@ -9,7 +9,10 @@ const headerData = {
 };
 
 const Winners = () => {
-  const [active, setActive] = useState(false);
+  const [isOpen, setIsOpen] = useState("");
+
+  // const onToggleOpenWrapper = () => setIsOpen((state) => !state);
+
   return (
     <>
       <Head>
@@ -26,15 +29,18 @@ const Winners = () => {
         </select>
         <ul className={styles.navItems}>
           <Button buttonClass="item">overall</Button>
-          <Button buttonClass="item">mobile</Button>
+          {/* <Button buttonClass="item">mobile</Button>
           <Button buttonClass="item">server</Button>
           <Button buttonClass="item">webxr</Button>
-          <Button buttonClass="item">web monetization</Button>
+          <Button buttonClass="item">web monetization</Button> */}
         </ul>
       </nav>
-      <div className={`${styles.middleWrapper} ${active && styles.open}`}>
-        <h1>open</h1>
-        <div className={`${styles.description} ${active && styles.open}`}>
+      <div className={styles.middleWrapper}>
+        <Accordian title="title1" isOpen={isOpen} setIsOpen={setIsOpen} />
+        <Accordian title="title2" isOpen={isOpen} setIsOpen={setIsOpen} />
+
+        {/* <h1 onClick={onToggleOpenWrapper}>open</h1>
+        <div className={`${styles.description} ${isOpen && styles.open}`}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
             maximus ultricies nunc, vel laoreet enim. Quisque mattis lacus id
@@ -49,7 +55,7 @@ const Winners = () => {
             accumsan. Nullam eleifend massa at justo posuere, vitae interdum
             diam vestibulum.
           </p>
-        </div>
+        </div> */}
       </div>
     </>
   );
