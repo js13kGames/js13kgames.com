@@ -1,16 +1,15 @@
 import styles from "./accordian.module.scss";
 
-const Accordian = ({title, isOpen, setIsOpen}) => {
+const Accordian = ({title, onClick, isOpen, category}) => {
   return (
     <div className={styles.container}>
       <div className={styles.title}>
-        <h2>{title}</h2>
-        <span onClick={() => setIsOpen(title)}>
-          {isOpen === title ? "X" : "|||"}
-        </span>
+        <h3>
+          {category} {title}
+        </h3>
+        <span onClick={onClick}>{isOpen[title] ? "-" : "+"}</span>
       </div>
-      <div
-        className={`${isOpen === title ? styles.open : ""} ${styles.content}`}>
+      <div className={`${isOpen[title] ? styles.open : ""} ${styles.content}`}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec maximus
           ultricies nunc, vel laoreet enim. Quisque mattis lacus id dictum

@@ -6,12 +6,39 @@ import styles from "../styles/winners.module.scss";
 
 const headerData = {
   primaryText: "meet 2019's edition winners",
+  navigation: [
+    {
+      title: "overall",
+    },
+    {
+      title: "mobile",
+    },
+    {
+      title: "server",
+    },
+    {
+      title: "webxr",
+    },
+    {
+      title: "web monetization",
+    },
+  ],
+};
+
+const DEFAULT_STATE = {
+  title1: false,
+  title2: false,
+  title3: false,
 };
 
 const Winners = () => {
-  const [isOpen, setIsOpen] = useState("");
+  const [isOpen, setIsOpen] = useState(DEFAULT_STATE);
 
-  // const onToggleOpenWrapper = () => setIsOpen((state) => !state);
+  const onToggleAccordion = (active) => {
+    const newState = {...DEFAULT_STATE};
+    newState[active] = !isOpen[active];
+    setIsOpen(newState);
+  };
 
   return (
     <>
@@ -28,34 +55,26 @@ const Winners = () => {
           <option value="2016">2016</option>
         </select>
         <ul className={styles.navItems}>
-          <Button buttonClass="item">overall</Button>
-          {/* <Button buttonClass="item">mobile</Button>
-          <Button buttonClass="item">server</Button>
-          <Button buttonClass="item">webxr</Button>
-          <Button buttonClass="item">web monetization</Button> */}
+          {headerData.navigation.map(({title}) => (
+            <Button
+              key={title}
+              buttonClass="item"
+              onClick={() => onToggleAccordion(title)}>
+              {title}
+            </Button>
+          ))}
         </ul>
       </nav>
       <div className={styles.middleWrapper}>
-        <Accordian title="title1" isOpen={isOpen} setIsOpen={setIsOpen} />
-        <Accordian title="title2" isOpen={isOpen} setIsOpen={setIsOpen} />
-
-        {/* <h1 onClick={onToggleOpenWrapper}>open</h1>
-        <div className={`${styles.description} ${isOpen && styles.open}`}>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            maximus ultricies nunc, vel laoreet enim. Quisque mattis lacus id
-            dictum venenatis. Donec accumsan hendrerit ante, eget gravida nunc
-            fringilla sed. Praesent ligula tortor, maximus quis vulputate a,
-            pharetra et odio. Cras accumsan tincidunt dui, quis fermentum arcu
-            aliquet a. Aliquam congue posuere augue, nec iaculis ex placerat
-            nec. Class aptent taciti sociosqu ad litora torquent per conubia
-            nostra, per inceptos himenaeos. Cras sed fringilla lorem. Maecenas
-            interdum mollis velit ac sagittis. Donec vel nibh sodales, dignissim
-            nisl ut, accumsan libero. Etiam finibus ex a justo ullamcorper
-            accumsan. Nullam eleifend massa at justo posuere, vitae interdum
-            diam vestibulum.
-          </p>
-        </div> */}
+        {headerData.navigation.map(({title}) => (
+          <Accordian
+            key={title}
+            title={title}
+            onClick={() => onToggleAccordion(title)}
+            isOpen={isOpen}
+            category="winners"
+          />
+        ))}
       </div>
     </>
   );
