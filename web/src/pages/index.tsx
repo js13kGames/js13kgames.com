@@ -3,16 +3,6 @@ import Head from "next/head";
 import {Bio, Categories, Hero, Partners, Winners} from "../sections";
 import styles from "../styles/Home.module.scss";
 
-// const heroData = {
-//   primaryText: "lead sentence here",
-//   secondaryText: "compo ends in:",
-//   countdownDate: "xx days xx:xx:xx",
-//   callToAction: {
-//     text: "sumbit the game",
-//     url: "/submit",
-//   },
-// };
-
 const partnersData = {
   title: "our partners",
   partners: {

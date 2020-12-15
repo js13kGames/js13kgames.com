@@ -6,15 +6,24 @@ export interface ButtonsProps {
   href?: string;
   buttonClass: string;
   onClick?: () => void;
+  isActive?: boolean;
 }
 
-const Button = ({children, href, buttonClass, onClick}: ButtonsProps) => {
+const Button = ({
+  children,
+  href,
+  buttonClass,
+  onClick,
+  isActive,
+}: ButtonsProps) => {
   return href ? (
     <Link href={href}>
       <a className={styles[buttonClass]}>{children}</a>
     </Link>
   ) : (
-    <button className={styles[buttonClass]} onClick={onClick}>
+    <button
+      className={`${styles[buttonClass]} ${isActive && styles.active}`}
+      onClick={onClick}>
       {children}
     </button>
   );

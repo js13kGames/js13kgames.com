@@ -1,38 +1,41 @@
-.navWrapper {
-  display: grid;
-  grid-template: 1fr / 20% 1fr;
-  width: 100%;
-  height: 10vh;
-  select {
-    grid-column: 1/2;
-    grid-row: 1/2;
-    width: 40%;
-    height: 2em;
-    margin: auto 0;
+.mainContainer {
+  margin: 0 3em;
+  .navWrapper {
+    display: grid;
+    grid-template: 1fr / 20% 1fr;
+    width: 100%;
+    height: 10vh;
+    select {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      width: 40%;
+      height: 2em;
+      margin: auto 0;
+    }
+    .navItems {
+      grid-column: 1/3;
+      grid-row: 1/2;
+      display: flex;
+      margin: auto;
+    }
   }
-  .navItems {
-    grid-column: 1/3;
-    grid-row: 1/2;
-    display: flex;
-    margin: auto;
-  }
-}
-.middleWrapper {
-  .description {
-    height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: all 0.6s ease-in-out;
-    // height: auto;
-    // overflow: hidden;
-    // transition: height 0.4s ease-in;
-    // overflow: hidden;
-    // transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
-    // height: auto;
-    // max-height: 99991px;
-  }
-  .open {
-    // max-height: 0;
-    // transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
-  }
+  // .middleWrapper {
+  //   .description {
+  //     height: 0;
+  //     opacity: 0;
+  //     overflow: hidden;
+  //     transition: all 0.6s ease-in-out;
+  //     // height: auto;
+  //     // overflow: hidden;
+  //     // transition: height 0.4s ease-in;
+  //     // overflow: hidden;
+  //     // transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
+  //     // height: auto;
+  //     // max-height: 99991px;
+  //   }
+  //   .open {
+  //     // max-height: 0;
+  //     // transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
+  //   }
+  // }
 }

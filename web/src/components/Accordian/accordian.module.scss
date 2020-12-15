@@ -2,14 +2,14 @@
   width: 100%;
   .title {
     display: flex;
-    width: auto;
-    max-width: 400px;
     padding: 0.5em 0;
     align-items: center;
-    justify-content: space-between;
+    h3 {
+      width: auto;
+    }
     span {
-      font-size: 2em;
-      margin-left: 2em;
+      margin-left: 1em;
+      cursor: pointer;
     }
   }
   .content {

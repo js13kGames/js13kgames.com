@@ -1,3 +1,5 @@
+import {faMinus, faPlus} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import styles from "./accordian.module.scss";
 
 const Accordian = ({title, onClick, isOpen, category}) => {
@@ -7,7 +9,9 @@ const Accordian = ({title, onClick, isOpen, category}) => {
         <h3>
           {category} {title}
         </h3>
-        <span onClick={onClick}>{isOpen[title] ? "-" : "+"}</span>
+        <span onClick={onClick}>
+          <FontAwesomeIcon icon={isOpen[title] ? faMinus : faPlus} />
+        </span>
       </div>
       <div className={`${isOpen[title] ? styles.open : ""} ${styles.content}`}>
         <p>
