@@ -1,8 +1,15 @@
 import {faMinus, faPlus} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import styles from "./accordian.module.scss";
+import styles from "./accordion.module.scss";
 
-const Accordian = ({title, onClick, isOpen, category}) => {
+export interface AccordionProps {
+  title: string;
+  onClick: () => void;
+  isOpen: boolean;
+  category?: string;
+}
+
+const Accordion = ({title, onClick, isOpen, category}: AccordionProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.title}>
@@ -32,4 +39,4 @@ const Accordian = ({title, onClick, isOpen, category}) => {
   );
 };
 
-export default Accordian;
+export default Accordion;

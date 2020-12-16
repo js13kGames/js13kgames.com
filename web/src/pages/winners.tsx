@@ -1,6 +1,6 @@
 import Head from "next/head";
-import {Accordian, Button} from "../components";
-import {Header} from "../layouts";
+import {Accordion} from "../components";
+import {AccordionNav, Header} from "../layouts";
 import styles from "../styles/winners.module.scss";
 import {useAccordionToggle} from "../utils/useAccordionToggle";
 
@@ -23,6 +23,29 @@ const headerData = {
       title: "web monetization",
     },
   ],
+  years: [
+    {
+      year: "2019",
+    },
+    {
+      year: "2018",
+    },
+    {
+      year: "2017",
+    },
+    {
+      year: "2016",
+    },
+    {
+      year: "2015",
+    },
+    {
+      year: "2014",
+    },
+    {
+      year: "2013",
+    },
+  ],
 };
 
 const Winners = () => {
@@ -39,28 +62,16 @@ const Winners = () => {
       </Head>
       <Header primaryText={headerData.primaryText} />
       <div className={styles.mainContainer}>
-        <nav className={styles.navWrapper}>
-          <select>
-            <option value="2019">2019</option>
-            <option value="2018">2018</option>
-            <option value="2017">2017</option>
-            <option value="2016">2016</option>
-          </select>
-          <ul className={styles.navItems}>
-            {headerData.navigation.map(({title}) => (
-              <Button
-                key={title}
-                isActive={isOpen[title]}
-                buttonClass="item"
-                onClick={() => onAccordionToggle(title)}>
-                {title}
-              </Button>
-            ))}
-          </ul>
-        </nav>
+        <AccordionNav
+          isActive={isOpen}
+          onClick={onAccordionToggle}
+          headerData={headerData.navigation}
+          yearOptions={headerData.years}
+          // allOnClick={() => onAllAccordionToggle()}
+        />
         <div className={styles.middleWrapper}>
           {headerData.navigation.map(({title}) => (
-            <Accordian
+            <Accordion
               key={title}
               title={title}
               onClick={() => onAccordionToggle(title)}
