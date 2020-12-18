@@ -1,6 +1,6 @@
 import Head from "next/head";
 import {Accordion} from "../components";
-import {AccordionNav, Header} from "../layouts";
+import {AccordionNav, Header, WinnersGold} from "../layouts";
 import styles from "../styles/winners.module.scss";
 import {useAccordionToggle} from "../utils/useAccordionToggle";
 
@@ -48,12 +48,21 @@ const headerData = {
   ],
 };
 
+const accordion_content = {
+  overall: <WinnersGold />,
+  mobile: <p>rap</p>,
+  server: <p>techno</p>,
+  webxr: <p>hiphop</p>,
+  "web monetization": <p>pop</p>,
+};
 const Winners = () => {
-  const [isOpen, onAccordionToggle] = useAccordionToggle({
+  const [isOpen, onAccordionToggle, onAllAccordionToggle] = useAccordionToggle({
     title1: false,
     title2: false,
     title3: false,
   });
+
+  console.log({isOpen});
   return (
     <>
       <Head>
@@ -67,7 +76,7 @@ const Winners = () => {
           onClick={onAccordionToggle}
           headerData={headerData.navigation}
           yearOptions={headerData.years}
-          // allOnClick={() => onAllAccordionToggle()}
+          // allOnClick={() => onAllAccordionToggle(true)}
         />
         <div className={styles.middleWrapper}>
           {headerData.navigation.map(({title}) => (
@@ -76,8 +85,9 @@ const Winners = () => {
               title={title}
               onClick={() => onAccordionToggle(title)}
               isOpen={isOpen}
-              category="winners"
-            />
+              category="winners">
+              {accordion_content[title]}
+            </Accordion>
           ))}
         </div>
       </div>

@@ -1,0 +1,23 @@
+.container {
+  display: grid;
+  grid-template: 20% 1fr / 1fr 1fr;
+  // align-items: center;
+  height: 50vh;
+  border: solid 1px #000;
+  .img {
+    grid-row: 2/3;
+    // margin: 2em;
+    width: 70%;
+    height: 100%;
+    background-image: url("https://picsum.photos/600/300");
+  }
+  .description {
+    display: flex;
+    flex-direction: column;
+    grid-row: 2/3;
+    height: 100%;
+    .buttonsWrapper {
+      margin: auto 0 auto auto;
+    }
+  }
+}

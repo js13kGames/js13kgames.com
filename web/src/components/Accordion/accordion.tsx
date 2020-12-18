@@ -7,9 +7,16 @@ export interface AccordionProps {
   onClick: () => void;
   isOpen: boolean;
   category?: string;
+  children: JSX.Element;
 }
 
-const Accordion = ({title, onClick, isOpen, category}: AccordionProps) => {
+const Accordion = ({
+  title,
+  onClick,
+  isOpen,
+  category,
+  children,
+}: AccordionProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.title}>
@@ -21,19 +28,7 @@ const Accordion = ({title, onClick, isOpen, category}: AccordionProps) => {
         </span>
       </div>
       <div className={`${isOpen[title] ? styles.open : ""} ${styles.content}`}>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec maximus
-          ultricies nunc, vel laoreet enim. Quisque mattis lacus id dictum
-          venenatis. Donec accumsan hendrerit ante, eget gravida nunc fringilla
-          sed. Praesent ligula tortor, maximus quis vulputate a, pharetra et
-          odio. Cras accumsan tincidunt dui, quis fermentum arcu aliquet a.
-          Aliquam congue posuere augue, nec iaculis ex placerat nec. Class
-          aptent taciti sociosqu ad litora torquent per conubia nostra, per
-          inceptos himenaeos. Cras sed fringilla lorem. Maecenas interdum mollis
-          velit ac sagittis. Donec vel nibh sodales, dignissim nisl ut, accumsan
-          libero. Etiam finibus ex a justo ullamcorper accumsan. Nullam eleifend
-          massa at justo posuere, vitae interdum diam vestibulum.
-        </p>
+        <p>{children}</p>
       </div>
     </div>
   );

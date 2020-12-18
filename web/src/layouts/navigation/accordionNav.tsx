@@ -6,7 +6,7 @@ const AccordionNav = ({
   onClick,
   headerData,
   yearOptions,
-  //   allOnClick,
+  // allOnClick,
 }) => {
   return (
     <nav className={styles.navWrapper}>
