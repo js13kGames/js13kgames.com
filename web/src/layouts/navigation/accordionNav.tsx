@@ -12,7 +12,9 @@ const AccordionNav = ({
     <nav className={styles.navWrapper}>
       <select>
         {yearOptions.map(({year}) => (
-          <option value={year}>{year}</option>
+          <option key={year} value={year}>
+            {year}
+          </option>
         ))}
       </select>
       <ul className={styles.navItems}>

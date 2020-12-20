@@ -4,7 +4,7 @@ import styles from "./winnersGold.module.scss";
 const WinnersGold = () => {
   return (
     <div className={styles.container}>
-      <p>first place</p>
+      <h3>first place</h3>
       <div className={styles.img} />
       <div className={styles.description}>
         <h2>game name by authors name</h2>
