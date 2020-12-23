@@ -6,6 +6,7 @@
   border: solid 1px #000;
   padding: 0 2em 2em 2em;
   text-transform: uppercase;
+  margin: 15px 0;
   .img {
     grid-row: 2/3;
     width: 90%;
@@ -23,6 +24,29 @@
     }
     .buttonsWrapper {
       margin: auto 0 1em auto;
+    }
+  }
+}
+.variant2 {
+  height: 30vh;
+  padding-bottom: 1.7em;
+  h2 {
+    font-size: 0.9em;
+  }
+  h3,
+  p,
+  .buttonsWrapper {
+    font-size: 0.75em;
+  }
+}
+.variant3 {
+  display: flex;
+  padding: 0 0 0 2em;
+  height: 10vh;
+  p {
+    margin: 0 0.5em;
+    &:first-child {
+      margin-left: 0;
     }
   }
 }

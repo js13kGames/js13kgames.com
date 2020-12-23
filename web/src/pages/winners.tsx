@@ -48,15 +48,105 @@ const headerData = {
   ],
 };
 
+const winnersData = {
+  overoll: [
+    {
+      place: "first place",
+      name: "first place game",
+      category: "category",
+      gameImg: "https://picsum.photos/600/300",
+      author: "author name",
+      authorUrl: "/author",
+      gameUrl: "/game",
+    },
+    {
+      place: "second place",
+      name: "second place game",
+      category: "category",
+      gameImg: "https://picsum.photos/600/300",
+      author: "author name",
+      authorUrl: "/author",
+      gameUrl: "/game",
+      wrapper: "variant2",
+    },
+    {
+      place: "third place",
+      name: "third place game",
+      category: "category",
+      gameImg: "https://picsum.photos/600/300",
+      author: "author name",
+      authorUrl: "/author",
+      gameUrl: "/game",
+      wrapper: "variant2",
+    },
+    {
+      place: "fourth place",
+      name: "fourth place game",
+      category: "category",
+      gameImg: "https://picsum.photos/600/300",
+      author: "author name",
+      authorUrl: "/author",
+      gameUrl: "/game",
+      wrapper: "variant2",
+    },
+    {
+      place: "next place",
+      name: "next game name",
+      author: "author name",
+      authorUrl: "/author",
+      gameUrl: "/game",
+      wrapper: "variant3",
+    },
+    {
+      place: "next place",
+      name: "next game name",
+      author: "author name",
+      authorUrl: "/author",
+      gameUrl: "/game",
+      wrapper: "variant3",
+    },
+    {
+      place: "next place",
+      name: "next game name",
+      author: "author name",
+      authorUrl: "/author",
+      gameUrl: "/game",
+      wrapper: "variant3",
+    },
+    {
+      place: "next place",
+      name: "next game name",
+      author: "author name",
+      authorUrl: "/author",
+      gameUrl: "/game",
+      wrapper: "variant3",
+    },
+    {
+      place: "next place",
+      name: "next game name",
+      author: "author name",
+      authorUrl: "/author",
+      gameUrl: "/game",
+      wrapper: "variant3",
+    },
+  ],
+};
+
 const accordion_content = {
-  overall: <WinnersGold />,
+  overall: (
+    <>
+      {winnersData.overoll.map((props) => (
+        <WinnersGold {...props} />
+      ))}
+    </>
+  ),
   mobile: <p>rap</p>,
   server: <p>techno</p>,
   webxr: <p>hiphop</p>,
   "web monetization": <p>pop</p>,
 };
 const Winners = () => {
-  const [isOpen, onAccordionToggle, onAllAccordionToggle] = useAccordionToggle({
+  const [isOpen, onAccordionToggle] = useAccordionToggle({
     title1: false,
     title2: false,
     title3: false,
