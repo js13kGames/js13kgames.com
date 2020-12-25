@@ -23,9 +23,11 @@ const WinnersGold = ({
   gameUrl,
   gameImg,
 }: WrapperProps) => {
+  const gamesUrl = () => {};
+
   return (
     <div className={`${styles.container} ${wrapper && styles[wrapper]}`}>
-      {wrapper === "variant3" ? (
+      {/* {wrapper === "variant2" ? (
         <>
           <p>{place}.</p>
           <Link href={gameUrl}>
@@ -36,29 +38,38 @@ const WinnersGold = ({
             <a>{author}</a>
           </Link>
         </>
-      ) : (
-        <>
-          <h3>{place}</h3>
-          <div
-            className={`${styles.img} `}
-            style={{backgroundImage: `url(${gameImg})`}}
-          />
-          <div className={styles.description}>
+      ) : ( */}
+      <>
+        <h3 className={styles.place}>{place}</h3>
+        <div
+          className={`${styles.img} `}
+          style={{backgroundImage: `url(${gameImg})`}}
+        />
+        <div className={styles.description}>
+          {!gameImg ? (
+            <Link href={gameUrl}>
+              <a className={styles.titleLink}>
+                {name} by {author}
+              </a>
+            </Link>
+          ) : (
             <h2>
               {name} by {author}
             </h2>
-            <p>{category}</p>
-            <div className={`${styles.buttonsWrapper} `}>
-              <Button href={authorUrl} buttonClass="heroBtn">
-                about the author
-              </Button>
-              <Button href={gameUrl} buttonClass="heroBtn">
-                about the game
-              </Button>
-            </div>
+          )}
+
+          <p className={styles.category}>{category}</p>
+          <div className={`${styles.buttonsWrapper} `}>
+            <Button href={authorUrl} buttonClass="heroBtn">
+              about the author
+            </Button>
+            <Button href={gameUrl} buttonClass="heroBtn">
+              about the game
+            </Button>
           </div>
-        </>
-      )}
+        </div>
+      </>
+      {/* )} */}
     </div>
   );
 };

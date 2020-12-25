@@ -67,67 +67,20 @@ const winnersData = {
       author: "author name",
       authorUrl: "/author",
       gameUrl: "/game",
-      wrapper: "variant2",
     },
     {
       place: "third place",
       name: "third place game",
-      category: "category",
-      gameImg: "https://picsum.photos/600/300",
       author: "author name",
       authorUrl: "/author",
       gameUrl: "/game",
-      wrapper: "variant2",
     },
     {
-      place: "fourth place",
-      name: "fourth place game",
-      category: "category",
-      gameImg: "https://picsum.photos/600/300",
+      place: "third place",
+      name: "third place game",
       author: "author name",
       authorUrl: "/author",
       gameUrl: "/game",
-      wrapper: "variant2",
-    },
-    {
-      place: "next place",
-      name: "next game name",
-      author: "author name",
-      authorUrl: "/author",
-      gameUrl: "/game",
-      wrapper: "variant3",
-    },
-    {
-      place: "next place",
-      name: "next game name",
-      author: "author name",
-      authorUrl: "/author",
-      gameUrl: "/game",
-      wrapper: "variant3",
-    },
-    {
-      place: "next place",
-      name: "next game name",
-      author: "author name",
-      authorUrl: "/author",
-      gameUrl: "/game",
-      wrapper: "variant3",
-    },
-    {
-      place: "next place",
-      name: "next game name",
-      author: "author name",
-      authorUrl: "/author",
-      gameUrl: "/game",
-      wrapper: "variant3",
-    },
-    {
-      place: "next place",
-      name: "next game name",
-      author: "author name",
-      authorUrl: "/author",
-      gameUrl: "/game",
-      wrapper: "variant3",
     },
   ],
 };
@@ -135,8 +88,8 @@ const winnersData = {
 const accordion_content = {
   overall: (
     <>
-      {winnersData.overoll.map((props) => (
-        <WinnersGold {...props} />
+      {winnersData.overoll.map((props, id) => (
+        <WinnersGold {...props} key={id} />
       ))}
     </>
   ),
@@ -157,7 +110,6 @@ const Winners = () => {
     <>
       <Head>
         <title>Winners</title>
-        {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <Header primaryText={headerData.primaryText} />
       <div className={styles.mainContainer}>
