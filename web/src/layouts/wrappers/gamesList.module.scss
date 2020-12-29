@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  padding: 0 2em 1em 2em;
+  flex-wrap: wrap;
+  text-transform: uppercase;
+  p,
+  a {
+    margin-right: 0.3em;
+  }
+}

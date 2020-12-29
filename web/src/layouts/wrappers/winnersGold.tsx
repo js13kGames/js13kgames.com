@@ -4,7 +4,7 @@ import styles from "./winnersGold.module.scss";
 
 export interface WrapperProps {
   wrapper?: string;
-  place?: string;
+  place?: number;
   name?: string;
   category?: string;
   author?: string;
@@ -23,22 +23,8 @@ const WinnersGold = ({
   gameUrl,
   gameImg,
 }: WrapperProps) => {
-  const gamesUrl = () => {};
-
   return (
     <div className={`${styles.container} ${wrapper && styles[wrapper]}`}>
-      {/* {wrapper === "variant2" ? (
-        <>
-          <p>{place}.</p>
-          <Link href={gameUrl}>
-            <a> {name}</a>
-          </Link>{" "}
-          <p>by </p>{" "}
-          <Link href={authorUrl}>
-            <a>{author}</a>
-          </Link>
-        </>
-      ) : ( */}
       <>
         <h3 className={styles.place}>{place}</h3>
         <div
@@ -69,7 +55,6 @@ const WinnersGold = ({
           </div>
         </div>
       </>
-      {/* )} */}
     </div>
   );
 };
