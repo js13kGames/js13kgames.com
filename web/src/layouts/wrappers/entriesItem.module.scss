@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 23.5%;
+  min-width: 200px;
+  height: 45vh;
+  border: solid 1px black;
+  margin: 0.75%;
+  .entriesImg {
+    width: 100%;
+    height: 55%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  .titleWrapper {
+    display: flex;
+    flex-direction: column;
+    height: 45%;
+    align-items: center;
+    justify-content: center;
+  }
+}

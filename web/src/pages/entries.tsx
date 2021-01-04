@@ -1,8 +1,8 @@
 import Head from "next/head";
-import {Header, AccordionNav} from "../layouts";
 import {Accordion} from "../components";
-import {useAccordionToggle} from "../utils/useAccordionToggle";
+import {AccordionNav, EntriesItem, Header} from "../layouts";
 import styles from "../styles/entries.module.scss";
+import {useAccordionToggle} from "../utils/useAccordionToggle";
 
 const entriesData = {
   primaryText: "check out 2019's edition entries",
@@ -48,6 +48,57 @@ const entriesData = {
   ],
 };
 
+const entriesItemData = {
+  desktop: [
+    {
+      name: "games name",
+      author: "authors name",
+      gameUrl: "/game",
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      name: "games name",
+      author: "authors name",
+      gameUrl: "/game",
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      name: "games name",
+      author: "authors name",
+      gameUrl: "/game",
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      name: "games name",
+      author: "authors name",
+      gameUrl: "/game",
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      name: "games name",
+      author: "authors name",
+      gameUrl: "/game",
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      name: "games name",
+      author: "authors name",
+      gameUrl: "/game",
+      img: "https://picsum.photos/600/300",
+    },
+  ],
+};
+
+const accordion_content = {
+  desktop: [
+    <>
+      {entriesItemData.desktop.map((props) => (
+        <EntriesItem {...props} />
+      ))}
+    </>,
+  ],
+};
+
 const Entries = () => {
   const [isOpen, onAccordionToggle] = useAccordionToggle({
     title1: false,
@@ -75,8 +126,10 @@ const Entries = () => {
               title={title}
               onClick={() => onAccordionToggle(title)}
               isOpen={isOpen}
-              category="winners"
-            />
+              flex
+              category="entries">
+              {accordion_content[title]}
+            </Accordion>
           ))}
         </div>
       </div>

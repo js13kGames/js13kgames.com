@@ -8,6 +8,7 @@ export interface AccordionProps {
   isOpen: boolean;
   category?: string;
   children: JSX.Element;
+  flex?: boolean;
 }
 
 const Accordion = ({
@@ -16,6 +17,7 @@ const Accordion = ({
   isOpen,
   category,
   children,
+  flex,
 }: AccordionProps) => {
   return (
     <div className={styles.container}>
@@ -27,8 +29,11 @@ const Accordion = ({
           <FontAwesomeIcon icon={isOpen[title] ? faMinus : faPlus} />
         </span>
       </div>
-      <div className={`${isOpen[title] ? styles.open : ""} ${styles.content}`}>
-        <p>{children}</p>
+      <div
+        className={`${isOpen[title] ? styles.open : ""} ${styles.content} ${
+          flex && styles.flex
+        }`}>
+        {children}
       </div>
     </div>
   );
