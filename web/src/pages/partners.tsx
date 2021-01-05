@@ -1,6 +1,6 @@
 import Head from "next/head";
 import {Accordion} from "../components";
-import {AccordionNav, Header} from "../layouts";
+import {AccordionNav, Header, PartnersItem} from "../layouts";
 import styles from "../styles/winners.module.scss";
 import {useAccordionToggle} from "../utils/useAccordionToggle";
 
@@ -42,6 +42,32 @@ const partnersData = {
   ],
 };
 
+const partnersItemData = {
+  platinium: [
+    {
+      img: "https://picsum.photos/600/300",
+    },
+  ],
+  gold: [
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+  ],
+};
+
+const accordion_content = {
+  platinium: [
+    <>
+      {partnersItemData.platinium.map((props) => (
+        <PartnersItem {...props} />
+      ))}
+    </>,
+  ],
+};
+
 const Partners = () => {
   const [isOpen, onAccordionToggle] = useAccordionToggle({
     title1: false,
@@ -69,9 +95,9 @@ const Partners = () => {
               key={title}
               title={title}
               onClick={() => onAccordionToggle(title)}
-              isOpen={isOpen}
-              // category="winners"
-            />
+              isOpen={isOpen}>
+              {accordion_content[title]}
+            </Accordion>
           ))}
         </div>
       </div>

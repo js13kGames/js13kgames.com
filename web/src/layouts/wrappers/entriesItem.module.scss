@@ -1,11 +1,12 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 23.5%;
-  min-width: 200px;
+  //   width: 23.5%;
+  //   min-width: 200px;
   height: 45vh;
   border: solid 1px black;
-  margin: 0.75%;
+  //   margin: 0.75%;
+  cursor: pointer;
   .entriesImg {
     width: 100%;
     height: 55%;

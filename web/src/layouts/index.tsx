@@ -4,5 +4,6 @@ export {default as AccordionNav} from "./navigation/accordionNav";
 export {default as Navbar} from "./navigation/navbar";
 export {default as EntriesItem} from "./wrappers/entriesItem";
 export {default as GamesList} from "./wrappers/gamesList";
+export {default as PartnersItem} from "./wrappers/partnersItem";
 export {default as WinnersGold} from "./wrappers/winnersGold";
 export {default as WinnersSmallWrapper} from "./wrappers/winnersSmallWrapper";

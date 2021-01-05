@@ -87,12 +87,39 @@ const entriesItemData = {
       img: "https://picsum.photos/600/300",
     },
   ],
+  mobile: [
+    {
+      name: "games name",
+      author: "authors name",
+      gameUrl: "/game",
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      name: "games name",
+      author: "authors name",
+      gameUrl: "/game",
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      name: "games name",
+      author: "authors name",
+      gameUrl: "/game",
+      img: "https://picsum.photos/600/300",
+    },
+  ],
 };
 
 const accordion_content = {
   desktop: [
     <>
       {entriesItemData.desktop.map((props) => (
+        <EntriesItem {...props} />
+      ))}
+    </>,
+  ],
+  mobile: [
+    <>
+      {entriesItemData.mobile.map((props) => (
         <EntriesItem {...props} />
       ))}
     </>,
