@@ -56,6 +56,44 @@ const partnersItemData = {
       img: "https://picsum.photos/600/300",
     },
   ],
+  silver: [
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+  ],
 };
 
 const accordion_content = {
@@ -63,6 +101,20 @@ const accordion_content = {
     <>
       {partnersItemData.platinium.map((props) => (
         <PartnersItem {...props} />
+      ))}
+    </>,
+  ],
+  gold: [
+    <>
+      {partnersItemData.gold.map((props) => (
+        <PartnersItem {...props} size="gold" />
+      ))}
+    </>,
+  ],
+  silver: [
+    <>
+      {partnersItemData.silver.map((props) => (
+        <PartnersItem {...props} size="silver" />
       ))}
     </>,
   ],
@@ -95,6 +147,7 @@ const Partners = () => {
               key={title}
               title={title}
               onClick={() => onAccordionToggle(title)}
+              variant="center"
               isOpen={isOpen}>
               {accordion_content[title]}
             </Accordion>

@@ -1,9 +1,14 @@
 import styles from "./partnersItem.module.scss";
 
-const PartnersItem = ({img}) => {
+export interface PartnersWrapperProps {
+  img: string;
+  size?: string;
+}
+
+const PartnersItem = ({img, size}: PartnersWrapperProps) => {
   return (
     <div
-      className={styles.container}
+      className={`${styles.container} ${size && styles[size]}`}
       style={{backgroundImage: `url(${img})`}}
     />
   );

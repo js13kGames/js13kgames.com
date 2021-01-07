@@ -18,12 +18,16 @@
   }
   .open {
     height: auto;
+    margin: 1em 0;
   }
 }
-.flex {
-  // display: flex;
-  // flex-wrap: wrap;
+.grid {
   display: grid;
   grid-gap: 1em;
   grid-template-columns: repeat(auto-fill, minmax(23.5%, 1fr));
+}
+.center {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }

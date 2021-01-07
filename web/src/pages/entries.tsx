@@ -107,6 +107,36 @@ const entriesItemData = {
       img: "https://picsum.photos/600/300",
     },
   ],
+  server: [
+    {
+      name: "games name",
+      author: "authors name",
+      gameUrl: "/game",
+      img: "https://picsum.photos/600/300",
+    },
+  ],
+  webxr: [
+    {
+      name: "games name",
+      author: "authors name",
+      gameUrl: "/game",
+      img: "https://picsum.photos/600/300",
+    },
+  ],
+  "web monetization": [
+    {
+      name: "games name",
+      author: "authors name",
+      gameUrl: "/game",
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      name: "games name",
+      author: "authors name",
+      gameUrl: "/game",
+      img: "https://picsum.photos/600/300",
+    },
+  ],
 };
 
 const accordion_content = {
@@ -120,6 +150,27 @@ const accordion_content = {
   mobile: [
     <>
       {entriesItemData.mobile.map((props) => (
+        <EntriesItem {...props} />
+      ))}
+    </>,
+  ],
+  server: [
+    <>
+      {entriesItemData.server.map((props) => (
+        <EntriesItem {...props} />
+      ))}
+    </>,
+  ],
+  webxr: [
+    <>
+      {entriesItemData.webxr.map((props) => (
+        <EntriesItem {...props} />
+      ))}
+    </>,
+  ],
+  "web monetization": [
+    <>
+      {entriesItemData["web monetization"].map((props) => (
         <EntriesItem {...props} />
       ))}
     </>,
@@ -153,7 +204,7 @@ const Entries = () => {
               title={title}
               onClick={() => onAccordionToggle(title)}
               isOpen={isOpen}
-              flex
+              variant="grid"
               category="entries">
               {accordion_content[title]}
             </Accordion>

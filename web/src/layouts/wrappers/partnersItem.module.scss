@@ -1,7 +1,17 @@
 .container {
-  width: 500px;
-  height: 100px;
+  width: 20em;
+  height: 9em;
+  margin: 1em;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+.gold {
+  width: 15em;
+  height: 7em;
+}
+.silver {
+  width: 12em;
+  height: 5em;
+  flex-wrap: wrap;
 }
