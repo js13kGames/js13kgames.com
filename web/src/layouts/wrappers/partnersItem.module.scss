@@ -1,17 +1,20 @@
 .container {
-  width: 20em;
-  height: 9em;
+  width: 22em;
+  height: 8em;
   margin: 1em;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 .gold {
-  width: 15em;
+  width: 16em;
   height: 7em;
 }
 .silver {
-  width: 12em;
+  width: 13em;
   height: 5em;
-  flex-wrap: wrap;
+}
+.supporters {
+  width: 8em;
+  height: 4em;
 }

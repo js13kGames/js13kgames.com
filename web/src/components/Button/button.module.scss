@@ -1,16 +1,18 @@
 .heroBtn {
   padding: 1em 3em;
   border: solid 1px black;
+  // text-align: center;
+  margin-left: 2em;
 
   &:hover {
     background-color: #ddd;
   }
 }
-.heroBtn {
-  padding: 1em 3em;
-  border: solid 1px black;
-  margin-left: 2em;
-}
+// .heroBtn {
+//   padding: 1em 3em;
+//   border: solid 1px black;
+//   margin-left: 2em;
+// }
 
 .bioBtn {
   padding: 1em 0;

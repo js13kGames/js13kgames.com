@@ -1,7 +1,7 @@
 import Head from "next/head";
-import {Accordion} from "../components";
+import {Accordion, Button} from "../components";
 import {AccordionNav, Header, PartnersItem} from "../layouts";
-import styles from "../styles/winners.module.scss";
+import styles from "../styles/partners.module.scss";
 import {useAccordionToggle} from "../utils/useAccordionToggle";
 
 const partnersData = {
@@ -57,6 +57,44 @@ const partnersItemData = {
     },
   ],
   silver: [
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+    {
+      img: "https://picsum.photos/600/300",
+    },
+  ],
+  supporters: [
     {
       img: "https://picsum.photos/600/300",
     },
@@ -153,6 +191,23 @@ const Partners = () => {
             </Accordion>
           ))}
         </div>
+        <div className={styles.bottomWrapper}>
+          <Button href="/partners" buttonClass="partnersBtn">
+            cta button
+          </Button>
+          {/* <div> */}
+          <h1>our supporters</h1>
+          <div className={styles.supporters}>
+            {partnersItemData.silver.map((props) => (
+              <PartnersItem {...props} size="supporters" />
+            ))}
+          </div>
+          <Button href="/partners" buttonClass="partnersBtn">
+            cta button
+          </Button>
+        </div>
+
+        {/* </div> */}
       </div>
     </>
   );

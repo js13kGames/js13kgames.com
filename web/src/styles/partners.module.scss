@@ -1,3 +1,21 @@
 .mainContainer {
-  margin: 0 3em;
+  margin: 0 3em 3em 3em;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  .bottomWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: space-evenly;
+    margin-top: 1em;
+    h1 {
+      margin-top: 1.5em;
+    }
+    .supporters {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 2em 0;
+    }
+  }
 }
