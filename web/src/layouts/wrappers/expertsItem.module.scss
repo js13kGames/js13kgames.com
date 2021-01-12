@@ -1,0 +1,18 @@
+.container {
+  display: grid;
+  grid-template-rows: 2fr 1fr 2fr;
+  //   width: 33%;
+  padding: 1em;
+  border: solid 1px black;
+  //   margin: 0.5em;
+  place-items: center;
+  //   align-items: center;
+  //   justify-items: center;
+  .image {
+    width: 8em;
+    height: 8em;
+  }
+  .description {
+    align-self: flex-start;
+  }
+}

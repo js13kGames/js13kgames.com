@@ -1,6 +1,6 @@
 import Head from "next/head";
 import {Accordion} from "../components";
-import {AccordionNav, Header} from "../layouts";
+import {AccordionNav, ExpertsItem, Header} from "../layouts";
 import styles from "../styles/experts.module.scss";
 import {useAccordionToggle} from "../utils/useAccordionToggle";
 
@@ -40,6 +40,65 @@ const expertsData = {
       year: "2013",
     },
   ],
+  "desktop, mobile, server": [
+    {
+      name: "Elon Musk",
+      img: "https://picsum.photos/600/300",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque est mi, faucibus vel ligula a, varius iaculis leo. Fusce vehicula ac orci eleifend tempus. Proin aliquet fringilla lacus sit amet varius.",
+    },
+    {
+      name: "Elon Musk",
+      img: "https://picsum.photos/600/300",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque est mi, faucibus vel ligula a, varius iaculis leo. Fusce vehicula ac orci eleifend tempus. Proin aliquet fringilla lacus sit amet varius.",
+    },
+    {
+      name: "Elon Musk",
+      img: "https://picsum.photos/600/300",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+    },
+  ],
+  webxr: [
+    {
+      name: "Elon Musk",
+      img: "https://picsum.photos/600/300",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque est mi, faucibus vel ligula a, varius iaculis leo. Fusce vehicula ac orci eleifend tempus. Proin aliquet fringilla lacus sit amet varius.",
+    },
+  ],
+  "web monetization": [
+    {
+      name: "Elon Musk",
+      img: "https://picsum.photos/600/300",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque est mi, faucibus vel ligula a, varius iaculis leo. Fusce vehicula ac orci eleifend tempus. Proin aliquet fringilla lacus sit amet varius.",
+    },
+  ],
+};
+
+const accordion_content = {
+  "desktop, mobile, server": [
+    <>
+      {expertsData["desktop, mobile, server"].map((props) => (
+        <ExpertsItem {...props} />
+      ))}
+    </>,
+  ],
+  webxr: [
+    <>
+      {expertsData.webxr.map((props) => (
+        <ExpertsItem {...props} />
+      ))}
+    </>,
+  ],
+  "web monetization": [
+    <>
+      {expertsData["web monetization"].map((props) => (
+        <ExpertsItem {...props} />
+      ))}
+    </>,
+  ],
 };
 
 const Experts = () => {
@@ -70,8 +129,10 @@ const Experts = () => {
               title={title}
               onClick={() => onAccordionToggle(title)}
               isOpen={isOpen}
-              category="experts"
-            />
+              variant="grid"
+              category="experts">
+              {accordion_content[title]}
+            </Accordion>
           ))}
         </div>
       </div>

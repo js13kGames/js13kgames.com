@@ -60,7 +60,7 @@ const bioData = [
     title: "bio",
     img: "https://picsum.photos/id/400/200/200",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque est mi, faucibus vel ligula a, varius iaculis leo. Fusce vehicula ac orci eleifend tempus. Proin aliquet fringilla lacus sit amet varius.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque est mi,",
     contentBtn: "cta button",
     path: "/#",
   },

@@ -28,7 +28,7 @@ const AccordionNav = ({
           <Button
             key={title}
             isActive={isActive[title]}
-            buttonClass="item"
+            buttonClass="navAccItem"
             onClick={() => onClick(title)}>
             {title}
           </Button>

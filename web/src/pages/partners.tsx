@@ -195,7 +195,6 @@ const Partners = () => {
           <Button href="/partners" buttonClass="partnersBtn">
             cta button
           </Button>
-          {/* <div> */}
           <h1>our supporters</h1>
           <div className={styles.supporters}>
             {partnersItemData.silver.map((props) => (
@@ -206,8 +205,6 @@ const Partners = () => {
             cta button
           </Button>
         </div>
-
-        {/* </div> */}
       </div>
     </>
   );

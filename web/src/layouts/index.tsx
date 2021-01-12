@@ -3,6 +3,7 @@ export {default as Header} from "./header/header";
 export {default as AccordionNav} from "./navigation/accordionNav";
 export {default as Navbar} from "./navigation/navbar";
 export {default as EntriesItem} from "./wrappers/entriesItem";
+export {default as ExpertsItem} from "./wrappers/expertsItem";
 export {default as GamesList} from "./wrappers/gamesList";
 export {default as PartnersItem} from "./wrappers/partnersItem";
 export {default as WinnersGold} from "./wrappers/winnersGold";

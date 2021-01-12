@@ -1,53 +1,39 @@
-.heroBtn {
+.button {
   padding: 1em 3em;
   border: solid 1px black;
-  // text-align: center;
-  margin-left: 2em;
-
   &:hover {
     background-color: #ddd;
   }
 }
-// .heroBtn {
-//   padding: 1em 3em;
-//   border: solid 1px black;
-//   margin-left: 2em;
-// }
+
+.heroBtn {
+  margin-left: 2em;
+}
 
 .bioBtn {
-  padding: 1em 0;
-  border: solid 1px black;
   text-align: center;
   width: 100%;
 }
 .categoryBtn {
-  padding: 1em 0;
-  border: solid 1px black;
   text-align: center;
   width: 15em;
   margin: 0 auto auto auto;
 }
 .partnersBtn {
-  padding: 1em 0;
-  border: solid 1px black;
   text-align: center;
   width: 15em;
   margin: auto;
 }
-.item {
+.navAccItem {
   min-width: 7em;
   padding: 0.35em 2em;
-  border: solid 1px black;
   border-radius: 25px;
   text-align: center;
   background-color: #fff;
   outline: none;
   cursor: pointer;
-  + .item {
+  + .navAccItem {
     margin-left: 1em;
-  }
-  &:hover {
-    background-color: #ddd;
   }
 }
 .active {

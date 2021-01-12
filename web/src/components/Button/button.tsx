@@ -18,11 +18,13 @@ const Button = ({
 }: ButtonsProps) => {
   return href ? (
     <Link href={href}>
-      <a className={styles[buttonClass]}>{children}</a>
+      <a className={`${styles.button} ${styles[buttonClass]}`}>{children}</a>
     </Link>
   ) : (
     <button
-      className={`${styles[buttonClass]} ${isActive && styles.active}`}
+      className={`${styles.button} ${styles[buttonClass]} ${
+        isActive && styles.active
+      }`}
       onClick={onClick}>
       {children}
     </button>
