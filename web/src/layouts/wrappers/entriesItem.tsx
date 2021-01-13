@@ -1,7 +1,23 @@
 import {useRouter} from "next/router";
 import styles from "./entriesItem.module.scss";
 
-const EntriesItem = ({gameUrl, img, name, author}) => {
+export interface EntriesProps {
+  gameUrl: string;
+  img: string;
+  name: string;
+  author?: string;
+  year?: string;
+  variant2?: boolean;
+}
+
+const EntriesItem = ({
+  gameUrl,
+  img,
+  name,
+  author,
+  year,
+  variant2,
+}: EntriesProps) => {
   const router = useRouter();
   return (
     <div
@@ -13,7 +29,7 @@ const EntriesItem = ({gameUrl, img, name, author}) => {
       />
       <div className={styles.titleWrapper}>
         <h1>{name}</h1>
-        <h3>{author}</h3>
+        {variant2 ? <h3>{year}</h3> : <h3>{author}</h3>}
       </div>
     </div>
   );

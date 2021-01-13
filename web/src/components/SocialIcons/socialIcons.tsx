@@ -16,7 +16,11 @@ const iconsMap = {
   instagram: faInstagram,
 };
 
-const SocialIcons = () => {
+export interface SocialIconsProps {
+  variant?: string;
+}
+
+const SocialIcons = ({variant}: SocialIconsProps) => {
   const [socialLinks, setSocialLinks] = useState([]);
 
   useEffect(() => {
@@ -33,7 +37,7 @@ const SocialIcons = () => {
   }, []);
 
   return (
-    <div className={styles.socialIcons}>
+    <div className={`${styles.socialIcons} ${variant && styles[variant]}`}>
       {socialLinks.map(({url, title}) => (
         <li className={styles.iconWrapper} key={title}>
           <Link href={url}>
