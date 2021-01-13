@@ -1,0 +1,28 @@
+.infoWrapper {
+  display: flex;
+  .authorsImg {
+    width: 18em;
+    height: 18em;
+  }
+  .imgGame {
+    width: 40vw;
+  }
+  .descriptionWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 3em;
+
+    .btnsWrapper {
+      margin-bottom: 0.5em;
+    }
+    .socialWrapper {
+      display: flex;
+      flex-direction: column;
+      a {
+        margin: 0.2em 0;
+        width: 5%;
+      }
+    }
+  }
+}

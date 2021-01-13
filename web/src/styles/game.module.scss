@@ -1,0 +1,15 @@
+.container {
+  display: grid;
+  grid-template-rows: 1fr 8em auto;
+  grid-gap: 1em;
+  margin: 3em;
+  .feedbackTitle {
+    margin-top: 2em;
+  }
+  .feedbackWrapper {
+    margin: 1em 0;
+    span {
+      font-weight: bold;
+    }
+  }
+}

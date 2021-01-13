@@ -3,29 +3,7 @@
   grid-template-rows: 1fr 8em 1fr;
   grid-gap: 1em;
   margin: 3em;
-  .infoWrapper {
-    display: flex;
-    .authorsImg {
-      width: 18em;
-      height: 18em;
-    }
-    .descriptionWrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      margin-left: 3em;
-      .btnsWrapper {
-        margin-bottom: 0.5em;
-      }
-      .socialWrapper {
-        display: flex;
-        flex-direction: column;
-        a {
-          margin: 0.2em 0;
-        }
-      }
-    }
-  }
+
   .sectorTitle {
     align-self: center;
   }

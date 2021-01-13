@@ -1,7 +1,6 @@
 import Head from "next/head";
-import Link from "next/link";
-import {Button, SocialIcons} from "../components";
-import {EntriesItem} from "../layouts";
+import {SocialIcons} from "../components";
+import {EntriesItem, InfoWrapper} from "../layouts";
 import styles from "../styles/author.module.scss";
 
 const authorsData = {
@@ -10,6 +9,7 @@ const authorsData = {
       authorName: "Author Name",
       descirption:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque est mi, faucibus vel ligula a, varius iaculis leo.",
+      image: "https://picsum.photos/600/300",
     },
 
     social: [
@@ -59,32 +59,14 @@ const Author = () => {
       </Head>
       <SocialIcons variant="variant2" />
       <div className={styles.container}>
-        <div className={styles.infoWrapper}>
-          <img
-            className={styles.authorsImg}
-            src="https://picsum.photos/600/300"
-            alt="photo"
-          />
-          <div className={styles.descriptionWrapper}>
-            <h1>{authorsData.author001.info.authorName}</h1>
-            <h3>{authorsData.author001.info.descirption}</h3>
-            <div className={styles.socialWrapper}>
-              {authorsData.author001.social.map(({name, url}) => (
-                <Link href={url} key={name}>
-                  <a>{name}</a>
-                </Link>
-              ))}
-            </div>
-            <div className={styles.btnsWrapper}>
-              <Button href="/badge" buttonClass="navAccItem">
-                badge
-              </Button>
-              <Button href="/badge" buttonClass="navAccItem">
-                badge
-              </Button>
-            </div>
-          </div>
-        </div>
+        <InfoWrapper
+          image={authorsData.author001.info.image}
+          name={authorsData.author001.info.authorName}
+          description={authorsData.author001.info.descirption}
+          socialData={authorsData.author001.social}
+          children="budge"
+          buttonHref="/budge"
+        />
         <h1 className={styles.sectorTitle}>games</h1>
         <div className={styles.gamesList}>
           {authorsData.author001.games.map((props, id) => (

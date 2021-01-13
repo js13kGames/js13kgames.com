@@ -5,6 +5,7 @@ export {default as Navbar} from "./navigation/navbar";
 export {default as EntriesItem} from "./wrappers/entriesItem";
 export {default as ExpertsItem} from "./wrappers/expertsItem";
 export {default as GamesList} from "./wrappers/gamesList";
+export {default as InfoWrapper} from "./wrappers/infoWrapper";
 export {default as PartnersItem} from "./wrappers/partnersItem";
 export {default as PrizesList} from "./wrappers/prizesList";
 export {default as WinnersGold} from "./wrappers/winnersGold";
