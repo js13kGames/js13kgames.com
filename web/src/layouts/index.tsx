@@ -6,5 +6,6 @@ export {default as EntriesItem} from "./wrappers/entriesItem";
 export {default as ExpertsItem} from "./wrappers/expertsItem";
 export {default as GamesList} from "./wrappers/gamesList";
 export {default as PartnersItem} from "./wrappers/partnersItem";
+export {default as PrizesList} from "./wrappers/prizesList";
 export {default as WinnersGold} from "./wrappers/winnersGold";
 export {default as WinnersSmallWrapper} from "./wrappers/winnersSmallWrapper";
