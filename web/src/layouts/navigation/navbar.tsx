@@ -22,7 +22,7 @@ const Navbar = ({ year }) => {
 	return (
 		<nav className={styles.navWrapper}>
 			<div className={styles.navWrapperTop}>
-				<Link href='/'>
+				<Link href={'/' + year}>
 					<a>js13kgames logo</a>
 				</Link>
 				<div className={styles.loginWrapper}>
