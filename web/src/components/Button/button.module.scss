@@ -1,6 +1,7 @@
 .button {
   padding: 1em 3em;
   border: solid 1px black;
+  text-transform: uppercase;
   &:hover {
     background-color: #ddd;
   }
@@ -48,4 +49,14 @@
   font-size: 2em;
   margin-top: 1em;
   text-transform: uppercase;
+}
+
+.prevEdition {
+  grid-column: 2/3;
+  width: 40%;
+  height: 3.5em;
+  line-height: 3.5em;
+  text-align: center;
+  margin: auto 0;
+  padding: 0;
 }
