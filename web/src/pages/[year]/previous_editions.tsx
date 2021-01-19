@@ -72,8 +72,13 @@ const PriviousEditions = ({year}) => {
         secondaryText={heroData.secondaryText}
         prevEdition="prevEditionWrapper"
       />
-      {heroData.prev.map(({description, img}) => (
-        <PrevEditionWrapper year={year} description={description} img={img} />
+      {heroData.prev.map(({description, img, year}) => (
+        <PrevEditionWrapper
+          year={year}
+          description={description}
+          img={img}
+          href={"/" + year}
+        />
       ))}
     </>
   );

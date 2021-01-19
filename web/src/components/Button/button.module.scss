@@ -1,7 +1,9 @@
 .button {
-  padding: 1em 3em;
+  padding: 1em;
   border: solid 1px black;
   text-transform: uppercase;
+  white-space: nowrap;
+  text-align: center;
   &:hover {
     background-color: #ddd;
   }
@@ -9,6 +11,7 @@
 
 .heroBtn {
   margin-left: 2em;
+  width: 15em;
 }
 
 .bioBtn {
