@@ -22,6 +22,7 @@ jobs:
         script: |
           cd /var/www/html/js13k
           make stop
+    - uses: actions/checkout@v1
     - name: Deploy to remote env
       uses: appleboy/scp-action@master
       with:
