@@ -2,7 +2,7 @@
 
 start:
 	docker-compose down \
-	&& docker-compose up -d web admin
+	&& docker-compose up -d web
 
 stop:
 	docker-compose down

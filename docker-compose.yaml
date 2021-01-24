@@ -13,7 +13,7 @@ services:
   web:
     image: node:12.18.4-buster-slim
     ports:
-      - 3000:3000
+      - 1234:3000
     volumes:
       - ./web:/web:delegated
     command: /bin/sh -c "cd /web; npm install; npm run dev"
