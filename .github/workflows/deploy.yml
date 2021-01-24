@@ -17,7 +17,7 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
+        KEY: ${{ secrets.SSHKEY }}
         port: ${{ secrets.PORT }}
         script: |
           cd /var/www/html/js13k
@@ -37,7 +37,7 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
+        KEY: ${{ secrets.SSHKEY }}
         port: ${{ secrets.PORT }}
         script: |
           cd /var/www/html/js13k
