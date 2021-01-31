@@ -1,3 +1,4 @@
+// XXX: This should be grabbed from the API
 const CURRENT_EDITION = '2020';
 
 module.exports = {

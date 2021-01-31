@@ -18,4 +18,4 @@ types:
 	docker-compose exec web /web/bin/generate_types.sh
 
 logs:
-	docker-compose logs -f web admin
+	docker-compose logs -f web graphql

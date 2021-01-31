@@ -21,16 +21,30 @@ services:
       - 'DATABASE_URL=postgres://postgres:postgres@db:5432/postgres'
     depends_on:
       - 'db'
+      - 'graphql'
 
-  admin:
-    image: node:12.18.4-buster-slim
-    ports:
-      - 3310:3310
-    volumes:
-      - ./admin:/admin:delegated
-    command: /bin/sh -c "cd /admin; npm install; npm start"
+  graphql:
+    container_name: forum-example-graphql
+    restart: always
+    image: forum-example-graphql
+    build:
+        context: ./graphql
+    env_file:
+        - ./.env
     depends_on:
-      - 'db'
+        - db
+    ports:
+        - 5433:5433
+    command: ["--connection", "${DATABASE_URL}", "--port", "5433", "--schema", "public", "--append-plugins", "postgraphile-plugin-connection-filter"]
+  # admin:
+  #   image: node:12.18.4-buster-slim
+  #   ports:
+  #     - 3310:3310
+  #   volumes:
+  #     - ./admin:/admin:delegated
+  #   command: /bin/sh -c "cd /admin; npm install; npm start"
+  #   depends_on:
+  #     - 'db'
 
   migrator:
     image: flyway/flyway:6.5.7
