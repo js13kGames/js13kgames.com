@@ -21,12 +21,11 @@ services:
       - 'DATABASE_URL=postgres://postgres:postgres@db:5432/postgres'
     depends_on:
       - 'db'
-      - 'graphql'
 
   graphql:
-    container_name: forum-example-graphql
+    container_name: graphql
     restart: always
-    image: forum-example-graphql
+    image: graphql
     build:
         context: ./graphql
     env_file:
@@ -35,7 +34,15 @@ services:
         - db
     ports:
         - 5433:5433
-    command: ["--connection", "${DATABASE_URL}", "--port", "5433", "--schema", "public", "--append-plugins", "postgraphile-plugin-connection-filter"]
+    volumes:
+      - ./web:/web:delegated
+    command: [
+      "--connection", "${DATABASE_URL}",
+      "--port", "5433",
+      "--schema", "public",
+      "--append-plugins", "postgraphile-plugin-connection-filter",
+      "--export-schema-graphql", "/web/graphql/schema.graphql"
+    ]
   # admin:
   #   image: node:12.18.4-buster-slim
   #   ports:
@@ -58,3 +65,4 @@ services:
 
 volumes:
   pgdata:
+  web:

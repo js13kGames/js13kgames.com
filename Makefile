@@ -2,7 +2,7 @@
 
 start:
 	docker-compose down \
-	&& docker-compose up -d web
+	&& docker-compose up -d graphql web
 
 stop:
 	docker-compose down
