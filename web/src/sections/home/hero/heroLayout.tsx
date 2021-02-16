@@ -10,6 +10,9 @@ export type HeroLayoutProps = {
 };
 
 const HeroLayout = ({ heroData, loading }: HeroLayoutProps) => {
+	if (loading) {
+		return <h1>Loading</h1>;
+	}
 	const {
 		primaryText,
 		secondaryText,
@@ -17,7 +20,7 @@ const HeroLayout = ({ heroData, loading }: HeroLayoutProps) => {
 		callToActionUrl,
 		callToActionText,
 		backgroundImage
-	} = heroData || {};
+	} = heroData;
 
 	const rerender = ({ hours, minutes, days, seconds }) => {
 		return (

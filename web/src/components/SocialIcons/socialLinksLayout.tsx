@@ -6,7 +6,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './socialIcons.module.scss';
 
 const iconsMap = {
@@ -16,28 +16,12 @@ const iconsMap = {
 	instagram: faInstagram
 };
 
-export interface SocialIconsProps {
-	variant?: string;
-}
-
-const SocialIcons = ({ variant }: SocialIconsProps) => {
-	const [socialLinks, setSocialLinks] = useState([]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const buffer = await fetch('/api/hero_data');
-				const data = await buffer.json();
-				setSocialLinks(data.socialLinks);
-			} catch (e) {
-				new Error('error');
-			}
-		};
-		fetchData();
-	}, []);
-
+const SocialLinksLayout = ({ socialLinks, loading }) => {
+	if (loading) {
+		return <h1>Loading</h1>;
+	}
 	return (
-		<div className={`${styles.socialIcons} ${variant && styles[variant]}`}>
+		<div className={`${styles.socialIcons}`}>
 			{socialLinks.map(({ url, title }) => (
 				<li className={styles.iconWrapper} key={title}>
 					<Link href={url}>
@@ -51,4 +35,4 @@ const SocialIcons = ({ variant }: SocialIconsProps) => {
 	);
 };
 
-export default SocialIcons;
+export default SocialLinksLayout;

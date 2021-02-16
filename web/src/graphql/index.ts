@@ -857,6 +857,11 @@ export type MenuItemsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type MenuItemsQuery = { readonly menuItems?: Maybe<{ readonly nodes: ReadonlyArray<Maybe<{ readonly title: string, readonly url: string }>> }> };
 
+export type SocialLinksQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SocialLinksQuery = { readonly socialLinks?: Maybe<{ readonly nodes: ReadonlyArray<Maybe<{ readonly title: string, readonly url: string }>> }> };
+
 
 export const HeroDataDocument = gql`
     query heroData {
@@ -937,4 +942,42 @@ export type MenuItemsLazyQueryHookResult = ReturnType<typeof useMenuItemsLazyQue
 export type MenuItemsQueryResult = Apollo.QueryResult<MenuItemsQuery, MenuItemsQueryVariables>;
 export function refetchMenuItemsQuery(variables?: MenuItemsQueryVariables) {
       return { query: MenuItemsDocument, variables: variables }
+    }
+export const SocialLinksDocument = gql`
+    query socialLinks {
+  socialLinks: allSocialLinks {
+    nodes {
+      title
+      url
+    }
+  }
+}
+    `;
+
+/**
+ * __useSocialLinksQuery__
+ *
+ * To run a query within a React component, call `useSocialLinksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSocialLinksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSocialLinksQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSocialLinksQuery(baseOptions?: Apollo.QueryHookOptions<SocialLinksQuery, SocialLinksQueryVariables>) {
+        return Apollo.useQuery<SocialLinksQuery, SocialLinksQueryVariables>(SocialLinksDocument, baseOptions);
+      }
+export function useSocialLinksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SocialLinksQuery, SocialLinksQueryVariables>) {
+          return Apollo.useLazyQuery<SocialLinksQuery, SocialLinksQueryVariables>(SocialLinksDocument, baseOptions);
+        }
+export type SocialLinksQueryHookResult = ReturnType<typeof useSocialLinksQuery>;
+export type SocialLinksLazyQueryHookResult = ReturnType<typeof useSocialLinksLazyQuery>;
+export type SocialLinksQueryResult = Apollo.QueryResult<SocialLinksQuery, SocialLinksQueryVariables>;
+export function refetchSocialLinksQuery(variables?: SocialLinksQueryVariables) {
+      return { query: SocialLinksDocument, variables: variables }
     }

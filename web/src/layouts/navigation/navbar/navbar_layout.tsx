@@ -3,6 +3,10 @@ import styles from './navbar.module.scss';
 import NavItem from './navItem';
 
 const NavbarLayout = ({ loading, menuItems, year }) => {
+	if (loading) {
+		return <h1>Loading</h1>;
+	}
+
 	return (
 		<nav className={styles.navWrapper}>
 			<div className={styles.navWrapperTop}>
@@ -21,10 +25,9 @@ const NavbarLayout = ({ loading, menuItems, year }) => {
 			</div>
 			<div className={styles.navWrapperBottom}>
 				<ul className={styles.navItems}>
-					{!loading &&
-						menuItems.map(({ url, title }) => (
-							<NavItem href={`/${year}${url}`} content={title} key={title} />
-						))}
+					{menuItems.map(({ url, title }) => (
+						<NavItem href={`/${year}${url}`} content={title} key={title} />
+					))}
 				</ul>
 			</div>
 		</nav>
