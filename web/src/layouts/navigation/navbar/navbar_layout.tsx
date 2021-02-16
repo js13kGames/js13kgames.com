@@ -1,19 +1,8 @@
 import Link from 'next/link';
-import { MenuItemsQuery, useMenuItemsQuery } from '../../graphql';
 import styles from './navbar.module.scss';
 import NavItem from './navItem';
 
-export type MenuItems = MenuItemsQuery['menuItems']['nodes'];
-
-const Navbar = ({ year }) => {
-	const {
-		data: menuItemsData,
-		loading: menuItemsLoading,
-		error: menuItemsError
-	} = useMenuItemsQuery();
-
-	const menuItems: MenuItems = menuItemsData?.menuItems?.nodes;
-
+const NavbarLayout = ({ loading, menuItems, year }) => {
 	return (
 		<nav className={styles.navWrapper}>
 			<div className={styles.navWrapperTop}>
@@ -32,7 +21,7 @@ const Navbar = ({ year }) => {
 			</div>
 			<div className={styles.navWrapperBottom}>
 				<ul className={styles.navItems}>
-					{!menuItemsLoading &&
+					{!loading &&
 						menuItems.map(({ url, title }) => (
 							<NavItem href={`/${year}${url}`} content={title} key={title} />
 						))}
@@ -42,4 +31,4 @@ const Navbar = ({ year }) => {
 	);
 };
 
-export default Navbar;
+export default NavbarLayout;
