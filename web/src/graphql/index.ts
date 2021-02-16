@@ -850,7 +850,7 @@ export type UuidFilter = {
 export type HeroDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HeroDataQuery = { readonly heroData?: Maybe<{ readonly nodes: ReadonlyArray<Maybe<{ readonly callToActionText: string, readonly countdownDate?: Maybe<any>, readonly backgroundImage: string, readonly primaryText: string, readonly secondaryText: string }>> }> };
+export type HeroDataQuery = { readonly heroData?: Maybe<{ readonly nodes: ReadonlyArray<Maybe<{ readonly primaryText: string, readonly secondaryText: string, readonly countdownDate?: Maybe<any>, readonly backgroundImage: string, readonly callToActionText: string, readonly callToActionUrl: string }>> }> };
 
 export type MenuItemsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -862,11 +862,12 @@ export const HeroDataDocument = gql`
     query heroData {
   heroData: allHeroData {
     nodes {
-      callToActionText
-      countdownDate
-      backgroundImage
       primaryText
       secondaryText
+      countdownDate
+      backgroundImage
+      callToActionText
+      callToActionUrl
     }
   }
 }

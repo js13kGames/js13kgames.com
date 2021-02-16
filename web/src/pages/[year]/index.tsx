@@ -3,12 +3,8 @@ import { Bio, Categories, Hero, Partners, Winners } from '../../sections';
 import styles from '../../styles/Home.module.scss';
 
 export async function getServerSideProps({ params }) {
-	const buffer = await fetch('http://localhost:3000/api/hero_data');
-	const data = await buffer.json();
-
 	return {
 		props: {
-			heroData: data,
 			year: params?.year
 		}
 	};
@@ -161,40 +157,16 @@ const categoriesData = {
 
 export interface HomeProps {
 	year: string;
-	heroData: {
-		primaryText: string;
-		secondaryText?: string;
-		countdownDate?: string;
-		backgroundImage?: string;
-		callToAction: {
-			text: string;
-			url: string;
-		};
-		socialLinks: Array<{
-			title: string;
-			url: string;
-			id: string;
-		}>;
-	};
 }
 
-export default function Home({ heroData, year }: HomeProps) {
+export default function Home({ year }: HomeProps) {
 	return (
 		<div className={styles.homeContainer}>
 			<Head>
 				<title>{year} js13kGames</title>
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
-			<Hero
-				primaryText={heroData.primaryText}
-				secondaryText={heroData.secondaryText}
-				countdownDate={heroData.countdownDate}
-				backgroundImage={heroData.backgroundImage}
-				btnUrl={heroData.callToAction.url}
-				btnText={heroData.callToAction.text}
-				countdown
-				heroButton
-			/>
+			<Hero />
 			<Bio data={bioData} />
 			<Winners categories={winnersData.categories} title={winnersData.title} />
 			<Categories
