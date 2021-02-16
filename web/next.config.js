@@ -10,5 +10,13 @@ module.exports = {
 				permanent: false
 			}
 		];
+	},
+	async rewrites() {
+		return [
+			{
+				source: '/graphql',
+				destination: 'http://graphql:5433/graphql'
+			}
+		];
 	}
 };

@@ -847,12 +847,58 @@ export type UuidFilter = {
   readonly greaterThanOrEqualTo?: Maybe<Scalars['UUID']>;
 };
 
+export type HeroDataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type HeroDataQuery = { readonly heroData?: Maybe<{ readonly nodes: ReadonlyArray<Maybe<{ readonly callToActionText: string, readonly countdownDate?: Maybe<any>, readonly backgroundImage: string, readonly primaryText: string, readonly secondaryText: string }>> }> };
+
 export type MenuItemsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MenuItemsQuery = { readonly menuItems?: Maybe<{ readonly nodes: ReadonlyArray<Maybe<{ readonly title: string, readonly url: string }>> }> };
 
 
+export const HeroDataDocument = gql`
+    query heroData {
+  heroData: allHeroData {
+    nodes {
+      callToActionText
+      countdownDate
+      backgroundImage
+      primaryText
+      secondaryText
+    }
+  }
+}
+    `;
+
+/**
+ * __useHeroDataQuery__
+ *
+ * To run a query within a React component, call `useHeroDataQuery` and pass it any options that fit your needs.
+ * When your component renders, `useHeroDataQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useHeroDataQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useHeroDataQuery(baseOptions?: Apollo.QueryHookOptions<HeroDataQuery, HeroDataQueryVariables>) {
+        return Apollo.useQuery<HeroDataQuery, HeroDataQueryVariables>(HeroDataDocument, baseOptions);
+      }
+export function useHeroDataLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<HeroDataQuery, HeroDataQueryVariables>) {
+          return Apollo.useLazyQuery<HeroDataQuery, HeroDataQueryVariables>(HeroDataDocument, baseOptions);
+        }
+export type HeroDataQueryHookResult = ReturnType<typeof useHeroDataQuery>;
+export type HeroDataLazyQueryHookResult = ReturnType<typeof useHeroDataLazyQuery>;
+export type HeroDataQueryResult = Apollo.QueryResult<HeroDataQuery, HeroDataQueryVariables>;
+export function refetchHeroDataQuery(variables?: HeroDataQueryVariables) {
+      return { query: HeroDataDocument, variables: variables }
+    }
 export const MenuItemsDocument = gql`
     query menuItems {
   menuItems: allMenuItems {
