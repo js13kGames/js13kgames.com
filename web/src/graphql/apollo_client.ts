@@ -7,33 +7,25 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
-import { ClientApplication } from '@shopify/app-bridge';
-import { getSessionToken } from '@shopify/app-bridge-utils';
 import crossFetch from 'cross-fetch';
 import getNextConfig from 'next/config';
-import URI from 'urijs';
 
 export interface ClientFactoryProps {
-	app: ClientApplication<unknown>;
+	app?: any;
 }
 
 let persistedClient: ApolloClient<unknown> | null = null;
 
-export const createSuperbumpApolloClient = function createSuperbumpApolloClient({
+export const createApolloClient = ({
 	app
-}: ClientFactoryProps): ApolloClient<unknown> {
+}: ClientFactoryProps): ApolloClient<unknown> => {
 	const {
 		publicRuntimeConfig: { APP_HOSTNAME }
 	} = getNextConfig();
 
 	const isSSR = typeof window === 'undefined';
 
-	const url = URI({
-		hostname: APP_HOSTNAME,
-		protocol: 'https'
-	})
-		.segmentCoded(['graphql'])
-		.toString();
+	const url = 'http://localhost:1234/graphql';
 
 	const httpLink = createHttpLink({
 		fetch: crossFetch,
@@ -41,12 +33,12 @@ export const createSuperbumpApolloClient = function createSuperbumpApolloClient(
 	});
 
 	const authLink = setContext(async function (_, { headers }) {
-		const token = await getSessionToken(app);
+		// const token = await getSessionToken(app);
 
 		return {
 			headers: {
-				...headers,
-				authorization: `Bearer ${token}`
+				...headers
+				// authorization: `Bearer ${token}`
 			}
 		};
 	});

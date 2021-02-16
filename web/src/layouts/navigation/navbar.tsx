@@ -1,23 +1,18 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { MenuItemsQuery, useMenuItemsQuery } from '../../graphql';
 import styles from './navbar.module.scss';
 import NavItem from './navItem';
 
-const Navbar = ({ year }) => {
-	const [menuItems, setMenuItems] = useState([]);
+export type MenuItems = MenuItemsQuery['menuItems']['nodes'];
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const buffer = await fetch('/api/menu_items');
-				const data = await buffer.json();
-				setMenuItems(data);
-			} catch (e) {
-				new Error('error');
-			}
-		};
-		fetchData();
-	}, []);
+const Navbar = ({ year }) => {
+	const {
+		data: menuItemsData,
+		loading: menuItemsLoading,
+		error: menuItemsError
+	} = useMenuItemsQuery();
+
+	const menuItems: MenuItems = menuItemsData?.menuItems?.nodes;
 
 	return (
 		<nav className={styles.navWrapper}>
@@ -37,9 +32,10 @@ const Navbar = ({ year }) => {
 			</div>
 			<div className={styles.navWrapperBottom}>
 				<ul className={styles.navItems}>
-					{menuItems.map(({ url, title }) => (
-						<NavItem href={`/${year}${url}`} content={title} key={title} />
-					))}
+					{!menuItemsLoading &&
+						menuItems.map(({ url, title }) => (
+							<NavItem href={`/${year}${url}`} content={title} key={title} />
+						))}
 				</ul>
 			</div>
 		</nav>
