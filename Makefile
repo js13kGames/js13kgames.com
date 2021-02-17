@@ -2,7 +2,7 @@
 
 start:
 	docker-compose down \
-	&& docker-compose up -d web
+	&& docker-compose up -d graphql web
 
 stop:
 	docker-compose down
@@ -18,4 +18,4 @@ types:
 	docker-compose exec web /web/bin/generate_types.sh
 
 logs:
-	docker-compose logs -f web admin
+	docker-compose logs -f web graphql

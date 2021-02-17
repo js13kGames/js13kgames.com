@@ -22,15 +22,36 @@ services:
     depends_on:
       - 'db'
 
-  admin:
-    image: node:12.18.4-buster-slim
-    ports:
-      - 3310:3310
-    volumes:
-      - ./admin:/admin:delegated
-    command: /bin/sh -c "cd /admin; npm install; npm start"
+  graphql:
+    container_name: graphql
+    restart: always
+    image: graphql
+    build:
+        context: ./graphql
+    env_file:
+        - ./.env
     depends_on:
-      - 'db'
+        - db
+    ports:
+        - 5433:5433
+    volumes:
+      - ./web:/web:delegated
+    command: [
+      "--connection", "${DATABASE_URL}",
+      "--port", "5433",
+      "--schema", "public",
+      "--append-plugins", "postgraphile-plugin-connection-filter",
+      "--export-schema-graphql", "/web/graphql/schema.graphql"
+    ]
+  # admin:
+  #   image: node:12.18.4-buster-slim
+  #   ports:
+  #     - 3310:3310
+  #   volumes:
+  #     - ./admin:/admin:delegated
+  #   command: /bin/sh -c "cd /admin; npm install; npm start"
+  #   depends_on:
+  #     - 'db'
 
   migrator:
     image: flyway/flyway:6.5.7
@@ -44,3 +65,4 @@ services:
 
 volumes:
   pgdata:
+  web:

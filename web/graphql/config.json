@@ -1,0 +1,40 @@
+{
+	"projects": {
+		"js13k": {
+			"schemaPath": "/web/graphql/schema.graphql",
+			"includes": ["/web/src/graphql/*.graphql"],
+			"extensions": {
+				"codegen": {
+					"generates": {
+						"/web/src/graphql/index.ts": {
+							"schema": "/web/graphql/schema.graphql",
+							"documents": ["/web/src/graphql/*.graphql"],
+							"plugins": [
+								"typescript",
+								"typescript-operations",
+								"typescript-react-apollo"
+							],
+							"config": {
+								"enumsAsTypes": true,
+								"flattenGeneratedTypes": true,
+								"immutableTypes": true,
+								"namingConvention": [
+									{
+										"transformUnderscore": true
+									}
+								],
+								"noExport": false,
+								"onlyOperationTypes": true,
+								"preResolveTypes": true,
+								"scalars": {},
+								"skipTypename": true,
+								"withMutationFn": true,
+								"withRefetchFn": true
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

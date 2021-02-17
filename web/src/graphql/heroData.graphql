@@ -1,0 +1,12 @@
+query heroData {
+	heroData: allHeroData {
+		nodes {
+			primaryText
+			secondaryText
+			countdownDate
+			backgroundImage
+			callToActionText
+			callToActionUrl
+		}
+	}
+}

@@ -1,0 +1,1882 @@
+"""
+A filter to be used against Boolean fields. All fields are combined with a logical ‘and.’
+"""
+input BooleanFilter {
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Equal to the specified value."""
+  equalTo: Boolean
+
+  """Not equal to the specified value."""
+  notEqualTo: Boolean
+
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: Boolean
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: Boolean
+
+  """Included in the specified list."""
+  in: [Boolean!]
+
+  """Not included in the specified list."""
+  notIn: [Boolean!]
+
+  """Less than the specified value."""
+  lessThan: Boolean
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: Boolean
+
+  """Greater than the specified value."""
+  greaterThan: Boolean
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: Boolean
+}
+
+"""All input for the create `FlywaySchemaHistory` mutation."""
+input CreateFlywaySchemaHistoryInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `FlywaySchemaHistory` to be created by this mutation."""
+  flywaySchemaHistory: FlywaySchemaHistoryInput!
+}
+
+"""The output of our create `FlywaySchemaHistory` mutation."""
+type CreateFlywaySchemaHistoryPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `FlywaySchemaHistory` that was created by this mutation."""
+  flywaySchemaHistory: FlywaySchemaHistory
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `FlywaySchemaHistory`. May be used by Relay 1."""
+  flywaySchemaHistoryEdge(
+    """The method to use when ordering `FlywaySchemaHistory`."""
+    orderBy: [FlywaySchemaHistoriesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FlywaySchemaHistoriesEdge
+}
+
+"""All input for the create `HeroDatum` mutation."""
+input CreateHeroDatumInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `HeroDatum` to be created by this mutation."""
+  heroDatum: HeroDatumInput!
+}
+
+"""The output of our create `HeroDatum` mutation."""
+type CreateHeroDatumPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `HeroDatum` that was created by this mutation."""
+  heroDatum: HeroDatum
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `HeroDatum`. May be used by Relay 1."""
+  heroDatumEdge(
+    """The method to use when ordering `HeroDatum`."""
+    orderBy: [HeroDataOrderBy!] = [PRIMARY_KEY_ASC]
+  ): HeroDataEdge
+}
+
+"""All input for the create `MenuItem` mutation."""
+input CreateMenuItemInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `MenuItem` to be created by this mutation."""
+  menuItem: MenuItemInput!
+}
+
+"""The output of our create `MenuItem` mutation."""
+type CreateMenuItemPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MenuItem` that was created by this mutation."""
+  menuItem: MenuItem
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `MenuItem`. May be used by Relay 1."""
+  menuItemEdge(
+    """The method to use when ordering `MenuItem`."""
+    orderBy: [MenuItemsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MenuItemsEdge
+}
+
+"""All input for the create `SocialLink` mutation."""
+input CreateSocialLinkInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `SocialLink` to be created by this mutation."""
+  socialLink: SocialLinkInput!
+}
+
+"""The output of our create `SocialLink` mutation."""
+type CreateSocialLinkPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `SocialLink` that was created by this mutation."""
+  socialLink: SocialLink
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `SocialLink`. May be used by Relay 1."""
+  socialLinkEdge(
+    """The method to use when ordering `SocialLink`."""
+    orderBy: [SocialLinksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): SocialLinksEdge
+}
+
+"""A location in a connection that can be used for resuming pagination."""
+scalar Cursor
+
+"""
+A point in time as described by the [ISO
+8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone.
+"""
+scalar Datetime
+
+"""
+A filter to be used against Datetime fields. All fields are combined with a logical ‘and.’
+"""
+input DatetimeFilter {
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Equal to the specified value."""
+  equalTo: Datetime
+
+  """Not equal to the specified value."""
+  notEqualTo: Datetime
+
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: Datetime
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: Datetime
+
+  """Included in the specified list."""
+  in: [Datetime!]
+
+  """Not included in the specified list."""
+  notIn: [Datetime!]
+
+  """Less than the specified value."""
+  lessThan: Datetime
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: Datetime
+
+  """Greater than the specified value."""
+  greaterThan: Datetime
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: Datetime
+}
+
+"""All input for the `deleteFlywaySchemaHistoryByInstalledRank` mutation."""
+input DeleteFlywaySchemaHistoryByInstalledRankInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  installedRank: Int!
+}
+
+"""All input for the `deleteFlywaySchemaHistory` mutation."""
+input DeleteFlywaySchemaHistoryInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `FlywaySchemaHistory` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""The output of our delete `FlywaySchemaHistory` mutation."""
+type DeleteFlywaySchemaHistoryPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `FlywaySchemaHistory` that was deleted by this mutation."""
+  flywaySchemaHistory: FlywaySchemaHistory
+  deletedFlywaySchemaHistoryId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `FlywaySchemaHistory`. May be used by Relay 1."""
+  flywaySchemaHistoryEdge(
+    """The method to use when ordering `FlywaySchemaHistory`."""
+    orderBy: [FlywaySchemaHistoriesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FlywaySchemaHistoriesEdge
+}
+
+"""All input for the `deleteHeroDatumById` mutation."""
+input DeleteHeroDatumByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""All input for the `deleteHeroDatum` mutation."""
+input DeleteHeroDatumInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `HeroDatum` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""The output of our delete `HeroDatum` mutation."""
+type DeleteHeroDatumPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `HeroDatum` that was deleted by this mutation."""
+  heroDatum: HeroDatum
+  deletedHeroDatumId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `HeroDatum`. May be used by Relay 1."""
+  heroDatumEdge(
+    """The method to use when ordering `HeroDatum`."""
+    orderBy: [HeroDataOrderBy!] = [PRIMARY_KEY_ASC]
+  ): HeroDataEdge
+}
+
+"""All input for the `deleteMenuItemById` mutation."""
+input DeleteMenuItemByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""All input for the `deleteMenuItem` mutation."""
+input DeleteMenuItemInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `MenuItem` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""The output of our delete `MenuItem` mutation."""
+type DeleteMenuItemPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MenuItem` that was deleted by this mutation."""
+  menuItem: MenuItem
+  deletedMenuItemId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `MenuItem`. May be used by Relay 1."""
+  menuItemEdge(
+    """The method to use when ordering `MenuItem`."""
+    orderBy: [MenuItemsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MenuItemsEdge
+}
+
+"""All input for the `deleteSocialLinkById` mutation."""
+input DeleteSocialLinkByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""All input for the `deleteSocialLink` mutation."""
+input DeleteSocialLinkInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `SocialLink` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""The output of our delete `SocialLink` mutation."""
+type DeleteSocialLinkPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `SocialLink` that was deleted by this mutation."""
+  socialLink: SocialLink
+  deletedSocialLinkId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `SocialLink`. May be used by Relay 1."""
+  socialLinkEdge(
+    """The method to use when ordering `SocialLink`."""
+    orderBy: [SocialLinksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): SocialLinksEdge
+}
+
+"""A connection to a list of `FlywaySchemaHistory` values."""
+type FlywaySchemaHistoriesConnection {
+  """A list of `FlywaySchemaHistory` objects."""
+  nodes: [FlywaySchemaHistory]!
+
+  """
+  A list of edges which contains the `FlywaySchemaHistory` and cursor to aid in pagination.
+  """
+  edges: [FlywaySchemaHistoriesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `FlywaySchemaHistory` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `FlywaySchemaHistory` edge in the connection."""
+type FlywaySchemaHistoriesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `FlywaySchemaHistory` at the end of the edge."""
+  node: FlywaySchemaHistory
+}
+
+"""Methods to use when ordering `FlywaySchemaHistory`."""
+enum FlywaySchemaHistoriesOrderBy {
+  NATURAL
+  INSTALLED_RANK_ASC
+  INSTALLED_RANK_DESC
+  VERSION_ASC
+  VERSION_DESC
+  DESCRIPTION_ASC
+  DESCRIPTION_DESC
+  TYPE_ASC
+  TYPE_DESC
+  SCRIPT_ASC
+  SCRIPT_DESC
+  CHECKSUM_ASC
+  CHECKSUM_DESC
+  INSTALLED_BY_ASC
+  INSTALLED_BY_DESC
+  INSTALLED_ON_ASC
+  INSTALLED_ON_DESC
+  EXECUTION_TIME_ASC
+  EXECUTION_TIME_DESC
+  SUCCESS_ASC
+  SUCCESS_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type FlywaySchemaHistory implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  installedRank: Int!
+  version: String
+  description: String!
+  type: String!
+  script: String!
+  checksum: Int
+  installedBy: String!
+  installedOn: Datetime!
+  executionTime: Int!
+  success: Boolean!
+}
+
+"""
+A condition to be used against `FlywaySchemaHistory` object types. All fields
+are tested for equality and combined with a logical ‘and.’
+"""
+input FlywaySchemaHistoryCondition {
+  """Checks for equality with the object’s `installedRank` field."""
+  installedRank: Int
+
+  """Checks for equality with the object’s `version` field."""
+  version: String
+
+  """Checks for equality with the object’s `description` field."""
+  description: String
+
+  """Checks for equality with the object’s `type` field."""
+  type: String
+
+  """Checks for equality with the object’s `script` field."""
+  script: String
+
+  """Checks for equality with the object’s `checksum` field."""
+  checksum: Int
+
+  """Checks for equality with the object’s `installedBy` field."""
+  installedBy: String
+
+  """Checks for equality with the object’s `installedOn` field."""
+  installedOn: Datetime
+
+  """Checks for equality with the object’s `executionTime` field."""
+  executionTime: Int
+
+  """Checks for equality with the object’s `success` field."""
+  success: Boolean
+}
+
+"""
+A filter to be used against `FlywaySchemaHistory` object types. All fields are combined with a logical ‘and.’
+"""
+input FlywaySchemaHistoryFilter {
+  """Filter by the object’s `installedRank` field."""
+  installedRank: IntFilter
+
+  """Filter by the object’s `version` field."""
+  version: StringFilter
+
+  """Filter by the object’s `description` field."""
+  description: StringFilter
+
+  """Filter by the object’s `type` field."""
+  type: StringFilter
+
+  """Filter by the object’s `script` field."""
+  script: StringFilter
+
+  """Filter by the object’s `checksum` field."""
+  checksum: IntFilter
+
+  """Filter by the object’s `installedBy` field."""
+  installedBy: StringFilter
+
+  """Filter by the object’s `installedOn` field."""
+  installedOn: DatetimeFilter
+
+  """Filter by the object’s `executionTime` field."""
+  executionTime: IntFilter
+
+  """Filter by the object’s `success` field."""
+  success: BooleanFilter
+
+  """Checks for all expressions in this list."""
+  and: [FlywaySchemaHistoryFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [FlywaySchemaHistoryFilter!]
+
+  """Negates the expression."""
+  not: FlywaySchemaHistoryFilter
+}
+
+"""An input for mutations affecting `FlywaySchemaHistory`"""
+input FlywaySchemaHistoryInput {
+  installedRank: Int!
+  version: String
+  description: String!
+  type: String!
+  script: String!
+  checksum: Int
+  installedBy: String!
+  installedOn: Datetime
+  executionTime: Int!
+  success: Boolean!
+}
+
+"""
+Represents an update to a `FlywaySchemaHistory`. Fields that are set will be updated.
+"""
+input FlywaySchemaHistoryPatch {
+  installedRank: Int
+  version: String
+  description: String
+  type: String
+  script: String
+  checksum: Int
+  installedBy: String
+  installedOn: Datetime
+  executionTime: Int
+  success: Boolean
+}
+
+"""A connection to a list of `HeroDatum` values."""
+type HeroDataConnection {
+  """A list of `HeroDatum` objects."""
+  nodes: [HeroDatum]!
+
+  """
+  A list of edges which contains the `HeroDatum` and cursor to aid in pagination.
+  """
+  edges: [HeroDataEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `HeroDatum` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `HeroDatum` edge in the connection."""
+type HeroDataEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `HeroDatum` at the end of the edge."""
+  node: HeroDatum
+}
+
+"""Methods to use when ordering `HeroDatum`."""
+enum HeroDataOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  PRIMARY_TEXT_ASC
+  PRIMARY_TEXT_DESC
+  SECONDARY_TEXT_ASC
+  SECONDARY_TEXT_DESC
+  COUNTDOWN_DATE_ASC
+  COUNTDOWN_DATE_DESC
+  CALL_TO_ACTION_TEXT_ASC
+  CALL_TO_ACTION_TEXT_DESC
+  CALL_TO_ACTION_URL_ASC
+  CALL_TO_ACTION_URL_DESC
+  BACKGROUND_IMAGE_ASC
+  BACKGROUND_IMAGE_DESC
+  ACTIVE_ASC
+  ACTIVE_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type HeroDatum implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  primaryText: String!
+  secondaryText: String!
+  countdownDate: Datetime
+  callToActionText: String!
+  callToActionUrl: String!
+  backgroundImage: String!
+  active: Boolean!
+  createdAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+A condition to be used against `HeroDatum` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input HeroDatumCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `primaryText` field."""
+  primaryText: String
+
+  """Checks for equality with the object’s `secondaryText` field."""
+  secondaryText: String
+
+  """Checks for equality with the object’s `countdownDate` field."""
+  countdownDate: Datetime
+
+  """Checks for equality with the object’s `callToActionText` field."""
+  callToActionText: String
+
+  """Checks for equality with the object’s `callToActionUrl` field."""
+  callToActionUrl: String
+
+  """Checks for equality with the object’s `backgroundImage` field."""
+  backgroundImage: String
+
+  """Checks for equality with the object’s `active` field."""
+  active: Boolean
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+}
+
+"""
+A filter to be used against `HeroDatum` object types. All fields are combined with a logical ‘and.’
+"""
+input HeroDatumFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Filter by the object’s `primaryText` field."""
+  primaryText: StringFilter
+
+  """Filter by the object’s `secondaryText` field."""
+  secondaryText: StringFilter
+
+  """Filter by the object’s `countdownDate` field."""
+  countdownDate: DatetimeFilter
+
+  """Filter by the object’s `callToActionText` field."""
+  callToActionText: StringFilter
+
+  """Filter by the object’s `callToActionUrl` field."""
+  callToActionUrl: StringFilter
+
+  """Filter by the object’s `backgroundImage` field."""
+  backgroundImage: StringFilter
+
+  """Filter by the object’s `active` field."""
+  active: BooleanFilter
+
+  """Filter by the object’s `createdAt` field."""
+  createdAt: DatetimeFilter
+
+  """Filter by the object’s `updatedAt` field."""
+  updatedAt: DatetimeFilter
+
+  """Checks for all expressions in this list."""
+  and: [HeroDatumFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [HeroDatumFilter!]
+
+  """Negates the expression."""
+  not: HeroDatumFilter
+}
+
+"""An input for mutations affecting `HeroDatum`"""
+input HeroDatumInput {
+  id: UUID
+  primaryText: String!
+  secondaryText: String!
+  countdownDate: Datetime
+  callToActionText: String!
+  callToActionUrl: String!
+  backgroundImage: String!
+  active: Boolean
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""
+Represents an update to a `HeroDatum`. Fields that are set will be updated.
+"""
+input HeroDatumPatch {
+  id: UUID
+  primaryText: String
+  secondaryText: String
+  countdownDate: Datetime
+  callToActionText: String
+  callToActionUrl: String
+  backgroundImage: String
+  active: Boolean
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""
+A filter to be used against Int fields. All fields are combined with a logical ‘and.’
+"""
+input IntFilter {
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Equal to the specified value."""
+  equalTo: Int
+
+  """Not equal to the specified value."""
+  notEqualTo: Int
+
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: Int
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: Int
+
+  """Included in the specified list."""
+  in: [Int!]
+
+  """Not included in the specified list."""
+  notIn: [Int!]
+
+  """Less than the specified value."""
+  lessThan: Int
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: Int
+
+  """Greater than the specified value."""
+  greaterThan: Int
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: Int
+}
+
+type MenuItem implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  title: String!
+  url: String!
+  active: Boolean!
+  createdAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+A condition to be used against `MenuItem` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input MenuItemCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `title` field."""
+  title: String
+
+  """Checks for equality with the object’s `url` field."""
+  url: String
+
+  """Checks for equality with the object’s `active` field."""
+  active: Boolean
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+}
+
+"""
+A filter to be used against `MenuItem` object types. All fields are combined with a logical ‘and.’
+"""
+input MenuItemFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Filter by the object’s `title` field."""
+  title: StringFilter
+
+  """Filter by the object’s `url` field."""
+  url: StringFilter
+
+  """Filter by the object’s `active` field."""
+  active: BooleanFilter
+
+  """Filter by the object’s `createdAt` field."""
+  createdAt: DatetimeFilter
+
+  """Filter by the object’s `updatedAt` field."""
+  updatedAt: DatetimeFilter
+
+  """Checks for all expressions in this list."""
+  and: [MenuItemFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [MenuItemFilter!]
+
+  """Negates the expression."""
+  not: MenuItemFilter
+}
+
+"""An input for mutations affecting `MenuItem`"""
+input MenuItemInput {
+  id: UUID
+  title: String!
+  url: String!
+  active: Boolean
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""
+Represents an update to a `MenuItem`. Fields that are set will be updated.
+"""
+input MenuItemPatch {
+  id: UUID
+  title: String
+  url: String
+  active: Boolean
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""A connection to a list of `MenuItem` values."""
+type MenuItemsConnection {
+  """A list of `MenuItem` objects."""
+  nodes: [MenuItem]!
+
+  """
+  A list of edges which contains the `MenuItem` and cursor to aid in pagination.
+  """
+  edges: [MenuItemsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `MenuItem` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `MenuItem` edge in the connection."""
+type MenuItemsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `MenuItem` at the end of the edge."""
+  node: MenuItem
+}
+
+"""Methods to use when ordering `MenuItem`."""
+enum MenuItemsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  TITLE_ASC
+  TITLE_DESC
+  URL_ASC
+  URL_DESC
+  ACTIVE_ASC
+  ACTIVE_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+The root mutation type which contains root level fields which mutate data.
+"""
+type Mutation {
+  """Creates a single `FlywaySchemaHistory`."""
+  createFlywaySchemaHistory(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateFlywaySchemaHistoryInput!
+  ): CreateFlywaySchemaHistoryPayload
+
+  """Creates a single `HeroDatum`."""
+  createHeroDatum(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateHeroDatumInput!
+  ): CreateHeroDatumPayload
+
+  """Creates a single `MenuItem`."""
+  createMenuItem(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateMenuItemInput!
+  ): CreateMenuItemPayload
+
+  """Creates a single `SocialLink`."""
+  createSocialLink(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateSocialLinkInput!
+  ): CreateSocialLinkPayload
+
+  """
+  Updates a single `FlywaySchemaHistory` using its globally unique id and a patch.
+  """
+  updateFlywaySchemaHistory(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateFlywaySchemaHistoryInput!
+  ): UpdateFlywaySchemaHistoryPayload
+
+  """Updates a single `FlywaySchemaHistory` using a unique key and a patch."""
+  updateFlywaySchemaHistoryByInstalledRank(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateFlywaySchemaHistoryByInstalledRankInput!
+  ): UpdateFlywaySchemaHistoryPayload
+
+  """Updates a single `HeroDatum` using its globally unique id and a patch."""
+  updateHeroDatum(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateHeroDatumInput!
+  ): UpdateHeroDatumPayload
+
+  """Updates a single `HeroDatum` using a unique key and a patch."""
+  updateHeroDatumById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateHeroDatumByIdInput!
+  ): UpdateHeroDatumPayload
+
+  """Updates a single `MenuItem` using its globally unique id and a patch."""
+  updateMenuItem(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMenuItemInput!
+  ): UpdateMenuItemPayload
+
+  """Updates a single `MenuItem` using a unique key and a patch."""
+  updateMenuItemById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMenuItemByIdInput!
+  ): UpdateMenuItemPayload
+
+  """
+  Updates a single `SocialLink` using its globally unique id and a patch.
+  """
+  updateSocialLink(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateSocialLinkInput!
+  ): UpdateSocialLinkPayload
+
+  """Updates a single `SocialLink` using a unique key and a patch."""
+  updateSocialLinkById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateSocialLinkByIdInput!
+  ): UpdateSocialLinkPayload
+
+  """Deletes a single `FlywaySchemaHistory` using its globally unique id."""
+  deleteFlywaySchemaHistory(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteFlywaySchemaHistoryInput!
+  ): DeleteFlywaySchemaHistoryPayload
+
+  """Deletes a single `FlywaySchemaHistory` using a unique key."""
+  deleteFlywaySchemaHistoryByInstalledRank(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteFlywaySchemaHistoryByInstalledRankInput!
+  ): DeleteFlywaySchemaHistoryPayload
+
+  """Deletes a single `HeroDatum` using its globally unique id."""
+  deleteHeroDatum(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteHeroDatumInput!
+  ): DeleteHeroDatumPayload
+
+  """Deletes a single `HeroDatum` using a unique key."""
+  deleteHeroDatumById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteHeroDatumByIdInput!
+  ): DeleteHeroDatumPayload
+
+  """Deletes a single `MenuItem` using its globally unique id."""
+  deleteMenuItem(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMenuItemInput!
+  ): DeleteMenuItemPayload
+
+  """Deletes a single `MenuItem` using a unique key."""
+  deleteMenuItemById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMenuItemByIdInput!
+  ): DeleteMenuItemPayload
+
+  """Deletes a single `SocialLink` using its globally unique id."""
+  deleteSocialLink(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteSocialLinkInput!
+  ): DeleteSocialLinkPayload
+
+  """Deletes a single `SocialLink` using a unique key."""
+  deleteSocialLinkById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteSocialLinkByIdInput!
+  ): DeleteSocialLinkPayload
+}
+
+"""An object with a globally unique `ID`."""
+interface Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: Cursor
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: Cursor
+}
+
+"""The root query type which gives access points into the data universe."""
+type Query implements Node {
+  """
+  Exposes the root query type nested one level down. This is helpful for Relay 1
+  which can only query top level fields if they are in a particular form.
+  """
+  query: Query!
+
+  """
+  The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.
+  """
+  nodeId: ID!
+
+  """Fetches an object given its globally unique `ID`."""
+  node(
+    """The globally unique `ID`."""
+    nodeId: ID!
+  ): Node
+
+  """Reads and enables pagination through a set of `FlywaySchemaHistory`."""
+  allFlywaySchemaHistories(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `FlywaySchemaHistory`."""
+    orderBy: [FlywaySchemaHistoriesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: FlywaySchemaHistoryCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: FlywaySchemaHistoryFilter
+  ): FlywaySchemaHistoriesConnection
+
+  """Reads and enables pagination through a set of `HeroDatum`."""
+  allHeroData(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `HeroDatum`."""
+    orderBy: [HeroDataOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: HeroDatumCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: HeroDatumFilter
+  ): HeroDataConnection
+
+  """Reads and enables pagination through a set of `MenuItem`."""
+  allMenuItems(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MenuItem`."""
+    orderBy: [MenuItemsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MenuItemCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: MenuItemFilter
+  ): MenuItemsConnection
+
+  """Reads and enables pagination through a set of `SocialLink`."""
+  allSocialLinks(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `SocialLink`."""
+    orderBy: [SocialLinksOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: SocialLinkCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: SocialLinkFilter
+  ): SocialLinksConnection
+  flywaySchemaHistoryByInstalledRank(installedRank: Int!): FlywaySchemaHistory
+  heroDatumById(id: UUID!): HeroDatum
+  menuItemById(id: UUID!): MenuItem
+  socialLinkById(id: UUID!): SocialLink
+
+  """Reads a single `FlywaySchemaHistory` using its globally unique `ID`."""
+  flywaySchemaHistory(
+    """
+    The globally unique `ID` to be used in selecting a single `FlywaySchemaHistory`.
+    """
+    nodeId: ID!
+  ): FlywaySchemaHistory
+
+  """Reads a single `HeroDatum` using its globally unique `ID`."""
+  heroDatum(
+    """The globally unique `ID` to be used in selecting a single `HeroDatum`."""
+    nodeId: ID!
+  ): HeroDatum
+
+  """Reads a single `MenuItem` using its globally unique `ID`."""
+  menuItem(
+    """The globally unique `ID` to be used in selecting a single `MenuItem`."""
+    nodeId: ID!
+  ): MenuItem
+
+  """Reads a single `SocialLink` using its globally unique `ID`."""
+  socialLink(
+    """
+    The globally unique `ID` to be used in selecting a single `SocialLink`.
+    """
+    nodeId: ID!
+  ): SocialLink
+}
+
+type SocialLink implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  title: String!
+  url: String!
+  createdAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+A condition to be used against `SocialLink` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input SocialLinkCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `title` field."""
+  title: String
+
+  """Checks for equality with the object’s `url` field."""
+  url: String
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+}
+
+"""
+A filter to be used against `SocialLink` object types. All fields are combined with a logical ‘and.’
+"""
+input SocialLinkFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Filter by the object’s `title` field."""
+  title: StringFilter
+
+  """Filter by the object’s `url` field."""
+  url: StringFilter
+
+  """Filter by the object’s `createdAt` field."""
+  createdAt: DatetimeFilter
+
+  """Filter by the object’s `updatedAt` field."""
+  updatedAt: DatetimeFilter
+
+  """Checks for all expressions in this list."""
+  and: [SocialLinkFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [SocialLinkFilter!]
+
+  """Negates the expression."""
+  not: SocialLinkFilter
+}
+
+"""An input for mutations affecting `SocialLink`"""
+input SocialLinkInput {
+  id: UUID
+  title: String!
+  url: String!
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""
+Represents an update to a `SocialLink`. Fields that are set will be updated.
+"""
+input SocialLinkPatch {
+  id: UUID
+  title: String
+  url: String
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""A connection to a list of `SocialLink` values."""
+type SocialLinksConnection {
+  """A list of `SocialLink` objects."""
+  nodes: [SocialLink]!
+
+  """
+  A list of edges which contains the `SocialLink` and cursor to aid in pagination.
+  """
+  edges: [SocialLinksEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `SocialLink` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `SocialLink` edge in the connection."""
+type SocialLinksEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `SocialLink` at the end of the edge."""
+  node: SocialLink
+}
+
+"""Methods to use when ordering `SocialLink`."""
+enum SocialLinksOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  TITLE_ASC
+  TITLE_DESC
+  URL_ASC
+  URL_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A filter to be used against String fields. All fields are combined with a logical ‘and.’
+"""
+input StringFilter {
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Equal to the specified value."""
+  equalTo: String
+
+  """Not equal to the specified value."""
+  notEqualTo: String
+
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: String
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: String
+
+  """Included in the specified list."""
+  in: [String!]
+
+  """Not included in the specified list."""
+  notIn: [String!]
+
+  """Less than the specified value."""
+  lessThan: String
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: String
+
+  """Greater than the specified value."""
+  greaterThan: String
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: String
+
+  """Contains the specified string (case-sensitive)."""
+  includes: String
+
+  """Does not contain the specified string (case-sensitive)."""
+  notIncludes: String
+
+  """Contains the specified string (case-insensitive)."""
+  includesInsensitive: String
+
+  """Does not contain the specified string (case-insensitive)."""
+  notIncludesInsensitive: String
+
+  """Starts with the specified string (case-sensitive)."""
+  startsWith: String
+
+  """Does not start with the specified string (case-sensitive)."""
+  notStartsWith: String
+
+  """Starts with the specified string (case-insensitive)."""
+  startsWithInsensitive: String
+
+  """Does not start with the specified string (case-insensitive)."""
+  notStartsWithInsensitive: String
+
+  """Ends with the specified string (case-sensitive)."""
+  endsWith: String
+
+  """Does not end with the specified string (case-sensitive)."""
+  notEndsWith: String
+
+  """Ends with the specified string (case-insensitive)."""
+  endsWithInsensitive: String
+
+  """Does not end with the specified string (case-insensitive)."""
+  notEndsWithInsensitive: String
+
+  """
+  Matches the specified pattern (case-sensitive). An underscore (_) matches any
+  single character; a percent sign (%) matches any sequence of zero or more characters.
+  """
+  like: String
+
+  """
+  Does not match the specified pattern (case-sensitive). An underscore (_)
+  matches any single character; a percent sign (%) matches any sequence of zero
+  or more characters.
+  """
+  notLike: String
+
+  """
+  Matches the specified pattern (case-insensitive). An underscore (_) matches
+  any single character; a percent sign (%) matches any sequence of zero or more characters.
+  """
+  likeInsensitive: String
+
+  """
+  Does not match the specified pattern (case-insensitive). An underscore (_)
+  matches any single character; a percent sign (%) matches any sequence of zero
+  or more characters.
+  """
+  notLikeInsensitive: String
+
+  """Equal to the specified value (case-insensitive)."""
+  equalToInsensitive: String
+
+  """Not equal to the specified value (case-insensitive)."""
+  notEqualToInsensitive: String
+
+  """
+  Not equal to the specified value, treating null like an ordinary value (case-insensitive).
+  """
+  distinctFromInsensitive: String
+
+  """
+  Equal to the specified value, treating null like an ordinary value (case-insensitive).
+  """
+  notDistinctFromInsensitive: String
+
+  """Included in the specified list (case-insensitive)."""
+  inInsensitive: [String!]
+
+  """Not included in the specified list (case-insensitive)."""
+  notInInsensitive: [String!]
+
+  """Less than the specified value (case-insensitive)."""
+  lessThanInsensitive: String
+
+  """Less than or equal to the specified value (case-insensitive)."""
+  lessThanOrEqualToInsensitive: String
+
+  """Greater than the specified value (case-insensitive)."""
+  greaterThanInsensitive: String
+
+  """Greater than or equal to the specified value (case-insensitive)."""
+  greaterThanOrEqualToInsensitive: String
+}
+
+"""All input for the `updateFlywaySchemaHistoryByInstalledRank` mutation."""
+input UpdateFlywaySchemaHistoryByInstalledRankInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `FlywaySchemaHistory` being updated.
+  """
+  flywaySchemaHistoryPatch: FlywaySchemaHistoryPatch!
+  installedRank: Int!
+}
+
+"""All input for the `updateFlywaySchemaHistory` mutation."""
+input UpdateFlywaySchemaHistoryInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `FlywaySchemaHistory` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `FlywaySchemaHistory` being updated.
+  """
+  flywaySchemaHistoryPatch: FlywaySchemaHistoryPatch!
+}
+
+"""The output of our update `FlywaySchemaHistory` mutation."""
+type UpdateFlywaySchemaHistoryPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `FlywaySchemaHistory` that was updated by this mutation."""
+  flywaySchemaHistory: FlywaySchemaHistory
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `FlywaySchemaHistory`. May be used by Relay 1."""
+  flywaySchemaHistoryEdge(
+    """The method to use when ordering `FlywaySchemaHistory`."""
+    orderBy: [FlywaySchemaHistoriesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FlywaySchemaHistoriesEdge
+}
+
+"""All input for the `updateHeroDatumById` mutation."""
+input UpdateHeroDatumByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `HeroDatum` being updated.
+  """
+  heroDatumPatch: HeroDatumPatch!
+  id: UUID!
+}
+
+"""All input for the `updateHeroDatum` mutation."""
+input UpdateHeroDatumInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `HeroDatum` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `HeroDatum` being updated.
+  """
+  heroDatumPatch: HeroDatumPatch!
+}
+
+"""The output of our update `HeroDatum` mutation."""
+type UpdateHeroDatumPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `HeroDatum` that was updated by this mutation."""
+  heroDatum: HeroDatum
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `HeroDatum`. May be used by Relay 1."""
+  heroDatumEdge(
+    """The method to use when ordering `HeroDatum`."""
+    orderBy: [HeroDataOrderBy!] = [PRIMARY_KEY_ASC]
+  ): HeroDataEdge
+}
+
+"""All input for the `updateMenuItemById` mutation."""
+input UpdateMenuItemByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `MenuItem` being updated.
+  """
+  menuItemPatch: MenuItemPatch!
+  id: UUID!
+}
+
+"""All input for the `updateMenuItem` mutation."""
+input UpdateMenuItemInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `MenuItem` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `MenuItem` being updated.
+  """
+  menuItemPatch: MenuItemPatch!
+}
+
+"""The output of our update `MenuItem` mutation."""
+type UpdateMenuItemPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MenuItem` that was updated by this mutation."""
+  menuItem: MenuItem
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `MenuItem`. May be used by Relay 1."""
+  menuItemEdge(
+    """The method to use when ordering `MenuItem`."""
+    orderBy: [MenuItemsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MenuItemsEdge
+}
+
+"""All input for the `updateSocialLinkById` mutation."""
+input UpdateSocialLinkByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `SocialLink` being updated.
+  """
+  socialLinkPatch: SocialLinkPatch!
+  id: UUID!
+}
+
+"""All input for the `updateSocialLink` mutation."""
+input UpdateSocialLinkInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `SocialLink` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `SocialLink` being updated.
+  """
+  socialLinkPatch: SocialLinkPatch!
+}
+
+"""The output of our update `SocialLink` mutation."""
+type UpdateSocialLinkPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `SocialLink` that was updated by this mutation."""
+  socialLink: SocialLink
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `SocialLink`. May be used by Relay 1."""
+  socialLinkEdge(
+    """The method to use when ordering `SocialLink`."""
+    orderBy: [SocialLinksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): SocialLinksEdge
+}
+
+"""
+A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122).
+"""
+scalar UUID
+
+"""
+A filter to be used against UUID fields. All fields are combined with a logical ‘and.’
+"""
+input UUIDFilter {
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Equal to the specified value."""
+  equalTo: UUID
+
+  """Not equal to the specified value."""
+  notEqualTo: UUID
+
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: UUID
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: UUID
+
+  """Included in the specified list."""
+  in: [UUID!]
+
+  """Not included in the specified list."""
+  notIn: [UUID!]
+
+  """Less than the specified value."""
+  lessThan: UUID
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: UUID
+
+  """Greater than the specified value."""
+  greaterThan: UUID
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: UUID
+}

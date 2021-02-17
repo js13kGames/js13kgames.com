@@ -1,0 +1,8 @@
+query menuItems {
+	menuItems: allMenuItems {
+		nodes {
+			title
+			url
+		}
+	}
+}

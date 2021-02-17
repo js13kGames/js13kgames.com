@@ -1,0 +1,8 @@
+query socialLinks {
+	socialLinks: allSocialLinks {
+		nodes {
+			title
+			url
+		}
+	}
+}

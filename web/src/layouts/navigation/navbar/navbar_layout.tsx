@@ -1,23 +1,11 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import styles from './navbar.module.scss';
 import NavItem from './navItem';
 
-const Navbar = ({ year }) => {
-	const [menuItems, setMenuItems] = useState([]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const buffer = await fetch('/api/menu_items');
-				const data = await buffer.json();
-				setMenuItems(data);
-			} catch (e) {
-				new Error('error');
-			}
-		};
-		fetchData();
-	}, []);
+const NavbarLayout = ({ loading, menuItems, year }) => {
+	if (loading) {
+		return <h1>Loading</h1>;
+	}
 
 	return (
 		<nav className={styles.navWrapper}>
@@ -46,4 +34,4 @@ const Navbar = ({ year }) => {
 	);
 };
 
-export default Navbar;
+export default NavbarLayout;
