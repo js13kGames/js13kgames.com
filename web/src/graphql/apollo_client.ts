@@ -25,7 +25,7 @@ export const createApolloClient = ({
 
 	const isSSR = typeof window === 'undefined';
 
-	const url = 'http://localhost:1234/graphql';
+	const url = `${window.location.origin}/graphql`;
 
 	const httpLink = createHttpLink({
 		fetch: crossFetch,
