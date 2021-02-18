@@ -39,7 +39,6 @@ jobs:
         KEY: ${{ secrets.SSHKEY }}
         source: "./*"
         target: "/var/www/html/js13k"
-        strip_components: 1
     - name: Apply migrations
       uses: appleboy/ssh-action@master
       with:
