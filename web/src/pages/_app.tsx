@@ -1,7 +1,7 @@
 import React from 'react';
+import { AppContextProvider } from '../core/AppContextProvider';
 import { Footer, Navbar } from '../layouts';
 import '../styles/globals.scss';
-import { AppContextProvider } from '../utils/AppContextProvider';
 
 function MyApp({ Component, pageProps }) {
 	return (
