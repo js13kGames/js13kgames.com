@@ -14,10 +14,6 @@ const NavbarLayout = ({ loading, menuItems, year }) => {
 					<a>js13kgames logo</a>
 				</Link>
 				<div className={styles.loginWrapper}>
-					<Link href='/register'>
-						<a>register</a>
-					</Link>
-					<p> / </p>
 					<Link href='/login'>
 						<a>login</a>
 					</Link>
