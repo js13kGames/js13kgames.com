@@ -21,6 +21,8 @@ services:
       - 'DATABASE_URL=postgres://postgres:postgres@db:5432/postgres'
     depends_on:
       - 'db'
+    env_file:
+      - ./.env
 
   graphql:
     container_name: graphql
