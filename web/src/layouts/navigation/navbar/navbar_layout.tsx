@@ -17,7 +17,6 @@ const NavbarLayout = ({ loading, menuItems, year }) => {
 		return <h1>Loading</h1>;
 	}
 
-	console.log({ user });
 	return (
 		<nav className={styles.navWrapper}>
 			<div className={styles.navWrapperTop}>

@@ -14,6 +14,7 @@
 		"@fortawesome/free-brands-svg-icons": "^5.15.1",
 		"@fortawesome/free-solid-svg-icons": "^5.15.1",
 		"@fortawesome/react-fontawesome": "^0.1.13",
+		"js-cookie": "^2.2.1",
 		"next": "10.0.3",
 		"node-sass": "^5.0.0",
 		"pogi": "^2.9.2",

@@ -5,19 +5,18 @@ import {
 	from,
 	InMemoryCache
 } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
 import crossFetch from 'cross-fetch';
 import getConfig from 'next/config';
 
 export interface ClientFactoryProps {
-	app?: any;
+	token?: string;
 }
 
 let persistedClient: ApolloClient<unknown> | null = null;
 
 export const createApolloClient = ({
-	app
+	token
 }: ClientFactoryProps): ApolloClient<unknown> => {
 	const {
 		publicRuntimeConfig: { APP_HOSTNAME }
@@ -30,17 +29,6 @@ export const createApolloClient = ({
 	const httpLink = createHttpLink({
 		fetch: crossFetch,
 		uri: url
-	});
-
-	const authLink = setContext(async function (_, { headers }) {
-		// const token = await getSessionToken(app);
-
-		return {
-			headers: {
-				...headers
-				// authorization: `Bearer ${token}`
-			}
-		};
 	});
 
 	const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -56,7 +44,7 @@ export const createApolloClient = ({
 		}
 	});
 
-	const link = from([errorLink, authLink, httpLink]);
+	const link = from([errorLink, httpLink]);
 
 	const baseOptions: ApolloClientOptions<unknown> = {
 		link,
