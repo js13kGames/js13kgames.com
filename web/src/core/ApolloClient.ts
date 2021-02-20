@@ -8,7 +8,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
 import crossFetch from 'cross-fetch';
-import getNextConfig from 'next/config';
+import getConfig from 'next/config';
 
 export interface ClientFactoryProps {
 	app?: any;
@@ -21,11 +21,11 @@ export const createApolloClient = ({
 }: ClientFactoryProps): ApolloClient<unknown> => {
 	const {
 		publicRuntimeConfig: { APP_HOSTNAME }
-	} = getNextConfig();
+	} = getConfig();
 
 	const isSSR = typeof window === 'undefined';
 
-	const url = `${isSSR ? '' : window.location.origin}/graphql`;
+	const url = `${APP_HOSTNAME}/graphql`;
 
 	const httpLink = createHttpLink({
 		fetch: crossFetch,

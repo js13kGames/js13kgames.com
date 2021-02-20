@@ -2,6 +2,14 @@
 const CURRENT_EDITION = '2020';
 
 module.exports = {
+	publicRuntimeConfig: {
+		// Public runtime variables are visible in the browser
+		// Do not expose app secrets in public runtime config
+		APP_HOSTNAME: process.env.APP_HOSTNAME,
+		AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
+		AUTH0_DOMAIN: process.env.AUTH0_DOMAIN
+	},
+
 	async redirects() {
 		return [
 			{
@@ -11,6 +19,7 @@ module.exports = {
 			}
 		];
 	},
+
 	async rewrites() {
 		return [
 			{
