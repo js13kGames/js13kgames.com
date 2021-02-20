@@ -1,7 +1,7 @@
 import { ApolloProvider } from '@apollo/client';
 import { useAuth0 } from '@auth0/auth0-react';
 import Cookies from 'js-cookie';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { createApolloClient } from './ApolloClient';
 
 export const ApiProvider: FC = ({ children }) => {
@@ -10,15 +10,14 @@ export const ApiProvider: FC = ({ children }) => {
 		getAccessTokenSilently,
 		getIdTokenClaims
 	} = useAuth0();
-	const [token, setToken] = useState('');
 
 	useEffect(() => {
 		const getToken = async () => {
 			if (isAuthenticated) {
-				const _token = await getAccessTokenSilently();
+				const token = await getAccessTokenSilently();
 				const claims = await getIdTokenClaims();
-				setToken(_token);
-				Cookies.set('token', _token, {
+				console.log({ claims, token });
+				Cookies.set('token', token, {
 					expires: claims.exp / 60 / 60 / 24
 				});
 			}
@@ -27,7 +26,7 @@ export const ApiProvider: FC = ({ children }) => {
 		getToken();
 	}, [isAuthenticated]);
 
-	const apolloClient = createApolloClient({ token });
+	const apolloClient = createApolloClient();
 
 	return <ApolloProvider client={apolloClient}>{children}</ApolloProvider>;
 };

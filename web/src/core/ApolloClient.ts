@@ -9,15 +9,9 @@ import { onError } from '@apollo/client/link/error';
 import crossFetch from 'cross-fetch';
 import getConfig from 'next/config';
 
-export interface ClientFactoryProps {
-	token?: string;
-}
-
 let persistedClient: ApolloClient<unknown> | null = null;
 
-export const createApolloClient = ({
-	token
-}: ClientFactoryProps): ApolloClient<unknown> => {
+export const createApolloClient = (): ApolloClient<unknown> => {
 	const {
 		publicRuntimeConfig: { APP_HOSTNAME }
 	} = getConfig();
