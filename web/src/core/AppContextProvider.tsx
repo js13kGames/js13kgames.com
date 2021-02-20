@@ -5,14 +5,14 @@ import { ApiProvider } from './ApiProvider';
 
 export const AppContextProvider: FC = ({ children }) => {
 	const {
-		publicRuntimeConfig: { AUTH0_DOMAIN, AUTH0_CLIENT_ID }
+		publicRuntimeConfig: { AUTH0_DOMAIN, AUTH0_CLIENT_ID, APP_HOSTNAME }
 	} = getConfig();
 
 	return (
 		<Auth0Provider
 			domain={AUTH0_DOMAIN}
 			clientId={AUTH0_CLIENT_ID}
-			redirectUri={window.location.origin}
+			redirectUri={APP_HOSTNAME}
 		>
 			<ApiProvider>{children}</ApiProvider>
 		</Auth0Provider>
