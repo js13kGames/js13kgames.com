@@ -1,37 +1,64 @@
 .navWrapper {
-  display: flex;
-  flex-direction: column;
-  background-color: #000;
-  width: 100%;
-  height: 20vh;
-  &Top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: solid 0.35em #a52730;
-    background-color: #fff;
-    height: 50%;
-    text-transform: uppercase;
-    a {
-      margin: 0 2.5em;
-    }
-    .loginWrapper {
-      display: flex;
-      margin: 2.5em;
-      a {
-        margin: 0;
-      }
-      p {
-        margin: 0 1em;
-      }
-    }
-  }
-  &Bottom {
-    margin: auto;
-    .navItems {
-      display: flex;
-      align-items: center;
-      list-style: none;
-    }
-  }
+	display: flex;
+	flex-direction: column;
+	background-color: #000;
+	width: 100%;
+	height: 20vh;
+
+	&Top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-top: solid 0.35em #a52730;
+		background-color: #fff;
+		height: 50%;
+		text-transform: uppercase;
+
+		a {
+			margin: 0 2.5em;
+		}
+
+		.loginWrapper {
+			display: flex;
+			margin: 2.5em;
+
+			a {
+				margin: 0;
+			}
+
+			p {
+				margin: 0 1em;
+			}
+
+			.loggedInWrapper {
+				text-align: center;
+
+				.avatar {
+					width: 50px;
+					height: 50px;
+					border-radius: 25px;
+				}
+
+				.name {
+					font-size: 12px;
+				}
+
+				.logout {
+					font-size: 10px;
+					margin-left: 5px;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+
+	&Bottom {
+		margin: auto;
+
+		.navItems {
+			display: flex;
+			align-items: center;
+			list-style: none;
+		}
+	}
 }
