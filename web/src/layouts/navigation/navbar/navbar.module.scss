@@ -12,17 +12,17 @@
   background-color: #fff;
   height: 10vh;
   text-transform: uppercase;
-  a {
-    margin: 0 2.5em;
+  .logo {
+    height: auto;
+    width: 200px;
   }
+  // a {
+  //   margin: 0 2.5em;
+  // }
   .loginWrapper {
-    display: flex;
-    margin: 2.5em;
-    a {
-      margin: 0;
-    }
-    p {
-      margin: 0 1em;
+    margin: auto 2.5em auto auto;
+    .login {
+      margin-right: 1em;
     }
   }
 }
@@ -33,14 +33,23 @@
   height: 10vh;
   background-image: url("../../../assets/patterns/js13kgames-pattern-menu.png");
   // background-color: #000;
+  transition: opacity 0.4s linear;
   .navItems {
     display: flex;
     grid-column: 2/3;
     list-style: none;
   }
-  .icon {
-    color: white;
-    font-size: 1.7em;
+  .searchIcon {
+    color: #fff;
+    width: 1.8em;
   }
 }
 // }
+.fixed {
+  position: fixed;
+  // display: block;
+  top: 0;
+  opacity: 1;
+  width: 100%;
+  transition: opacity 0.4s linear;
+}
