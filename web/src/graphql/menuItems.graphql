@@ -1,8 +1,8 @@
 query menuItems {
-	menuItems: allMenuItems {
-		nodes {
-			title
-			url
-		}
-	}
+  menuItems: allMenuItems(condition: {active: true}) {
+    nodes {
+      title
+      url
+    }
+  }
 }
