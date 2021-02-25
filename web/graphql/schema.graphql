@@ -853,6 +853,7 @@ type MenuItem implements Node {
   active: Boolean!
   createdAt: Datetime!
   updatedAt: Datetime!
+  orderNumber: Int
 }
 
 """A `MenuItem` edge in the connection."""
@@ -879,6 +880,8 @@ enum MenuItemsOrderBy {
   CREATED_AT_DESC
   UPDATED_AT_ASC
   UPDATED_AT_DESC
+  ORDER_NUMBER_ASC
+  ORDER_NUMBER_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
 }
@@ -905,6 +908,9 @@ input MenuItemCondition {
 
   """Checks for equality with the object’s `updatedAt` field."""
   updatedAt: Datetime
+
+  """Checks for equality with the object’s `orderNumber` field."""
+  orderNumber: Int
 }
 
 """
@@ -928,6 +934,9 @@ input MenuItemFilter {
 
   """Filter by the object’s `updatedAt` field."""
   updatedAt: DatetimeFilter
+
+  """Filter by the object’s `orderNumber` field."""
+  orderNumber: IntFilter
 
   """Checks for all expressions in this list."""
   and: [MenuItemFilter!]
@@ -1354,6 +1363,7 @@ input MenuItemInput {
   active: Boolean
   createdAt: Datetime
   updatedAt: Datetime
+  orderNumber: Int
 }
 
 """The output of our create `SocialLink` mutation."""
@@ -1598,6 +1608,7 @@ input MenuItemPatch {
   active: Boolean
   createdAt: Datetime
   updatedAt: Datetime
+  orderNumber: Int
 }
 
 """All input for the `updateMenuItemById` mutation."""

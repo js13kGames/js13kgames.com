@@ -398,6 +398,8 @@ export type MenuItemsOrderBy =
   | 'CREATED_AT_DESC'
   | 'UPDATED_AT_ASC'
   | 'UPDATED_AT_DESC'
+  | 'ORDER_NUMBER_ASC'
+  | 'ORDER_NUMBER_DESC'
   | 'PRIMARY_KEY_ASC'
   | 'PRIMARY_KEY_DESC';
 
@@ -418,6 +420,8 @@ export type MenuItemCondition = {
   readonly createdAt?: Maybe<Scalars['Datetime']>;
   /** Checks for equality with the object’s `updatedAt` field. */
   readonly updatedAt?: Maybe<Scalars['Datetime']>;
+  /** Checks for equality with the object’s `orderNumber` field. */
+  readonly orderNumber?: Maybe<Scalars['Int']>;
 };
 
 /** A filter to be used against `MenuItem` object types. All fields are combined with a logical ‘and.’ */
@@ -434,6 +438,8 @@ export type MenuItemFilter = {
   readonly createdAt?: Maybe<DatetimeFilter>;
   /** Filter by the object’s `updatedAt` field. */
   readonly updatedAt?: Maybe<DatetimeFilter>;
+  /** Filter by the object’s `orderNumber` field. */
+  readonly orderNumber?: Maybe<IntFilter>;
   /** Checks for all expressions in this list. */
   readonly and?: Maybe<ReadonlyArray<MenuItemFilter>>;
   /** Checks for any expressions in this list. */
@@ -571,6 +577,7 @@ export type MenuItemInput = {
   readonly active?: Maybe<Scalars['Boolean']>;
   readonly createdAt?: Maybe<Scalars['Datetime']>;
   readonly updatedAt?: Maybe<Scalars['Datetime']>;
+  readonly orderNumber?: Maybe<Scalars['Int']>;
 };
 
 
@@ -696,6 +703,7 @@ export type MenuItemPatch = {
   readonly active?: Maybe<Scalars['Boolean']>;
   readonly createdAt?: Maybe<Scalars['Datetime']>;
   readonly updatedAt?: Maybe<Scalars['Datetime']>;
+  readonly orderNumber?: Maybe<Scalars['Int']>;
 };
 
 /** All input for the `updateMenuItemById` mutation. */
@@ -893,7 +901,7 @@ export function refetchHeroDataQuery(variables?: HeroDataQueryVariables) {
     }
 export const MenuItemsDocument = gql`
     query menuItems {
-  menuItems: allMenuItems(condition: {active: true}) {
+  menuItems: allMenuItems(condition: {active: true}, orderBy: [ORDER_NUMBER_ASC]) {
     nodes {
       title
       url
