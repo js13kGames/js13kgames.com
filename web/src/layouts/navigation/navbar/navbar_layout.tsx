@@ -1,12 +1,13 @@
-import {faSearch} from "@fortawesome/free-solid-svg-icons";
+import {faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import {useState} from "react";
-import Logo from "../../../assets/logo/mainLogo.svg";
-import {Button} from "../../../components";
+import ShortLogo from "../../../assets/logo/js13kgames-logo-short.svg";
+import {Button, Input} from "../../../components";
+import Header from "./header";
 import styles from "./navbar.module.scss";
 import NavItem from "./navItem";
-import Select from "./select.tsx";
+import Select from "./select";
 
 export async function getServerSideProps({params}) {
   return {
@@ -48,6 +49,7 @@ const years = [
 
 const NavbarLayout = ({loading, menuItems, year}) => {
   const [navScroll, setNavScroll] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   if (loading) {
     return <h1>Loading</h1>;
@@ -71,25 +73,7 @@ const NavbarLayout = ({loading, menuItems, year}) => {
 
   return (
     <>
-      <header id="header" className={styles.navHeader}>
-        {/* <div className={styles.navWrapperTop}> */}
-        <Link href={"/" + year}>
-          {/* <a>js13kgames logo</a> */}
-          <img className={styles.logo} src={Logo} alt="logo" />
-          {/* <Logo style={{width: "400px"}} /> */}
-        </Link>
-        <Select yearOptions={years} />
-        <div className={styles.loginWrapper}>
-          <Link href="/login">
-            <a className={styles.login}>register | login</a>
-          </Link>
-          <Button buttonClass="newSubmit" href="/submit">
-            submit the game
-          </Button>
-        </div>
-      </header>
-      {/* <nav className={styles.navWrapper}> */}
-
+      <Header year={year} years={years} />
       <nav
         id="navbar"
         className={`${styles.navbar} ${styles[navScroll ? "fixed" : ""]}`}>
@@ -103,15 +87,22 @@ const NavbarLayout = ({loading, menuItems, year}) => {
         </ul>
         <FontAwesomeIcon
           className={`${styles.searchIcon} ${styles[navScroll ? "none" : ""]}`}
-          icon={faSearch}
+          icon={searchOpen ? faTimes : faSearch}
+          onClick={() => setSearchOpen(!searchOpen)}
         />
+        {searchOpen && !navScroll ? <Input /> : ""}
         {navScroll ? (
           <>
-            <p style={{order: "-2"}}>LOGO</p>
+            <div className={styles.leftWrapper}>
+              <Link href={"/" + year}>
+                <img className={styles.logoShort} src={ShortLogo} alt="logo" />
+              </Link>
+              <Select yearOptions={years} scrollClass="selectScroll" />
+            </div>
+
             <Button buttonClass="newSubmit" href="/submit">
               submit the game
             </Button>
-            <Select yearOptions={years} scrollClass="selectScroll" />
           </>
         ) : (
           ""

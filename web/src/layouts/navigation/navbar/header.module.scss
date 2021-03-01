@@ -1,0 +1,23 @@
+@import "../../../styles/utilities/variables.scss";
+
+.navHeader {
+  display: grid;
+  grid-template-columns: 1fr 20% 1fr;
+  align-items: center;
+  border-top: solid 0.35em $primary-color;
+  background-color: #fff;
+  height: 10vh;
+  text-transform: uppercase;
+  z-index: 15;
+  .logo {
+    width: 200px;
+    margin-left: 2.5em;
+    cursor: pointer;
+  }
+  .loginWrapper {
+    margin: auto 2.5em auto auto;
+    .login {
+      margin-right: 1em;
+    }
+  }
+}

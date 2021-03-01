@@ -1,7 +1,16 @@
 import {useRouter} from "next/router";
 import styles from "./select.module.scss";
 
-const Select = ({yearOptions, scrollClass}) => {
+export interface SelectProps {
+  yearOptions: Array<YearOptionsItem>;
+  scrollClass?: string;
+}
+
+export interface YearOptionsItem {
+  year: string;
+}
+
+const Select = ({yearOptions, scrollClass}: SelectProps) => {
   const router = useRouter();
 
   const onYearChange = (year) => {
