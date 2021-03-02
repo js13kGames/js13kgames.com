@@ -4,6 +4,8 @@ import Link from "next/link";
 import {useState} from "react";
 import ShortLogo from "../../../assets/logo/js13kgames-logo-short.svg";
 import {Button, Input} from "../../../components";
+import {useBurgerVisible} from "../../../utils/useBurgerVisible";
+import Burger from "./burger";
 import Header from "./header";
 import styles from "./navbar.module.scss";
 import NavItem from "./navItem";
@@ -50,6 +52,9 @@ const years = [
 const NavbarLayout = ({loading, menuItems, year}) => {
   const [navScroll, setNavScroll] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [burgerActive, setBurgerActive] = useState(false);
+
+  const isBurgerVisible = useBurgerVisible();
 
   if (loading) {
     return <h1>Loading</h1>;
@@ -80,7 +85,7 @@ const NavbarLayout = ({loading, menuItems, year}) => {
         <ul
           className={`${styles.navItems} ${
             styles[navScroll ? "navItemsScroll" : ""]
-          }`}>
+          } ${styles[burgerActive ? "nav-active" : ""]}`}>
           {menuItems.map(({url, title}) => (
             <NavItem href={`/${year}${url}`} content={title} key={title} />
           ))}
@@ -107,6 +112,11 @@ const NavbarLayout = ({loading, menuItems, year}) => {
         ) : (
           ""
         )}
+
+        <Burger
+          onClick={() => setBurgerActive(!burgerActive)}
+          burgerClass={burgerActive ? "toggle" : ""}
+        />
       </nav>
     </>
   );

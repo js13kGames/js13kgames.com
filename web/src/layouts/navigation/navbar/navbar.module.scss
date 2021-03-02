@@ -1,4 +1,5 @@
 @import "../../../styles/utilities/variables.scss";
+@import "../../../styles/utilities/mixins.scss";
 
 .navbar {
   position: relative;
@@ -11,12 +12,28 @@
     display: flex;
     grid-column: 2/3;
     list-style: none;
+    transition: transform 0.4s ease-in;
+    @include respond-to("webMedium") {
+      grid-column: 1/-1;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      right: -30%;
+      top: 10vh;
+      height: calc(100vh - 9vh);
+      background-color: #ccc;
+      width: 30%;
+      justify-content: space-evenly;
+      z-index: 4;
+      opacity: 0.9;
+    }
   }
   .navItemsScroll {
     grid-column: 1/-1;
     margin-right: 0.8em;
   }
   .searchIcon {
+    grid-column: 3/-1;
     color: #fff;
     width: 1em;
     font-size: 2em;
@@ -45,6 +62,12 @@
 
 .none {
   display: none;
+}
+
+@include respond-to("webMedium") {
+  .nav-active {
+    transform: translateX(-100%);
+  }
 }
 
 @keyframes animate {

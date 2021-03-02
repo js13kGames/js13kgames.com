@@ -1,0 +1,33 @@
+@import "../../../styles/utilities/mixins.scss";
+@import "../../../styles/utilities/variables.scss";
+
+.burger {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  display: none;
+  cursor: pointer;
+  @include respond-to("webMedium") {
+    display: block;
+  }
+  div {
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    margin: 6px 0;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+  }
+}
+@include respond-to("webMedium") {
+  .toggle {
+    .line1 {
+      transform: rotate(-45deg) translate(-6px, 7px);
+    }
+    .line2 {
+      opacity: 0;
+    }
+    .line3 {
+      transform: rotate(45deg) translate(-6px, -7px);
+    }
+  }
+}
