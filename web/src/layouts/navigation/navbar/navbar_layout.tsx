@@ -78,7 +78,8 @@ const NavbarLayout = ({loading, menuItems, year}) => {
 
   return (
     <>
-      <Header year={year} years={years} />
+      {isBurgerVisible ? "" : <Header year={year} years={years} />}
+
       <nav
         id="navbar"
         className={`${styles.navbar} ${styles[navScroll ? "fixed" : ""]}`}>
@@ -96,7 +97,7 @@ const NavbarLayout = ({loading, menuItems, year}) => {
           onClick={() => setSearchOpen(!searchOpen)}
         />
         {searchOpen && !navScroll ? <Input /> : ""}
-        {navScroll ? (
+        {navScroll || isBurgerVisible ? (
           <>
             <div className={styles.leftWrapper}>
               <Link href={"/" + year}>
@@ -104,10 +105,13 @@ const NavbarLayout = ({loading, menuItems, year}) => {
               </Link>
               <Select yearOptions={years} scrollClass="selectScroll" />
             </div>
-
-            <Button buttonClass="newSubmit" href="/submit">
-              submit the game
-            </Button>
+            {isBurgerVisible ? (
+              ""
+            ) : (
+              <Button buttonClass="newSubmit" href="/submit">
+                submit the game
+              </Button>
+            )}
           </>
         ) : (
           ""
