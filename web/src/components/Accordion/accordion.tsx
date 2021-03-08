@@ -26,7 +26,11 @@ const Accordion = ({
           {category} {title}
         </h3>
         <span onClick={onClick}>
-          <FontAwesomeIcon icon={isOpen[title] ? faMinus : faPlus} />
+          <FontAwesomeIcon
+            icon={isOpen[title] ? faMinus : faPlus}
+            width={20}
+            height={20}
+          />
         </span>
       </div>
       <div
