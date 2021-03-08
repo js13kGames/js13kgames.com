@@ -21,6 +21,8 @@ services:
       - 'DATABASE_URL=postgres://postgres:postgres@db:5432/postgres'
     depends_on:
       - 'db'
+    env_file:
+      - ./.env
 
   graphql:
     container_name: graphql
@@ -55,7 +57,7 @@ services:
 
   migrator:
     image: flyway/flyway:6.5.7
-    command: -n -defaultSchema=public -schemas=public -url=jdbc:postgresql://db:5432/postgres -user=postgres -password=postgres
+    command: -n -defaultSchema=public -schemas=public -url=jdbc:postgresql://db:5432/postgres -user=postgres -password=${POSTGRES_PASSWORD}
     environment:
       - 'DATABASE_URL=postgres://postgres:postgres@db:5432/postgres'
     volumes:

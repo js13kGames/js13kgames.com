@@ -19,6 +19,16 @@ jobs:
         script: |
           cd /var/www/html/js13k
           make stop
+    - name: Remove old code
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        KEY: ${{ secrets.SSHKEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd /var/www/html/js13k
+          rm -rf *
     - uses: actions/checkout@v1
     - name: Deploy to remote env
       uses: appleboy/scp-action@master
@@ -29,7 +39,6 @@ jobs:
         KEY: ${{ secrets.SSHKEY }}
         source: "./*"
         target: "/var/www/html/js13k"
-        strip_components: 1
     - name: Apply migrations
       uses: appleboy/ssh-action@master
       with:

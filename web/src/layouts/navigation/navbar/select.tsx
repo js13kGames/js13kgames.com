@@ -17,6 +17,8 @@ const Select = ({yearOptions, scrollClass}: SelectProps) => {
     router.push(router.pathname.replace("[year]", year));
   };
 
+  const selectedYear = router.query?.year;
+
   return (
     <select
       className={`${styles.select} ${scrollClass && styles[scrollClass]}`}
@@ -24,7 +26,7 @@ const Select = ({yearOptions, scrollClass}: SelectProps) => {
         onYearChange(e.target.value);
       }}>
       {yearOptions.map(({year}) => (
-        <option key={year} value={year}>
+        <option key={year} value={year} selected={selectedYear === year}>
           {year}
         </option>
       ))}

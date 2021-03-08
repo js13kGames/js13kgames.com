@@ -2,6 +2,7 @@ import {faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import {useState} from "react";
+// @ts-ignore
 import ShortLogo from "../../../assets/logo/js13kgames-logo-short.svg";
 import {Button, Input} from "../../../components";
 import {useBurgerVisible} from "../../../utils/useBurgerVisible";
