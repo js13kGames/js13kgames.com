@@ -25,13 +25,15 @@ const Accordion = ({
         <h3>
           {category} {title}
         </h3>
-        <span onClick={onClick}>
-          <FontAwesomeIcon
-            icon={isOpen[title] ? faMinus : faPlus}
-            width={20}
-            height={20}
-          />
-        </span>
+        {/* <span onClick={onClick}> */}
+        <FontAwesomeIcon
+          className={styles.icon}
+          icon={isOpen[title] ? faMinus : faPlus}
+          onClick={onClick}
+          // width={20}
+          // height={20}
+        />
+        {/* </span> */}
       </div>
       <div
         className={`${isOpen[title] ? styles.open : ""} ${styles.content} ${

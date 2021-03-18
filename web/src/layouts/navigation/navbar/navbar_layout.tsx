@@ -53,6 +53,7 @@ const years = [
 const NavbarLayout = ({loading, menuItems, year}) => {
   const [navScroll, setNavScroll] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  // const [openProfile, setOpenProfile] = useState(false);
   const [burgerActive, setBurgerActive] = useState(false);
 
   const isBurgerVisible = useBurgerVisible();
@@ -123,6 +124,27 @@ const NavbarLayout = ({loading, menuItems, year}) => {
           burgerClass={burgerActive ? "toggle" : ""}
         />
       </nav>
+      {/* <div
+        className={`${styles.dropdown} ${styles[openProfile ? "active" : ""]}`}>
+        <div className={styles.dropdownItem}>
+          <p>
+            User Name <span>(user_name@username.com)</span>
+          </p>
+        </div>
+        <div className={styles.dropdownItem}>
+          <Link href="/user">
+            <a>Profile</a>
+          </Link>
+        </div>
+        <div className={styles.dropdownItem}>
+          <p>Log Out</p>
+        </div>
+        <Button
+          buttonClass="closeBtn"
+          onClick={() => setOpenProfile(!openProfile)}>
+          X
+        </Button>
+      </div> */}
     </>
   );
 };
