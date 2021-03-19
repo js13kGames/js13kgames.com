@@ -8,6 +8,10 @@
   place-items: center;
   height: 10vh;
   background-image: url("../../../assets/patterns/js13kgames-pattern-menu.png");
+  @include respond-to("webMedium") {
+    position: fixed;
+    width: 100%;
+  }
   .navItems {
     display: flex;
     grid-column: 2/3;
@@ -21,6 +25,7 @@
       left: -30%;
       top: 10vh;
       height: calc(100vh - 9vh);
+
       // background-color: #ccc;
       background-image: url("../../../assets/patterns/js13kgames-pattern-menu.png");
       width: 30%;

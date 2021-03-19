@@ -64,9 +64,9 @@ const NavbarLayout = ({loading, menuItems, year}) => {
 
   const listenScrollEvent = () => {
     if (
-      window.scrollY >=
-      document.getElementById("navbar").offsetHeight +
-        document.getElementById("header").offsetHeight
+      !isBurgerVisible &&
+      window.scrollY >= document.getElementById("navbar").offsetHeight
+      // document.getElementById("header").offsetHeight
     ) {
       setNavScroll(true);
     } else {
