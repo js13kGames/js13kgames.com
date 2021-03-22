@@ -1,3 +1,6 @@
+@import "../../styles/utilities/variables.scss";
+@import "../../styles/utilities/mixins.scss";
+
 .button {
   padding: 1em;
   border: solid 1px black;
@@ -77,6 +80,19 @@
   background-color: transparent;
   border: none;
   margin-right: 1.5em;
+}
+.loginMobile {
+  padding: 0;
+  color: #fff;
+  font-size: 1.1em;
+  outline: transparent;
+  background-color: transparent;
+  border: solid 1px $secondary-color;
+  font-family: $secondary-font;
+  &:hover {
+    border-bottom: solid 1px #fff;
+    background-color: transparent;
+  }
 }
 
 .closeBtn {

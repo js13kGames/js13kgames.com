@@ -32,15 +32,7 @@ const Header = ({year, years}) => {
           <div
             className={styles.loggedInWrapper}
             onClick={() => setOpenProfile(!openProfile)}>
-            <img src={user.picture} className={styles.avatar}></img>
-            {/* <p className={styles.name}>
-              {user.name}
-              <span
-                className={styles.logout}
-                onClick={() => logout({returnTo: window.location.origin})}>
-                (log out)
-              </span>
-            </p> */}
+            <img src={user.picture} className={styles.avatar} />
             <div
               className={`${styles.dropdown} ${
                 styles[openProfile ? "active" : ""]

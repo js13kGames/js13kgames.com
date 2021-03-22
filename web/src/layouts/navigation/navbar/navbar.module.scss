@@ -22,16 +22,14 @@
       flex-direction: column;
       align-items: center;
       position: absolute;
-      left: -30%;
+      left: -31%;
       top: 10vh;
       height: calc(100vh - 9vh);
-
-      // background-color: #ccc;
-      background-image: url("../../../assets/patterns/js13kgames-pattern-menu.png");
-      width: 30%;
+      background-color: $secondary-color;
+      // background-image: url("../../../assets/patterns/js13kgames-pattern-menu.png");
+      width: 31%;
       justify-content: space-evenly;
       z-index: 4;
-      // opacity: 0.9;
     }
   }
   .navItemsScroll {

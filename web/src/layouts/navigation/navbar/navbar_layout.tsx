@@ -1,3 +1,4 @@
+import {useAuth0} from "@auth0/auth0-react";
 import {faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -56,6 +57,12 @@ const NavbarLayout = ({loading, menuItems, year}) => {
   // const [openProfile, setOpenProfile] = useState(false);
   const [burgerActive, setBurgerActive] = useState(false);
 
+  const {
+    loginWithRedirect,
+    // isLoading,
+    // , logout, isAuthenticated, isLoading
+  } = useAuth0();
+
   const isBurgerVisible = useBurgerVisible();
 
   if (loading) {
@@ -92,6 +99,15 @@ const NavbarLayout = ({loading, menuItems, year}) => {
           {menuItems.map(({url, title}) => (
             <NavItem href={`/${year}${url}`} content={title} key={title} />
           ))}
+          {isBurgerVisible ? (
+            <Button
+              buttonClass="loginMobile"
+              onClick={() => loginWithRedirect()}>
+              Register | Login
+            </Button>
+          ) : (
+            ""
+          )}
         </ul>
         <FontAwesomeIcon
           className={`${styles.searchIcon} ${styles[navScroll ? "none" : ""]}`}
