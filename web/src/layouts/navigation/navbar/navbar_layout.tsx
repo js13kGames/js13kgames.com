@@ -59,7 +59,8 @@ const NavbarLayout = ({loading, menuItems, year}) => {
 
   const {
     loginWithRedirect,
-    // isLoading,
+    isAuthenticated,
+    logout,
     // , logout, isAuthenticated, isLoading
   } = useAuth0();
 
@@ -100,11 +101,26 @@ const NavbarLayout = ({loading, menuItems, year}) => {
             <NavItem href={`/${year}${url}`} content={title} key={title} />
           ))}
           {isBurgerVisible ? (
-            <Button
-              buttonClass="loginMobile"
-              onClick={() => loginWithRedirect()}>
-              Register | Login
-            </Button>
+            isAuthenticated ? (
+              <>
+                <li className={styles.navItem}>
+                  <Link href="/user">
+                    <a>Profile</a>
+                  </Link>
+                </li>
+                <li
+                  className={styles.navItem}
+                  onClick={() => logout({returnTo: window.location.origin})}>
+                  logout
+                </li>
+              </>
+            ) : (
+              <Button
+                buttonClass="loginMobile"
+                onClick={() => loginWithRedirect()}>
+                Register | Login
+              </Button>
+            )
           ) : (
             ""
           )}
@@ -134,33 +150,11 @@ const NavbarLayout = ({loading, menuItems, year}) => {
         ) : (
           ""
         )}
-
         <Burger
           onClick={() => setBurgerActive(!burgerActive)}
           burgerClass={burgerActive ? "toggle" : ""}
         />
       </nav>
-      {/* <div
-        className={`${styles.dropdown} ${styles[openProfile ? "active" : ""]}`}>
-        <div className={styles.dropdownItem}>
-          <p>
-            User Name <span>(user_name@username.com)</span>
-          </p>
-        </div>
-        <div className={styles.dropdownItem}>
-          <Link href="/user">
-            <a>Profile</a>
-          </Link>
-        </div>
-        <div className={styles.dropdownItem}>
-          <p>Log Out</p>
-        </div>
-        <Button
-          buttonClass="closeBtn"
-          onClick={() => setOpenProfile(!openProfile)}>
-          X
-        </Button>
-      </div> */}
     </>
   );
 };
