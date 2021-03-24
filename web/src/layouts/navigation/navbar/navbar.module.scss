@@ -10,6 +10,7 @@
   background-image: url("../../../assets/patterns/js13kgames-pattern-menu.png");
   @include respond-to("webMedium") {
     position: fixed;
+    top: 0;
     width: 100%;
   }
   .navItems {
@@ -22,25 +23,14 @@
       flex-direction: column;
       align-items: center;
       position: absolute;
-      left: -31%;
+      left: -30%;
       top: 10vh;
       height: calc(100vh - 9vh);
       background-color: $secondary-color;
       // background-image: url("../../../assets/patterns/js13kgames-pattern-menu.png");
-      width: 31%;
+      width: 30%;
       justify-content: space-evenly;
       z-index: 4;
-      .navItem {
-        color: #fff;
-        font-size: 1.1em;
-        text-transform: uppercase;
-        font-family: $secondary-font;
-        border: solid 1px $secondary-color;
-        cursor: pointer;
-        &:hover {
-          border-bottom: solid 1px #fff;
-        }
-      }
     }
   }
   .navItemsScroll {

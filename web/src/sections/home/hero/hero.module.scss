@@ -1,3 +1,6 @@
+@import "../../../styles/utilities/variables.scss";
+@import "../../../styles/utilities/mixins.scss";
+
 .container {
   display: grid;
   place-items: center;
@@ -8,6 +11,9 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  @include respond-to("webMedium") {
+    margin-top: 10vh;
+  }
   .middleWrapper {
     text-align: center;
     font-size: 2.3em;

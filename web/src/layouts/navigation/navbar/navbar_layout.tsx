@@ -1,4 +1,3 @@
-import {useAuth0} from "@auth0/auth0-react";
 import {faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -9,6 +8,7 @@ import {Button, Input} from "../../../components";
 import {useBurgerVisible} from "../../../utils/useBurgerVisible";
 import Burger from "./burger";
 import Header from "./header";
+import Login from "./login";
 import styles from "./navbar.module.scss";
 import NavItem from "./navItem";
 import Select from "./select";
@@ -54,15 +54,7 @@ const years = [
 const NavbarLayout = ({loading, menuItems, year}) => {
   const [navScroll, setNavScroll] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  // const [openProfile, setOpenProfile] = useState(false);
   const [burgerActive, setBurgerActive] = useState(false);
-
-  const {
-    loginWithRedirect,
-    isAuthenticated,
-    logout,
-    // , logout, isAuthenticated, isLoading
-  } = useAuth0();
 
   const isBurgerVisible = useBurgerVisible();
 
@@ -100,30 +92,7 @@ const NavbarLayout = ({loading, menuItems, year}) => {
           {menuItems.map(({url, title}) => (
             <NavItem href={`/${year}${url}`} content={title} key={title} />
           ))}
-          {isBurgerVisible ? (
-            isAuthenticated ? (
-              <>
-                <li className={styles.navItem}>
-                  <Link href="/user">
-                    <a>Profile</a>
-                  </Link>
-                </li>
-                <li
-                  className={styles.navItem}
-                  onClick={() => logout({returnTo: window.location.origin})}>
-                  logout
-                </li>
-              </>
-            ) : (
-              <Button
-                buttonClass="loginMobile"
-                onClick={() => loginWithRedirect()}>
-                Register | Login
-              </Button>
-            )
-          ) : (
-            ""
-          )}
+          {isBurgerVisible ? <Login mobile /> : ""}
         </ul>
         <FontAwesomeIcon
           className={`${styles.searchIcon} ${styles[navScroll ? "none" : ""]}`}
