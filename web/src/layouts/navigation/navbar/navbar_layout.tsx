@@ -85,6 +85,7 @@ const NavbarLayout = ({loading, menuItems, year}) => {
       <nav
         id="navbar"
         className={`${styles.navbar} ${styles[navScroll ? "fixed" : ""]}`}>
+        {/* {isBurgerVisible ? <Login mobile /> : ""} */}
         <ul
           className={`${styles.navItems} ${
             styles[navScroll ? "navItemsScroll" : ""]

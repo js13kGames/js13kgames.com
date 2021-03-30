@@ -12,18 +12,12 @@
     border-bottom: solid 1px #fff;
   }
 }
+
 .loggedInWrapper {
   order: 1;
   width: auto;
   margin-left: 1.5em;
-  .avatar {
-    width: 3em;
-    height: 3em;
-    border-radius: 50%;
-    background-color: #000;
-    vertical-align: middle;
-    cursor: pointer;
-  }
+
   .dropdown {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
@@ -50,6 +44,30 @@
     }
   }
 }
+.loggedInMobile {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  //   justify-content: center;
+  //   justify-self: center;
+  //   width: 100%;
+  height: 25%;
+  //   background-color: white;
+  border-bottom: solid 3px $primary-color;
+  order: -1;
+  .name {
+    color: #fff;
+  }
+}
 .active {
   transform: translateY(calc(99.5% + 10vh));
+}
+.avatar {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  background-color: #000;
+  vertical-align: middle;
+  cursor: pointer;
 }

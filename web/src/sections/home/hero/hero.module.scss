@@ -8,9 +8,10 @@
   grid-template: 20% repeat(2, 1fr) 10% / 1fr;
   height: 50vh;
   border-bottom: solid 1px black;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-image: url("../../../assets/patterns/js13kgames-pattern-red.png");
+  // background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
   @include respond-to("webMedium") {
     margin-top: 10vh;
   }
