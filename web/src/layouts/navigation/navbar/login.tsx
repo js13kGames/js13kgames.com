@@ -24,7 +24,7 @@ const Login = ({mobile}: LoginProps) => {
                 <img
                   src={user.picture}
                   className={styles.avatar}
-                  style={{marginBottom: "20px"}}
+                  //   style={{marginBottom: "20px"}}
                 />
                 {/* </a> */}
               </Link>

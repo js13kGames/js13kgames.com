@@ -22,18 +22,17 @@
       grid-column: 1/-1;
       flex-direction: column;
       align-items: center;
-      justify-content: space-evenly;
+      justify-content: space-between;
       position: absolute;
       left: -30%;
       top: 10vh;
-      height: calc(100vh - 9vh);
+      height: calc(100vh - 10vh);
       background-color: $secondary-color;
+      padding-bottom: 2.5em;
       width: 30%;
       z-index: 4;
-      &:nth-child(2) {
-        // justify-self: start;
-        // align-items: flex-start;
-        text-align: end;
+      &:last-child {
+        justify-self: end;
       }
     }
   }
