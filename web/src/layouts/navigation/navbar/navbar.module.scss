@@ -22,18 +22,15 @@
       grid-column: 1/-1;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-evenly;
       position: absolute;
       left: -30%;
       top: 10vh;
       height: calc(100vh - 10vh);
       background-color: $secondary-color;
-      padding-bottom: 2.5em;
+      // padding-bottom: 2.5em;
       width: 30%;
       z-index: 4;
-      &:last-child {
-        justify-self: end;
-      }
     }
   }
   .navItemsScroll {
