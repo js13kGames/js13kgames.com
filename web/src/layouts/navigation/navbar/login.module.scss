@@ -34,9 +34,6 @@
       padding: 0 2em;
       border: solid 1px #ddd;
       border-top: none;
-      .logout {
-        cursor: pointer;
-      }
       span {
         display: block;
         font-size: 0.7em;
@@ -44,20 +41,17 @@
     }
   }
 }
-div.loggedInMobile {
+.loggedInMobile {
   display: flex;
   flex-direction: column;
-  text-align: center;
   align-items: center;
-  justify-content: center;
-  //   margin-top: 0;
-  //   width: 100%;
+  justify-content: space-evenly;
+  width: 100%;
   height: 30%;
   background-color: white;
-  //   border-bottom: solid 3px $primary-color;
   order: -1;
   .name {
-    // color: #fff;
+    text-align: center;
     color: #000;
   }
 }
@@ -71,7 +65,7 @@ div.loggedInMobile {
   background-color: #000;
   vertical-align: middle;
   cursor: pointer;
-  @include respond-to("webMedium") {
-    margin-bottom: 1em;
-  }
+}
+.logout {
+  cursor: pointer;
 }

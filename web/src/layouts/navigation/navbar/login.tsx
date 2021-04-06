@@ -20,29 +20,17 @@ const Login = ({mobile}: LoginProps) => {
           <>
             <div className={styles.loggedInMobile}>
               <Link href="/user">
-                {/* <a style={{width: "auto"}}> */}
-                <img
-                  src={user.picture}
-                  className={styles.avatar}
-                  //   style={{marginBottom: "20px"}}
-                />
-                {/* </a> */}
+                <img src={user.picture} className={styles.avatar} />
               </Link>
               <p className={styles.name}>
                 {user.name} <span>({user.email})</span>
               </p>
+              <p
+                className={styles.logout}
+                onClick={() => logout({returnTo: window.location.origin})}>
+                Log Out
+              </p>
             </div>
-
-            {/* <li className={styles.navItem}>
-              <Link href="/user">
-                <a>Profile</a>
-              </Link>
-            </li>
-            <li
-              className={styles.navItem}
-              onClick={() => logout({returnTo: window.location.origin})}>
-              logout
-            </li> */}
           </>
         ) : (
           <div
