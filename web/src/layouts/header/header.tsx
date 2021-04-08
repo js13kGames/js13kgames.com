@@ -1,4 +1,3 @@
-import {SocialIcons} from "../../components";
 import styles from "./header.module.scss";
 
 export interface HeaderProps {
@@ -8,7 +7,6 @@ export interface HeaderProps {
 const Header = ({primaryText}: HeaderProps) => {
   return (
     <div className={styles.container}>
-      <SocialIcons />
       <h1>{primaryText}</h1>
     </div>
   );

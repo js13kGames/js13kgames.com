@@ -1,5 +1,5 @@
 import Countdown, {zeroPad} from "react-countdown";
-import {Button, SocialIcons} from "../../../components";
+import {Button} from "../../../components";
 import {HeroDataQuery} from "../../../graphql";
 import {ArrayElement} from "../../../utils";
 import styles from "./hero.module.scss";
@@ -32,14 +32,10 @@ const HeroLayout = ({heroData, loading}: HeroLayoutProps) => {
   };
 
   return (
-    <section
-      className={`${styles.container}`}
-      // style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
-      <SocialIcons />
+    <section className={`${styles.container}`}>
       <div className={`${styles.middleWrapper}`}>
         <p>{primaryText}</p>
-        <p className={styles.description}>
+        <p>
           {secondaryText}{" "}
           <Countdown date={new Date(countdownDate)} renderer={rerender} />
         </p>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import {useState} from "react";
 // @ts-ignore
 import ShortLogo from "../../../assets/logo/js13kgames-logo-short.svg";
-import {Button, Input} from "../../../components";
+import {Button, Input, NavSkeleton} from "../../../components";
 import {useBurgerVisible} from "../../../utils/useBurgerVisible";
 import Burger from "./burger";
 import Header from "./header";
@@ -59,7 +59,7 @@ const NavbarLayout = ({loading, menuItems, year}) => {
   const isBurgerVisible = useBurgerVisible();
 
   if (loading) {
-    return <h1>Loading</h1>;
+    return <NavSkeleton />;
   }
 
   const listenScrollEvent = () => {
