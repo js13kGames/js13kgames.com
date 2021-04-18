@@ -1,4 +1,4 @@
-.PHONY: migrate start stop types logs admin
+.PHONY: migrate start stop types logs admin bash
 
 start:
 	docker-compose down \
@@ -19,3 +19,6 @@ types:
 
 logs:
 	docker-compose logs -f web graphql
+
+bash:
+	docker-compose exec web /bin/bash

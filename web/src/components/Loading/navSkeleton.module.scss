@@ -1,0 +1,28 @@
+@import "../../styles/utilities/variables.scss";
+
+.skeleton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+  width: 100%;
+  background-color: $secondary-color;
+  &Item {
+    height: 1.2em;
+    width: 6em;
+    background-color: #555;
+    + div {
+      margin-left: 2.5em;
+    }
+  }
+}
+.header {
+  background-color: #fff;
+  justify-content: space-between;
+  &Item {
+    height: 1.2em;
+    width: 10em;
+    background-color: #ddd;
+    margin: 0 2.5em;
+  }
+}

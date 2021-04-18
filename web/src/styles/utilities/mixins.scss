@@ -1,0 +1,16 @@
+@mixin respond-to($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+  @if $raw-query {
+    $query: if(
+      $breakpoint == "webMedium",
+      inspect($raw-query),
+      inspect($raw-query) + "and (orientation: portrait)"
+    );
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. '
+           + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
