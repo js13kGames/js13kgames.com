@@ -1,0 +1,22 @@
+.searchInput {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  transform: translate(-50%, -50%);
+  padding: 0.4em;
+  font-size: 1.2em;
+  outline: transparent;
+  border: none;
+  border-radius: 5px;
+  animation: search 0.3s ease-in-out;
+}
+
+@keyframes search {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

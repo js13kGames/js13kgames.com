@@ -1,16 +1,20 @@
-@import '../../../styles/utilities/variables.scss';
+@import "../../../styles/utilities/variables.scss";
+@import "../../../styles/utilities/mixins.scss";
 
 .item {
-	color: #fff;
-	font-size: 1.1em;
-	text-transform: uppercase;
-	font-family: $secondary-font;
-	+ li {
-		margin-left: 2em;
-	}
-	a {
-		&:hover {
-			border-bottom: solid 1px #fff;
-		}
-	}
+  color: #fff;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  font-family: $secondary-font;
+  + li {
+    margin-left: 1.5em;
+    @include respond-to("webMedium") {
+      margin: 0;
+    }
+  }
+  a {
+    &:hover {
+      border-bottom: solid 1px #fff;
+    }
+  }
 }

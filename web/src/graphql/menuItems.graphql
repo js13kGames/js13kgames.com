@@ -1,8 +1,11 @@
 query menuItems {
-	menuItems: allMenuItems {
-		nodes {
-			title
-			url
-		}
-	}
+  menuItems: allMenuItems(
+    condition: {active: true}
+    orderBy: [ORDER_NUMBER_ASC]
+  ) {
+    nodes {
+      title
+      url
+    }
+  }
 }

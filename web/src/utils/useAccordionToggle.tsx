@@ -9,14 +9,12 @@ export const useAccordionToggle = (defaultState) => {
     setIsOpen(newState);
   };
 
-  // const onAllAccordionToggle = (open) => {
-  //   const newState = {...defaultState};
-  //   Object.keys(newState).forEach((singleState) => {
-  //     console.log({singleState, open});
-  //     newState[singleState] = open;
-  //   });
-  //   console.log(newState);
-  //   setIsOpen(newState);
-  // };
-  return [isOpen, onAccordionToggle];
+  const onAllAccordionToggle = (open) => {
+    const newState = {...defaultState};
+    Object.keys(newState).forEach((singleState) => {
+      newState[singleState] = open;
+    });
+    setIsOpen(newState);
+  };
+  return [isOpen, onAccordionToggle, onAllAccordionToggle];
 };

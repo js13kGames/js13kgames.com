@@ -1,64 +1,89 @@
-.navWrapper {
-	display: flex;
-	flex-direction: column;
-	background-color: #000;
-	width: 100%;
-	height: 20vh;
+@import "../../../styles/utilities/variables.scss";
+@import "../../../styles/utilities/mixins.scss";
 
-	&Top {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		border-top: solid 0.35em #a52730;
-		background-color: #fff;
-		height: 50%;
-		text-transform: uppercase;
+.navbar {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 80% 1fr;
+  place-items: center;
+  height: 10vh;
+  background-image: url("../../../assets/patterns/js13kgames-pattern-menu.png");
+  @include respond-to("webMedium") {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  .navItems {
+    display: flex;
+    grid-column: 2/3;
+    list-style: none;
+    transition: transform 0.4s ease-in;
+    @include respond-to("webMedium") {
+      grid-column: 1/-1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      position: absolute;
+      left: -30%;
+      top: 10vh;
+      height: calc(100vh - 10vh);
+      background-color: $secondary-color;
+      width: 30%;
+      z-index: 4;
+    }
+  }
+  .navItemsScroll {
+    grid-column: 1/-1;
+    margin-right: 0.8em;
+  }
+  .searchIcon {
+    grid-column: 3/-1;
+    color: #fff;
+    width: 1em;
+    font-size: 2em;
+    cursor: pointer;
+  }
+  .leftWrapper {
+    display: flex;
+    order: -2;
+    padding-right: 1.5em;
+    margin-right: 1.5em;
+    border-right: 1px solid #fff;
+    vertical-align: center;
+    @include respond-to("webMedium") {
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+    .logoShort {
+      width: 50px;
+    }
+  }
+}
+.fixed {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  animation: animate 0.3s linear;
+}
 
-		a {
-			margin: 0 2.5em;
-		}
+.none {
+  display: none;
+}
 
-		.loginWrapper {
-			display: flex;
-			margin: 2.5em;
+@include respond-to("webMedium") {
+  .nav-active {
+    transform: translateX(100%);
+  }
+}
 
-			a {
-				margin: 0;
-			}
-
-			p {
-				margin: 0 1em;
-			}
-
-			.loggedInWrapper {
-				text-align: center;
-
-				.avatar {
-					width: 50px;
-					height: 50px;
-					border-radius: 25px;
-				}
-
-				.name {
-					font-size: 12px;
-				}
-
-				.logout {
-					font-size: 10px;
-					margin-left: 5px;
-					cursor: pointer;
-				}
-			}
-		}
-	}
-
-	&Bottom {
-		margin: auto;
-
-		.navItems {
-			display: flex;
-			align-items: center;
-			list-style: none;
-		}
-	}
+@keyframes animate {
+  from {
+    top: -20%;
+  }
+  to {
+    top: 0;
+  }
 }

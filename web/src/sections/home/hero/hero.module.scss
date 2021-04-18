@@ -1,30 +1,21 @@
+@import "../../../styles/utilities/variables.scss";
+@import "../../../styles/utilities/mixins.scss";
+
 .container {
   display: grid;
   place-items: center;
   text-transform: uppercase;
-  grid-template: 20% repeat(2, 1fr) 10% / 1fr;
+  grid-template: repeat(2, 1fr) / 1fr;
   height: 50vh;
   border-bottom: solid 1px black;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-image: url("../../../assets/patterns/js13kgames-pattern-red.png");
+  @include respond-to("webMedium") {
+    margin-top: 10vh;
+  }
   .middleWrapper {
     text-align: center;
-    font-size: 2.3em;
+    align-self: end;
+    font-size: 2.5em;
     font-weight: bold;
   }
-  .prevEditionWrapper {
-    text-align: start;
-    margin-left: 10%;
-    .description {
-      font-size: 0.32em;
-      font-weight: normal;
-      width: 30%;
-      line-height: 2em;
-      margin-top: 1em;
-    }
-  }
-}
-.blogContainer {
-  grid-template: 20% 1fr 20% / 1fr;
 }

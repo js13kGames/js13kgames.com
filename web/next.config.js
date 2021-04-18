@@ -1,5 +1,5 @@
 // XXX: This should be grabbed from the API
-const CURRENT_EDITION = '2020';
+const CURRENT_EDITION = "2020";
 
 module.exports = {
 	publicRuntimeConfig: {
@@ -27,5 +27,14 @@ module.exports = {
 				destination: 'http://graphql:5433/graphql'
 			}
 		];
-	}
+	},
+
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack", "url-loader"],
+    });
+
+    return config;
+  }
 };
