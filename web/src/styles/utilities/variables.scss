@@ -6,8 +6,20 @@ $secondary-font: "Graduate", cursive;
 $primary-color: #a52730;
 $secondary-color: #2d2d2d;
 
+$mobileSmall: 320px;
+
+$webMedium: 1060px;
+
 $breakpoints: (
-  "webMedium": (
-    max-width: 1060px,
+  "mobileSmall": (
+    orientation: portrait,
+  )
+  and
+  (
+    min-width: $mobileSmall,
+  )
+  "webMedium":
+  (
+    max-width: $webMedium,
   ),
 );
