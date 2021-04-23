@@ -7,6 +7,11 @@ $primary-color: #a52730;
 $secondary-color: #2d2d2d;
 
 $mobileSmall: 320px;
+$mobileMedium: 360px;
+$mobileLarge: 411px;
+
+$tabletMedium: 760px;
+$tabletLarge: 1000px;
 
 $webMedium: 1060px;
 
@@ -17,9 +22,36 @@ $breakpoints: (
   and
   (
     min-width: $mobileSmall,
-  )
-  "webMedium":
-  (
+  ),
+  "webMedium": (
     max-width: $webMedium,
+  ),
+  "mobileMedium": (
+    orientation: portrait,
+  )
+  and
+  (
+    min-width: $mobileMedium,
+  ),
+  "mobileLarge": (
+    orientation: portrait,
+  )
+  and
+  (
+    min-width: $mobileLarge,
+  ),
+  "tabletMedium": (
+    orientation: portrait,
+  )
+  and
+  (
+    min-width: $tabletMedium,
+  ),
+  "tabletLarge": (
+    orientation: portrait,
+  )
+  and
+  (
+    min-width: $tabletLarge,
   ),
 );
