@@ -2,6 +2,7 @@ import Countdown, {zeroPad} from "react-countdown";
 import {Button} from "../../../components";
 import {HeroDataQuery} from "../../../graphql";
 import {ArrayElement} from "../../../utils";
+import {useBurgerVisible} from "../../../utils/useBurgerVisible";
 import styles from "./hero.module.scss";
 
 export type HeroLayoutProps = {
@@ -10,6 +11,8 @@ export type HeroLayoutProps = {
 };
 
 const HeroLayout = ({heroData, loading}: HeroLayoutProps) => {
+  const isBurgerVisible = useBurgerVisible();
+
   if (loading) {
     return <h1>Loading</h1>;
   }
@@ -40,9 +43,11 @@ const HeroLayout = ({heroData, loading}: HeroLayoutProps) => {
           <Countdown date={new Date(countdownDate)} renderer={rerender} />
         </p>
       </div>
-      <Button href={callToActionUrl} buttonClass="heroBtn">
-        {callToActionText}
-      </Button>
+      {isBurgerVisible ? null : (
+        <Button href={callToActionUrl} buttonClass="heroBtn">
+          {callToActionText}
+        </Button>
+      )}
     </section>
   );
 };

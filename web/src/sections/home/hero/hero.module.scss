@@ -12,10 +12,17 @@
   @include respond-to("webMedium") {
     margin-top: 10vh;
   }
+  @include respond-to("mobileSmall") {
+    grid-template-rows: 1fr;
+  }
   .middleWrapper {
     text-align: center;
     align-self: end;
     font-size: 2.5em;
     font-weight: bold;
+    @include respond-to("mobileSmall") {
+      font-size: 2.2em;
+      align-self: center;
+    }
   }
 }
