@@ -1,3 +1,6 @@
+@import "../styles/utilities/variables.scss";
+@import "../styles/utilities/mixins.scss";
+
 * {
   padding: 0;
   margin: 0;
@@ -8,6 +11,10 @@ html,
 body {
   font-family: sans-serif;
   overflow-x: hidden;
+  font-size: 16px;
+  @include respond-to("mobileSmall") {
+    font-size: 14px;
+  }
 }
 
 h1,
