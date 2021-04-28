@@ -1,0 +1,2 @@
+ALTER TABLE PUBLIC.users
+ADD identity_id CITEXT NOT NULL;

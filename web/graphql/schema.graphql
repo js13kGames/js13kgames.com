@@ -51,6 +51,40 @@ type Query implements Node {
     filter: FlywaySchemaHistoryFilter
   ): FlywaySchemaHistoriesConnection
 
+  """Reads and enables pagination through a set of `Game`."""
+  allGames(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Game`."""
+    orderBy: [GamesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GameCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GameFilter
+  ): GamesConnection
+
   """Reads and enables pagination through a set of `HeroDatum`."""
   allHeroData(
     """Only read the first `n` values of the set."""
@@ -152,10 +186,47 @@ type Query implements Node {
     """
     filter: SocialLinkFilter
   ): SocialLinksConnection
+
+  """Reads and enables pagination through a set of `User`."""
+  allUsers(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: UserFilter
+  ): UsersConnection
   flywaySchemaHistoryByInstalledRank(installedRank: Int!): FlywaySchemaHistory
+  gameById(id: UUID!): Game
   heroDatumById(id: UUID!): HeroDatum
   menuItemById(id: UUID!): MenuItem
   socialLinkById(id: UUID!): SocialLink
+  userById(id: UUID!): User
+  userByIdentityId(identityId: String!): User
 
   """Reads a single `FlywaySchemaHistory` using its globally unique `ID`."""
   flywaySchemaHistory(
@@ -164,6 +235,12 @@ type Query implements Node {
     """
     nodeId: ID!
   ): FlywaySchemaHistory
+
+  """Reads a single `Game` using its globally unique `ID`."""
+  game(
+    """The globally unique `ID` to be used in selecting a single `Game`."""
+    nodeId: ID!
+  ): Game
 
   """Reads a single `HeroDatum` using its globally unique `ID`."""
   heroDatum(
@@ -184,6 +261,12 @@ type Query implements Node {
     """
     nodeId: ID!
   ): SocialLink
+
+  """Reads a single `User` using its globally unique `ID`."""
+  user(
+    """The globally unique `ID` to be used in selecting a single `User`."""
+    nodeId: ID!
+  ): User
 }
 
 """An object with a globally unique `ID`."""
@@ -628,6 +711,175 @@ input BooleanFilter {
   greaterThanOrEqualTo: Boolean
 }
 
+"""A connection to a list of `Game` values."""
+type GamesConnection {
+  """A list of `Game` objects."""
+  nodes: [Game]!
+
+  """
+  A list of edges which contains the `Game` and cursor to aid in pagination.
+  """
+  edges: [GamesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Game` you could get from the connection."""
+  totalCount: Int!
+}
+
+type Game implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  name: String!
+  githubLink: String!
+  description: String!
+  photo: String!
+  createdAt: Datetime!
+  updatedAt: Datetime!
+}
+
+"""
+A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122).
+"""
+scalar UUID
+
+"""A `Game` edge in the connection."""
+type GamesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Game` at the end of the edge."""
+  node: Game
+}
+
+"""Methods to use when ordering `Game`."""
+enum GamesOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  NAME_ASC
+  NAME_DESC
+  GITHUB_LINK_ASC
+  GITHUB_LINK_DESC
+  DESCRIPTION_ASC
+  DESCRIPTION_DESC
+  PHOTO_ASC
+  PHOTO_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `Game` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input GameCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `name` field."""
+  name: String
+
+  """Checks for equality with the object’s `githubLink` field."""
+  githubLink: String
+
+  """Checks for equality with the object’s `description` field."""
+  description: String
+
+  """Checks for equality with the object’s `photo` field."""
+  photo: String
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+}
+
+"""
+A filter to be used against `Game` object types. All fields are combined with a logical ‘and.’
+"""
+input GameFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Filter by the object’s `name` field."""
+  name: StringFilter
+
+  """Filter by the object’s `githubLink` field."""
+  githubLink: StringFilter
+
+  """Filter by the object’s `description` field."""
+  description: StringFilter
+
+  """Filter by the object’s `photo` field."""
+  photo: StringFilter
+
+  """Filter by the object’s `createdAt` field."""
+  createdAt: DatetimeFilter
+
+  """Filter by the object’s `updatedAt` field."""
+  updatedAt: DatetimeFilter
+
+  """Checks for all expressions in this list."""
+  and: [GameFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [GameFilter!]
+
+  """Negates the expression."""
+  not: GameFilter
+}
+
+"""
+A filter to be used against UUID fields. All fields are combined with a logical ‘and.’
+"""
+input UUIDFilter {
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Equal to the specified value."""
+  equalTo: UUID
+
+  """Not equal to the specified value."""
+  notEqualTo: UUID
+
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: UUID
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: UUID
+
+  """Included in the specified list."""
+  in: [UUID!]
+
+  """Not included in the specified list."""
+  notIn: [UUID!]
+
+  """Less than the specified value."""
+  lessThan: UUID
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: UUID
+
+  """Greater than the specified value."""
+  greaterThan: UUID
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: UUID
+}
+
 """A connection to a list of `HeroDatum` values."""
 type HeroDataConnection {
   """A list of `HeroDatum` objects."""
@@ -661,11 +913,6 @@ type HeroDatum implements Node {
   createdAt: Datetime!
   updatedAt: Datetime!
 }
-
-"""
-A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122).
-"""
-scalar UUID
 
 """A `HeroDatum` edge in the connection."""
 type HeroDataEdge {
@@ -781,48 +1028,6 @@ input HeroDatumFilter {
 
   """Negates the expression."""
   not: HeroDatumFilter
-}
-
-"""
-A filter to be used against UUID fields. All fields are combined with a logical ‘and.’
-"""
-input UUIDFilter {
-  """
-  Is null (if `true` is specified) or is not null (if `false` is specified).
-  """
-  isNull: Boolean
-
-  """Equal to the specified value."""
-  equalTo: UUID
-
-  """Not equal to the specified value."""
-  notEqualTo: UUID
-
-  """
-  Not equal to the specified value, treating null like an ordinary value.
-  """
-  distinctFrom: UUID
-
-  """Equal to the specified value, treating null like an ordinary value."""
-  notDistinctFrom: UUID
-
-  """Included in the specified list."""
-  in: [UUID!]
-
-  """Not included in the specified list."""
-  notIn: [UUID!]
-
-  """Less than the specified value."""
-  lessThan: UUID
-
-  """Less than or equal to the specified value."""
-  lessThanOrEqualTo: UUID
-
-  """Greater than the specified value."""
-  greaterThan: UUID
-
-  """Greater than or equal to the specified value."""
-  greaterThanOrEqualTo: UUID
 }
 
 """A connection to a list of `MenuItem` values."""
@@ -1053,6 +1258,213 @@ input SocialLinkFilter {
   not: SocialLinkFilter
 }
 
+"""A connection to a list of `User` values."""
+type UsersConnection {
+  """A list of `User` objects."""
+  nodes: [User]!
+
+  """
+  A list of edges which contains the `User` and cursor to aid in pagination.
+  """
+  edges: [UsersEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `User` you could get from the connection."""
+  totalCount: Int!
+}
+
+type User implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  name: String!
+  email: String!
+  userName: String!
+  description: String!
+  avatar: String!
+  kind: UserTypeT!
+  active: Boolean!
+  createdAt: Datetime!
+  updatedAt: Datetime!
+  identityId: String!
+}
+
+enum UserTypeT {
+  REGULAR
+  ADMIN
+  EXPERT
+  TEAM
+}
+
+"""A `User` edge in the connection."""
+type UsersEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `User` at the end of the edge."""
+  node: User
+}
+
+"""Methods to use when ordering `User`."""
+enum UsersOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  NAME_ASC
+  NAME_DESC
+  EMAIL_ASC
+  EMAIL_DESC
+  USER_NAME_ASC
+  USER_NAME_DESC
+  DESCRIPTION_ASC
+  DESCRIPTION_DESC
+  AVATAR_ASC
+  AVATAR_DESC
+  KIND_ASC
+  KIND_DESC
+  ACTIVE_ASC
+  ACTIVE_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  IDENTITY_ID_ASC
+  IDENTITY_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `User` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input UserCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `name` field."""
+  name: String
+
+  """Checks for equality with the object’s `email` field."""
+  email: String
+
+  """Checks for equality with the object’s `userName` field."""
+  userName: String
+
+  """Checks for equality with the object’s `description` field."""
+  description: String
+
+  """Checks for equality with the object’s `avatar` field."""
+  avatar: String
+
+  """Checks for equality with the object’s `kind` field."""
+  kind: UserTypeT
+
+  """Checks for equality with the object’s `active` field."""
+  active: Boolean
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+
+  """Checks for equality with the object’s `identityId` field."""
+  identityId: String
+}
+
+"""
+A filter to be used against `User` object types. All fields are combined with a logical ‘and.’
+"""
+input UserFilter {
+  """Filter by the object’s `id` field."""
+  id: UUIDFilter
+
+  """Filter by the object’s `name` field."""
+  name: StringFilter
+
+  """Filter by the object’s `email` field."""
+  email: StringFilter
+
+  """Filter by the object’s `userName` field."""
+  userName: StringFilter
+
+  """Filter by the object’s `description` field."""
+  description: StringFilter
+
+  """Filter by the object’s `avatar` field."""
+  avatar: StringFilter
+
+  """Filter by the object’s `kind` field."""
+  kind: UserTypeTFilter
+
+  """Filter by the object’s `active` field."""
+  active: BooleanFilter
+
+  """Filter by the object’s `createdAt` field."""
+  createdAt: DatetimeFilter
+
+  """Filter by the object’s `updatedAt` field."""
+  updatedAt: DatetimeFilter
+
+  """Filter by the object’s `identityId` field."""
+  identityId: StringFilter
+
+  """Checks for all expressions in this list."""
+  and: [UserFilter!]
+
+  """Checks for any expressions in this list."""
+  or: [UserFilter!]
+
+  """Negates the expression."""
+  not: UserFilter
+}
+
+"""
+A filter to be used against UserTypeT fields. All fields are combined with a logical ‘and.’
+"""
+input UserTypeTFilter {
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Equal to the specified value."""
+  equalTo: UserTypeT
+
+  """Not equal to the specified value."""
+  notEqualTo: UserTypeT
+
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: UserTypeT
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: UserTypeT
+
+  """Included in the specified list."""
+  in: [UserTypeT!]
+
+  """Not included in the specified list."""
+  notIn: [UserTypeT!]
+
+  """Less than the specified value."""
+  lessThan: UserTypeT
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: UserTypeT
+
+  """Greater than the specified value."""
+  greaterThan: UserTypeT
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: UserTypeT
+}
+
 """
 The root mutation type which contains root level fields which mutate data.
 """
@@ -1064,6 +1476,14 @@ type Mutation {
     """
     input: CreateFlywaySchemaHistoryInput!
   ): CreateFlywaySchemaHistoryPayload
+
+  """Creates a single `Game`."""
+  createGame(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateGameInput!
+  ): CreateGamePayload
 
   """Creates a single `HeroDatum`."""
   createHeroDatum(
@@ -1089,6 +1509,14 @@ type Mutation {
     input: CreateSocialLinkInput!
   ): CreateSocialLinkPayload
 
+  """Creates a single `User`."""
+  createUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateUserInput!
+  ): CreateUserPayload
+
   """
   Updates a single `FlywaySchemaHistory` using its globally unique id and a patch.
   """
@@ -1106,6 +1534,22 @@ type Mutation {
     """
     input: UpdateFlywaySchemaHistoryByInstalledRankInput!
   ): UpdateFlywaySchemaHistoryPayload
+
+  """Updates a single `Game` using its globally unique id and a patch."""
+  updateGame(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateGameInput!
+  ): UpdateGamePayload
+
+  """Updates a single `Game` using a unique key and a patch."""
+  updateGameById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateGameByIdInput!
+  ): UpdateGamePayload
 
   """Updates a single `HeroDatum` using its globally unique id and a patch."""
   updateHeroDatum(
@@ -1157,6 +1601,30 @@ type Mutation {
     input: UpdateSocialLinkByIdInput!
   ): UpdateSocialLinkPayload
 
+  """Updates a single `User` using its globally unique id and a patch."""
+  updateUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserInput!
+  ): UpdateUserPayload
+
+  """Updates a single `User` using a unique key and a patch."""
+  updateUserById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserByIdInput!
+  ): UpdateUserPayload
+
+  """Updates a single `User` using a unique key and a patch."""
+  updateUserByIdentityId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserByIdentityIdInput!
+  ): UpdateUserPayload
+
   """Deletes a single `FlywaySchemaHistory` using its globally unique id."""
   deleteFlywaySchemaHistory(
     """
@@ -1172,6 +1640,22 @@ type Mutation {
     """
     input: DeleteFlywaySchemaHistoryByInstalledRankInput!
   ): DeleteFlywaySchemaHistoryPayload
+
+  """Deletes a single `Game` using its globally unique id."""
+  deleteGame(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteGameInput!
+  ): DeleteGamePayload
+
+  """Deletes a single `Game` using a unique key."""
+  deleteGameById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteGameByIdInput!
+  ): DeleteGamePayload
 
   """Deletes a single `HeroDatum` using its globally unique id."""
   deleteHeroDatum(
@@ -1220,6 +1704,30 @@ type Mutation {
     """
     input: DeleteSocialLinkByIdInput!
   ): DeleteSocialLinkPayload
+
+  """Deletes a single `User` using its globally unique id."""
+  deleteUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserInput!
+  ): DeleteUserPayload
+
+  """Deletes a single `User` using a unique key."""
+  deleteUserById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserByIdInput!
+  ): DeleteUserPayload
+
+  """Deletes a single `User` using a unique key."""
+  deleteUserByIdentityId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserByIdentityIdInput!
+  ): DeleteUserPayload
 }
 
 """The output of our create `FlywaySchemaHistory` mutation."""
@@ -1269,6 +1777,52 @@ input FlywaySchemaHistoryInput {
   installedOn: Datetime
   executionTime: Int!
   success: Boolean!
+}
+
+"""The output of our create `Game` mutation."""
+type CreateGamePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Game` that was created by this mutation."""
+  game: Game
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `Game`. May be used by Relay 1."""
+  gameEdge(
+    """The method to use when ordering `Game`."""
+    orderBy: [GamesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GamesEdge
+}
+
+"""All input for the create `Game` mutation."""
+input CreateGameInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Game` to be created by this mutation."""
+  game: GameInput!
+}
+
+"""An input for mutations affecting `Game`"""
+input GameInput {
+  id: UUID
+  name: String!
+  githubLink: String!
+  description: String!
+  photo: String!
+  createdAt: Datetime
+  updatedAt: Datetime
 }
 
 """The output of our create `HeroDatum` mutation."""
@@ -1410,6 +1964,56 @@ input SocialLinkInput {
   updatedAt: Datetime
 }
 
+"""The output of our create `User` mutation."""
+type CreateUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `User` that was created by this mutation."""
+  user: User
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `User`. May be used by Relay 1."""
+  userEdge(
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UsersEdge
+}
+
+"""All input for the create `User` mutation."""
+input CreateUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `User` to be created by this mutation."""
+  user: UserInput!
+}
+
+"""An input for mutations affecting `User`"""
+input UserInput {
+  id: UUID
+  name: String!
+  email: String!
+  userName: String!
+  description: String!
+  avatar: String!
+  kind: UserTypeT
+  active: Boolean
+  createdAt: Datetime
+  updatedAt: Datetime
+  identityId: String!
+}
+
 """The output of our update `FlywaySchemaHistory` mutation."""
 type UpdateFlywaySchemaHistoryPayload {
   """
@@ -1481,6 +2085,74 @@ input UpdateFlywaySchemaHistoryByInstalledRankInput {
   """
   flywaySchemaHistoryPatch: FlywaySchemaHistoryPatch!
   installedRank: Int!
+}
+
+"""The output of our update `Game` mutation."""
+type UpdateGamePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Game` that was updated by this mutation."""
+  game: Game
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `Game`. May be used by Relay 1."""
+  gameEdge(
+    """The method to use when ordering `Game`."""
+    orderBy: [GamesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GamesEdge
+}
+
+"""All input for the `updateGame` mutation."""
+input UpdateGameInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Game` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Game` being updated.
+  """
+  gamePatch: GamePatch!
+}
+
+"""Represents an update to a `Game`. Fields that are set will be updated."""
+input GamePatch {
+  id: UUID
+  name: String
+  githubLink: String
+  description: String
+  photo: String
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""All input for the `updateGameById` mutation."""
+input UpdateGameByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Game` being updated.
+  """
+  gamePatch: GamePatch!
+  id: UUID!
 }
 
 """The output of our update `HeroDatum` mutation."""
@@ -1694,6 +2366,93 @@ input UpdateSocialLinkByIdInput {
   id: UUID!
 }
 
+"""The output of our update `User` mutation."""
+type UpdateUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `User` that was updated by this mutation."""
+  user: User
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `User`. May be used by Relay 1."""
+  userEdge(
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UsersEdge
+}
+
+"""All input for the `updateUser` mutation."""
+input UpdateUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `User` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `User` being updated.
+  """
+  userPatch: UserPatch!
+}
+
+"""Represents an update to a `User`. Fields that are set will be updated."""
+input UserPatch {
+  id: UUID
+  name: String
+  email: String
+  userName: String
+  description: String
+  avatar: String
+  kind: UserTypeT
+  active: Boolean
+  createdAt: Datetime
+  updatedAt: Datetime
+  identityId: String
+}
+
+"""All input for the `updateUserById` mutation."""
+input UpdateUserByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `User` being updated.
+  """
+  userPatch: UserPatch!
+  id: UUID!
+}
+
+"""All input for the `updateUserByIdentityId` mutation."""
+input UpdateUserByIdentityIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `User` being updated.
+  """
+  userPatch: UserPatch!
+  identityId: String!
+}
+
 """The output of our delete `FlywaySchemaHistory` mutation."""
 type DeleteFlywaySchemaHistoryPayload {
   """
@@ -1740,6 +2499,54 @@ input DeleteFlywaySchemaHistoryByInstalledRankInput {
   """
   clientMutationId: String
   installedRank: Int!
+}
+
+"""The output of our delete `Game` mutation."""
+type DeleteGamePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Game` that was deleted by this mutation."""
+  game: Game
+  deletedGameId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `Game`. May be used by Relay 1."""
+  gameEdge(
+    """The method to use when ordering `Game`."""
+    orderBy: [GamesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GamesEdge
+}
+
+"""All input for the `deleteGame` mutation."""
+input DeleteGameInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Game` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteGameById` mutation."""
+input DeleteGameByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
 }
 
 """The output of our delete `HeroDatum` mutation."""
@@ -1884,4 +2691,62 @@ input DeleteSocialLinkByIdInput {
   """
   clientMutationId: String
   id: UUID!
+}
+
+"""The output of our delete `User` mutation."""
+type DeleteUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `User` that was deleted by this mutation."""
+  user: User
+  deletedUserId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `User`. May be used by Relay 1."""
+  userEdge(
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UsersEdge
+}
+
+"""All input for the `deleteUser` mutation."""
+input DeleteUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `User` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteUserById` mutation."""
+input DeleteUserByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""All input for the `deleteUserByIdentityId` mutation."""
+input DeleteUserByIdentityIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  identityId: String!
 }
