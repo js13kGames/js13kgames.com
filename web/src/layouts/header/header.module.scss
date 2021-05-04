@@ -9,4 +9,7 @@
   @include respond-to("webMedium") {
     margin-top: 10vh;
   }
+  @include respond-to("mobileSmall") {
+    text-align: center;
+  }
 }

@@ -1,4 +1,11 @@
+@import "../styles/utilities/mixins.scss";
+@import "../styles/utilities/variables.scss";
+
 .mainContainer {
   margin: 0 3em;
   min-height: 35vh;
+  @include respond-to("mobileSmall") {
+    margin: 0 1em;
+    min-height: 45vh;
+  }
 }
