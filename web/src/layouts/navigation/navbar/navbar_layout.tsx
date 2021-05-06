@@ -1,3 +1,4 @@
+import {useAuth0} from "@auth0/auth0-react";
 import {faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -58,6 +59,8 @@ const NavbarLayout = ({loading, menuItems, year}) => {
 
   const isBurgerVisible = useBurgerVisible();
 
+  const {isAuthenticated} = useAuth0();
+
   if (loading) {
     return <NavSkeleton />;
   }
@@ -85,11 +88,12 @@ const NavbarLayout = ({loading, menuItems, year}) => {
       <nav
         id="navbar"
         className={`${styles.navbar} ${styles[navScroll ? "fixed" : ""]}`}>
-        {/* {isBurgerVisible ? <Login mobile /> : ""} */}
         <ul
           className={`${styles.navItems} ${
             styles[navScroll ? "navItemsScroll" : ""]
-          } ${styles[burgerActive ? "nav-active" : ""]}`}>
+          } ${styles[burgerActive ? "nav-active" : ""]} ${
+            styles[isAuthenticated ? "mobile-logged" : ""]
+          }`}>
           {menuItems.map(({url, title}) => (
             <NavItem href={`/${year}${url}`} content={title} key={title} />
           ))}

@@ -50,9 +50,16 @@
   height: 30%;
   background-color: white;
   order: -1;
+  @include respond-to("mobileSmall") {
+    font-size: 1.3em;
+  }
   .name {
     text-align: center;
     color: #000;
+    @include respond-to("mobileSmall") {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
 .active {
