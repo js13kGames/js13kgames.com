@@ -1,0 +1,35 @@
+@import "../styles/utilities/mixins.scss";
+@import "../styles/utilities/variables.scss";
+
+.container {
+  display: grid;
+  grid-template-rows: 10vh 80vh 10vh;
+  @include respond-to("webMedium") {
+    margin-top: 10vh;
+  }
+  .title {
+    align-self: center;
+    justify-self: center;
+  }
+  .middleWrapper {
+    display: flex;
+    .left {
+      display: grid;
+      grid-template-rows: 70% 1fr;
+      flex-basis: 50%;
+      justify-items: center;
+      // place-items: center;
+      background-color: yellow;
+      .upload {
+        width: 70%;
+        // height: 100%;
+        // background-color: red;
+        border: dashed 3px black;
+      }
+    }
+    .information {
+      background-color: green;
+      flex-basis: 50%;
+    }
+  }
+}
