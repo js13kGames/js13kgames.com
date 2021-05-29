@@ -104,7 +104,11 @@ const NavbarLayout = ({loading, menuItems, year}) => {
           icon={searchOpen ? faTimes : faSearch}
           onClick={() => setSearchOpen(!searchOpen)}
         />
-        {searchOpen && !navScroll ? <Input /> : ""}
+        {searchOpen && !navScroll ? (
+          <Input type="text" inputClass="searchInput" placeholder="search..." />
+        ) : (
+          ""
+        )}
         {navScroll || isBurgerVisible ? (
           <>
             <div className={styles.leftWrapper}>

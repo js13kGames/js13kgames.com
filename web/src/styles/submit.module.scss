@@ -3,7 +3,7 @@
 
 .container {
   display: grid;
-  grid-template-rows: 10vh 80vh 10vh;
+  grid-template-rows: 10vh 90vh;
   @include respond-to("webMedium") {
     margin-top: 10vh;
   }
@@ -13,23 +13,45 @@
   }
   .middleWrapper {
     display: flex;
+    margin: 0 7%;
     .left {
       display: grid;
-      grid-template-rows: 70% 1fr;
+      grid-template-rows: 60% 1fr;
       flex-basis: 50%;
-      justify-items: center;
-      // place-items: center;
-      background-color: yellow;
       .upload {
-        width: 70%;
+        width: 90%;
+        justify-items: right;
         // height: 100%;
         // background-color: red;
         border: dashed 3px black;
       }
     }
-    .information {
-      background-color: green;
+    .right {
+      display: flex;
+      flex-direction: column;
       flex-basis: 50%;
+      justify-content: space-between;
+      align-items: flex-end;
+      .select {
+        width: 90%;
+      }
+      .description {
+        width: 90%;
+        height: 12em;
+        padding: 1em;
+      }
+      .checkboxWrapper {
+        width: 90%;
+        height: 4.5em;
+        line-height: 4.5em;
+      }
+      .gameCover {
+        width: 90%;
+        height: 4.5em;
+        line-height: 4.5em;
+        padding-left: 1em;
+        border: dashed 3px black;
+      }
     }
   }
 }

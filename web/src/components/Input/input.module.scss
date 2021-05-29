@@ -12,6 +12,16 @@
   animation: search 0.3s ease-in-out;
 }
 
+.game {
+  width: 90%;
+  height: 4.5em;
+  padding-left: 1em;
+  // margin-bottom: 1em;
+}
+.checkbox {
+  margin-right: 3em;
+}
+
 @keyframes search {
   from {
     opacity: 0;
