@@ -17,7 +17,9 @@ const Submit = () => {
           <div className={styles.upload}>
             <p>upload game file</p>
           </div>
-          <p>info about file lorem ipsum dolor sit amet</p>
+          <p className={styles.info}>
+            info about file lorem ipsum dolor sit amet
+          </p>
           <button style={{padding: "20px"}}>elo</button>
         </div>
         {/* <div className={styles.right}> */}
@@ -34,11 +36,6 @@ const Submit = () => {
             <option value="webxr">Webxr</option>
             <option value="web monetization">Web Monetization</option>
           </select>
-          {/* <Input
-            type="text"
-            inputClass="game"
-            placeholder="choose category..."
-          /> */}
           <textarea
             className={styles.description}
             placeholder="description..."
@@ -55,7 +52,7 @@ const Submit = () => {
               // inputClass="checkbox"
               // placeholder="choose category..."
             />
-            <label style={{margin: "0 3em 0 1em"}}>one person project</label>
+            <label style={{margin: "0 3em 0 1em"}}>team</label>
           </div>
           <div className={styles.gameCover}>
             <p>upload game cover</p>

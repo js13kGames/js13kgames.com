@@ -19,11 +19,18 @@
       grid-template-rows: 60% 1fr;
       flex-basis: 50%;
       .upload {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 90%;
-        justify-items: right;
+        // justify-items: right;
         // height: 100%;
         // background-color: red;
+
         border: dashed 3px black;
+      }
+      .info {
+        margin: 1em 0;
       }
     }
     .right {
@@ -34,6 +41,7 @@
       align-items: flex-end;
       .select {
         width: 90%;
+        padding-left: 1em;
       }
       .description {
         width: 90%;
