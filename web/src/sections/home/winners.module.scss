@@ -1,27 +1,32 @@
+@import "../../styles/utilities/mixins.scss";
+@import "../../styles/utilities/variables.scss";
+
 .container {
   display: grid;
   grid-template: 5em 1fr / 1fr;
   background-color: #ddd;
-  padding: 0 1em 1em 1em;
+  padding: 0 3em 2em 3em;
   border: solid 1px black;
+  @include respond-to("mobileSmall") {
+    padding: 0;
+  }
   h1 {
     margin: auto;
-    text-transform: uppercase;
   }
   .categoriesWrapper {
-    display: flex;
-    flex-wrap: wrap;
-
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    @include respond-to("mobileSmall") {
+      margin: 0 1em 1em 1em;
+      grid-template-columns: 1fr;
+    }
     .categoryBox {
       display: flex;
       flex-direction: column;
       background-color: #fff;
-      flex: 0 1 30%;
-      min-width: 350px;
       border: solid 1px black;
       padding: 1em 0;
-      margin: 0 1em 1em 1em;
-
       h3 {
         text-align: center;
         text-transform: uppercase;

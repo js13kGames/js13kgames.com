@@ -8,10 +8,14 @@
   place-items: center;
   height: 10vh;
   background-image: url("../../../assets/patterns/js13kgames-pattern-menu.png");
+
   @include respond-to("webMedium") {
     position: fixed;
     top: 0;
     width: 100%;
+  }
+  @include respond-to("mobileSmall") {
+    grid-template-columns: 1fr 65% 1fr;
   }
   .navItems {
     display: flex;
@@ -23,13 +27,19 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-evenly;
+      // justify-content: space-between;
+      // padding-bottom: 2.5em;
       position: absolute;
       left: -30%;
       top: 10vh;
-      height: calc(100vh - 10vh);
+      height: calc(100vh - 9vh);
       background-color: $secondary-color;
       width: 30%;
       z-index: 4;
+    }
+    @include respond-to("mobileSmall") {
+      width: 100%;
+      left: -100%;
     }
   }
   .navItemsScroll {
@@ -57,6 +67,12 @@
     }
     .logoShort {
       width: 50px;
+    }
+  }
+  .mobile-logged {
+    @include respond-to("webMedium") {
+      justify-content: space-between;
+      padding-bottom: 2.5em;
     }
   }
 }

@@ -6,6 +6,9 @@
   font-size: 1.1em;
   text-transform: uppercase;
   font-family: $secondary-font;
+  @include respond-to("mobileSmall") {
+    font-size: 1.8em;
+  }
   + li {
     margin-left: 1.5em;
     @include respond-to("webMedium") {

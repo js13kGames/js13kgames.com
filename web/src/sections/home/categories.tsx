@@ -1,7 +1,10 @@
 import Button from "../../components/Button/button";
+import {useBurgerVisible} from "../../utils/useBurgerVisible";
 import styles from "./categories.module.scss";
 
 const Categories = ({title, categories, btnUrl, btnText}) => {
+  const isBurgerVisible = useBurgerVisible();
+
   return (
     <section className={styles.wrapper}>
       <h1>{title}</h1>
@@ -15,9 +18,13 @@ const Categories = ({title, categories, btnUrl, btnText}) => {
           </div>
         ))}
       </div>
-      <Button href={btnUrl} buttonClass="categoryBtn">
-        {btnText}
-      </Button>
+      {isBurgerVisible ? (
+        ""
+      ) : (
+        <Button href={btnUrl} buttonClass="categoryBtn">
+          {btnText}
+        </Button>
+      )}
     </section>
   );
 };

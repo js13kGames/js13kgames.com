@@ -1,0 +1,65 @@
+@import "../styles/utilities/mixins.scss";
+@import "../styles/utilities/variables.scss";
+
+.container {
+  display: grid;
+  grid-template-rows: 10vh 90vh;
+  @include respond-to("webMedium") {
+    margin-top: 10vh;
+  }
+  .title {
+    align-self: center;
+    justify-self: center;
+  }
+  .middleWrapper {
+    display: flex;
+    margin: 0 7%;
+    .left {
+      display: grid;
+      grid-template-rows: 60% 1fr;
+      flex-basis: 50%;
+      .upload {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        // justify-items: right;
+        // height: 100%;
+        // background-color: red;
+
+        border: dashed 3px black;
+      }
+      .info {
+        margin: 1em 0;
+      }
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 50%;
+      justify-content: space-between;
+      align-items: flex-end;
+      .select {
+        width: 90%;
+        padding-left: 1em;
+      }
+      .description {
+        width: 90%;
+        height: 12em;
+        padding: 1em;
+      }
+      .checkboxWrapper {
+        width: 90%;
+        height: 4.5em;
+        line-height: 4.5em;
+      }
+      .gameCover {
+        width: 90%;
+        height: 4.5em;
+        line-height: 4.5em;
+        padding-left: 1em;
+        border: dashed 3px black;
+      }
+    }
+  }
+}
