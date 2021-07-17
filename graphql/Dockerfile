@@ -1,7 +1,7 @@
 FROM node:alpine
 
 # Install PostGraphile and PostGraphile connection filter plugin
-RUN npm install -g postgraphile
+RUN npm install -g postgraphile tslib
 RUN npm install -g postgraphile-plugin-connection-filter
 
 EXPOSE 5000
