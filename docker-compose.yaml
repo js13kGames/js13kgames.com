@@ -1,6 +1,5 @@
 version: '3.7'
 services:
-
   db:
     image: postgres:12.4
     environment:
@@ -24,27 +23,28 @@ services:
     env_file:
       - ./.env
 
-  graphql:
-    container_name: graphql
-    restart: always
-    image: graphql
-    build:
-        context: ./graphql
-    env_file:
-        - ./.env
-    depends_on:
-        - db
-    ports:
-        - 5433:5433
-    volumes:
-      - ./web:/web:delegated
-    command: [
-      "--connection", "${DATABASE_URL}",
-      "--port", "5433",
-      "--schema", "public",
-      "--append-plugins", "postgraphile-plugin-connection-filter",
-      "--export-schema-graphql", "/web/graphql/schema.graphql"
-    ]
+  # graphql:
+  #   container_name: graphql
+  #   restart: always
+  #   image: graphql
+  #   build:
+  #       context: ./graphql
+  #   env_file:
+  #       - ./.env
+  #   depends_on:
+  #       - db
+  #   ports:
+  #       - 5433:5433
+  #   volumes:
+  #     - ./web:/web:delegated
+  #   command: [
+  #     "--connection", "${DATABASE_URL}",
+  #     "--port", "5433",
+  #     "--schema", "public",
+  #     "--append-plugins", "postgraphile-plugin-connection-filter",
+  #     "--export-schema-graphql", "/web/graphql/schema.graphql"
+  #   ]
+
   # admin:
   #   image: node:12.18.4-buster-slim
   #   ports:
