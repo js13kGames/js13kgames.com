@@ -1,5 +1,5 @@
 // XXX: This should be grabbed from the API
-const CURRENT_EDITION = "2020";
+const CURRENT_EDITION = '2021';
 
 module.exports = {
 	publicRuntimeConfig: {
@@ -20,21 +20,21 @@ module.exports = {
 		];
 	},
 
-	async rewrites() {
-		return [
-			{
-				source: '/graphql',
-				destination: 'http://graphql:5433/graphql'
-			}
-		];
-	},
+	// async rewrites() {
+	// 	return [
+	// 		{
+	// 			source: '/graphql',
+	// 			destination: 'http://graphql:5433/graphql'
+	// 		}
+	// 	];
+	// },
 
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ["@svgr/webpack", "url-loader"],
-    });
+	webpack(config) {
+		config.module.rules.push({
+			test: /\.svg$/,
+			use: ['@svgr/webpack', 'url-loader']
+		});
 
-    return config;
-  }
+		return config;
+	}
 };
