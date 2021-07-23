@@ -20,15 +20,6 @@ module.exports = {
 		];
 	},
 
-	// async rewrites() {
-	// 	return [
-	// 		{
-	// 			source: '/graphql',
-	// 			destination: 'http://graphql:5433/graphql'
-	// 		}
-	// 	];
-	// },
-
 	webpack(config) {
 		config.module.rules.push({
 			test: /\.svg$/,
