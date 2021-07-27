@@ -23,6 +23,7 @@
 		"node-sass": "^5.0.0",
 		"pogi": "^2.9.2",
 		"postgraphile": "^4.12.3",
+		"postgraphile-plugin-connection-filter": "^2.2.2",
 		"react": "17.0.1",
 		"react-countdown": "^2.3.1",
 		"react-dom": "17.0.1"
