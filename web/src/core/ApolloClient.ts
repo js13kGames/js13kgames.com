@@ -18,7 +18,7 @@ export const createApolloClient = (): ApolloClient<unknown> => {
 
 	const isSSR = typeof window === 'undefined';
 
-	const url = `${APP_HOSTNAME}/graphql`;
+	const url = `${APP_HOSTNAME}/api/graphql`;
 
 	const httpLink = createHttpLink({
 		fetch: crossFetch,
