@@ -1,4 +1,5 @@
 import { GraphQLErrorExtended, postgraphile } from 'postgraphile';
+import ConnectionFilterPlugin from 'postgraphile-plugin-connection-filter';
 export const config = {
 	api: {
 		bodyParser: false,
@@ -12,6 +13,7 @@ const postgraphile_middleware = postgraphile(
 	process.env.DATABASE_URL,
 	schemas,
 	{
+		appendPlugins: [ConnectionFilterPlugin],
 		allowExplain: false,
 		disableQueryLog: false, //true,
 		dynamicJson: false,
@@ -29,9 +31,7 @@ const postgraphile_middleware = postgraphile(
 				return err as GraphQLErrorExtended;
 			});
 		},
-		ignoreIndexes: false,
 		ignoreRBAC: false,
-		legacyRelations: 'omit',
 		setofFunctionsContainNulls: false,
 		sortExport: true,
 		subscriptions: true,
