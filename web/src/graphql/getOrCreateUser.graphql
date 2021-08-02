@@ -1,0 +1,21 @@
+mutation getOrCreateUser(
+	$name: String
+	$avatar: String
+	$email: String
+	$identity: String
+	$userName: String
+) {
+	getOrCreateUser(
+		input: {
+			avatar: $avatar
+			email: $email
+			identity: $identity
+			name: $name
+			userName: $userName
+		}
+	) {
+		user {
+			id
+		}
+	}
+}
