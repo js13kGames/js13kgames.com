@@ -5,17 +5,16 @@ import React, { FC, useEffect } from 'react';
 import { createApolloClient } from './ApolloClient';
 
 export const ApiProvider: FC = ({ children }) => {
-	const {
-		isAuthenticated,
-		getAccessTokenSilently,
-		getIdTokenClaims
-	} = useAuth0();
+	const apolloClient = createApolloClient();
+	const { isAuthenticated, getAccessTokenSilently, getIdTokenClaims } =
+		useAuth0();
 
 	useEffect(() => {
 		const getToken = async () => {
 			if (isAuthenticated) {
 				const token = await getAccessTokenSilently();
 				const claims = await getIdTokenClaims();
+
 				console.log({ claims, token });
 				Cookies.set('token', token, {
 					expires: claims.exp / 60 / 60 / 24
@@ -25,8 +24,6 @@ export const ApiProvider: FC = ({ children }) => {
 
 		getToken();
 	}, [isAuthenticated]);
-
-	const apolloClient = createApolloClient();
 
 	return <ApolloProvider client={apolloClient}>{children}</ApolloProvider>;
 };
