@@ -1,8 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button } from '../../../components';
-import { useGetOrCreateUserMutation } from '../../../graphql';
 import styles from './login.module.scss';
 
 export interface LoginProps {
@@ -12,28 +11,7 @@ export interface LoginProps {
 const Login = ({ mobile }: LoginProps) => {
 	const [openProfile, setOpenProfile] = useState(false);
 
-	const { loginWithRedirect, logout, user, isAuthenticated, getIdTokenClaims } =
-		useAuth0();
-
-	const getOrCreateUserMutation = useGetOrCreateUserMutation();
-
-	useEffect(() => {
-		const getOrOrCreateUser = async () => {
-			if (isAuthenticated) {
-				const claims = await getIdTokenClaims();
-				await getOrCreateUserMutation[0]({
-					variables: {
-						name: claims?.name || '',
-						avatar: claims?.picture || '',
-						email: claims?.email || '',
-						identity: claims?.sub || '',
-						userName: claims?.nickname || ''
-					}
-				});
-			}
-		};
-		getOrOrCreateUser();
-	}, [isAuthenticated]);
+	const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
 
 	return (
 		<>
