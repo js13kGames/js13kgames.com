@@ -130,6 +130,9 @@ type CreateGamePayload {
   """
   clientMutationId: String
 
+  """Reads a single `Edition` that is related to this `Game`."""
+  editionByEditionId: Edition
+
   """The `Game` that was created by this mutation."""
   game: Game
 
@@ -143,6 +146,9 @@ type CreateGamePayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `User` that is related to this `Game`."""
+  userByAuthorId: User
 }
 
 """All input for the create `HeroDatum` mutation."""
@@ -465,6 +471,9 @@ type DeleteGamePayload {
   clientMutationId: String
   deletedGameId: ID
 
+  """Reads a single `Edition` that is related to this `Game`."""
+  editionByEditionId: Edition
+
   """The `Game` that was deleted by this mutation."""
   game: Game
 
@@ -478,6 +487,9 @@ type DeleteGamePayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `User` that is related to this `Game`."""
+  userByAuthorId: User
 }
 
 """All input for the `deleteHeroDatumById` mutation."""
@@ -685,6 +697,40 @@ type DeleteUserPayload {
 type Edition implements Node {
   createdAt: Datetime!
   endsAt: Datetime!
+
+  """Reads and enables pagination through a set of `Game`."""
+  gamesByEditionId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GameCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GameFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Game`."""
+    orderBy: [GamesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GamesConnection!
   id: UUID!
   name: String!
 
@@ -1013,8 +1059,13 @@ input FlywaySchemaHistoryPatch {
 }
 
 type Game implements Node {
+  authorId: UUID!
   createdAt: Datetime!
   description: String!
+
+  """Reads a single `Edition` that is related to this `Game`."""
+  editionByEditionId: Edition
+  editionId: UUID!
   githubLink: String!
   id: UUID!
   name: String!
@@ -1025,17 +1076,26 @@ type Game implements Node {
   nodeId: ID!
   photo: String!
   updatedAt: Datetime!
+
+  """Reads a single `User` that is related to this `Game`."""
+  userByAuthorId: User
 }
 
 """
 A condition to be used against `Game` object types. All fields are tested for equality and combined with a logical ‘and.’
 """
 input GameCondition {
+  """Checks for equality with the object’s `authorId` field."""
+  authorId: UUID
+
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
 
   """Checks for equality with the object’s `description` field."""
   description: String
+
+  """Checks for equality with the object’s `editionId` field."""
+  editionId: UUID
 
   """Checks for equality with the object’s `githubLink` field."""
   githubLink: String
@@ -1060,11 +1120,17 @@ input GameFilter {
   """Checks for all expressions in this list."""
   and: [GameFilter!]
 
+  """Filter by the object’s `authorId` field."""
+  authorId: UUIDFilter
+
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
 
   """Filter by the object’s `description` field."""
   description: StringFilter
+
+  """Filter by the object’s `editionId` field."""
+  editionId: UUIDFilter
 
   """Filter by the object’s `githubLink` field."""
   githubLink: StringFilter
@@ -1090,8 +1156,10 @@ input GameFilter {
 
 """An input for mutations affecting `Game`"""
 input GameInput {
+  authorId: UUID!
   createdAt: Datetime
   description: String!
+  editionId: UUID!
   githubLink: String!
   id: UUID
   name: String!
@@ -1101,8 +1169,10 @@ input GameInput {
 
 """Represents an update to a `Game`. Fields that are set will be updated."""
 input GamePatch {
+  authorId: UUID
   createdAt: Datetime
   description: String
+  editionId: UUID
   githubLink: String
   id: UUID
   name: String
@@ -1138,10 +1208,14 @@ type GamesEdge {
 
 """Methods to use when ordering `Game`."""
 enum GamesOrderBy {
+  AUTHOR_ID_ASC
+  AUTHOR_ID_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
   DESCRIPTION_ASC
   DESCRIPTION_DESC
+  EDITION_ID_ASC
+  EDITION_ID_DESC
   GITHUB_LINK_ASC
   GITHUB_LINK_DESC
   ID_ASC
@@ -2671,6 +2745,9 @@ type UpdateGamePayload {
   """
   clientMutationId: String
 
+  """Reads a single `Edition` that is related to this `Game`."""
+  editionByEditionId: Edition
+
   """The `Game` that was updated by this mutation."""
   game: Game
 
@@ -2684,6 +2761,9 @@ type UpdateGamePayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `User` that is related to this `Game`."""
+  userByAuthorId: User
 }
 
 """All input for the `updateHeroDatumById` mutation."""
@@ -2935,6 +3015,40 @@ type User implements Node {
   createdAt: Datetime!
   description: String!
   email: String!
+
+  """Reads and enables pagination through a set of `Game`."""
+  gamesByAuthorId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GameCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GameFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Game`."""
+    orderBy: [GamesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GamesConnection!
   id: UUID!
   identityId: String!
   kind: UserTypeT!

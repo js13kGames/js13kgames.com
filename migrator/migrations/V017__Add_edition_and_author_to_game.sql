@@ -1,0 +1,3 @@
+ALTER TABLE PUBLIC.games
+ADD author_id UUID NOT NULL REFERENCES public.users (id) ON DELETE CASCADE,
+    ADD edition_id UUID NOT NULL REFERENCES public.editions (id) ON DELETE CASCADE;
