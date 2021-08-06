@@ -4,18 +4,16 @@ import React, { FC, useEffect } from 'react';
 import { useGetOrCreateUserMutation } from '../graphql';
 
 export const IdentityProvider: FC = ({ children }) => {
-	const { isAuthenticated, getAccessTokenSilently, getIdTokenClaims } =
-		useAuth0();
+	const { isAuthenticated, getIdTokenClaims } = useAuth0();
 
 	const [getOrCreateUserMutation] = useGetOrCreateUserMutation();
 
 	useEffect(() => {
 		const getToken = async () => {
 			if (isAuthenticated) {
-				const token = await getAccessTokenSilently();
 				const claims = await getIdTokenClaims();
 
-				console.log({ claims, token });
+				console.log({ claims, token: claims.__raw });
 
 				await getOrCreateUserMutation({
 					variables: {
@@ -27,7 +25,7 @@ export const IdentityProvider: FC = ({ children }) => {
 					}
 				});
 
-				Cookies.set('token', token, {
+				Cookies.set('token', claims.__raw, {
 					expires: claims.exp / 60 / 60 / 24
 				});
 			}
