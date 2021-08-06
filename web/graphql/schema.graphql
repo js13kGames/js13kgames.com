@@ -124,6 +124,9 @@ input CreateGameInput {
 
 """The output of our create `Game` mutation."""
 type CreateGamePayload {
+  """Reads a single `User` that is related to this `Game`."""
+  author: User
+
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
@@ -131,7 +134,7 @@ type CreateGamePayload {
   clientMutationId: String
 
   """Reads a single `Edition` that is related to this `Game`."""
-  editionByEditionId: Edition
+  edition: Edition
 
   """The `Game` that was created by this mutation."""
   game: Game
@@ -146,9 +149,6 @@ type CreateGamePayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """Reads a single `User` that is related to this `Game`."""
-  userByAuthorId: User
 }
 
 """All input for the create `HeroDatum` mutation."""
@@ -342,18 +342,8 @@ input DatetimeFilter {
   notIn: [Datetime!]
 }
 
-"""All input for the `deleteEditionById` mutation."""
-input DeleteEditionByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  id: UUID!
-}
-
-"""All input for the `deleteEdition` mutation."""
-input DeleteEditionInput {
+"""All input for the `deleteEditionByNodeId` mutation."""
+input DeleteEditionByNodeIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -366,6 +356,16 @@ input DeleteEditionInput {
   nodeId: ID!
 }
 
+"""All input for the `deleteEdition` mutation."""
+input DeleteEditionInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
 """The output of our delete `Edition` mutation."""
 type DeleteEditionPayload {
   """
@@ -373,7 +373,7 @@ type DeleteEditionPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-  deletedEditionId: ID
+  deletedEditionNodeId: ID
 
   """The `Edition` that was deleted by this mutation."""
   edition: Edition
@@ -390,18 +390,8 @@ type DeleteEditionPayload {
   query: Query
 }
 
-"""All input for the `deleteFlywaySchemaHistoryByInstalledRank` mutation."""
-input DeleteFlywaySchemaHistoryByInstalledRankInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  installedRank: Int!
-}
-
-"""All input for the `deleteFlywaySchemaHistory` mutation."""
-input DeleteFlywaySchemaHistoryInput {
+"""All input for the `deleteFlywaySchemaHistoryByNodeId` mutation."""
+input DeleteFlywaySchemaHistoryByNodeIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -414,6 +404,16 @@ input DeleteFlywaySchemaHistoryInput {
   nodeId: ID!
 }
 
+"""All input for the `deleteFlywaySchemaHistory` mutation."""
+input DeleteFlywaySchemaHistoryInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  installedRank: Int!
+}
+
 """The output of our delete `FlywaySchemaHistory` mutation."""
 type DeleteFlywaySchemaHistoryPayload {
   """
@@ -421,7 +421,7 @@ type DeleteFlywaySchemaHistoryPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-  deletedFlywaySchemaHistoryId: ID
+  deletedFlywaySchemaHistoryNodeId: ID
 
   """The `FlywaySchemaHistory` that was deleted by this mutation."""
   flywaySchemaHistory: FlywaySchemaHistory
@@ -438,18 +438,8 @@ type DeleteFlywaySchemaHistoryPayload {
   query: Query
 }
 
-"""All input for the `deleteGameById` mutation."""
-input DeleteGameByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  id: UUID!
-}
-
-"""All input for the `deleteGame` mutation."""
-input DeleteGameInput {
+"""All input for the `deleteGameByNodeId` mutation."""
+input DeleteGameByNodeIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -462,17 +452,30 @@ input DeleteGameInput {
   nodeId: ID!
 }
 
+"""All input for the `deleteGame` mutation."""
+input DeleteGameInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
 """The output of our delete `Game` mutation."""
 type DeleteGamePayload {
+  """Reads a single `User` that is related to this `Game`."""
+  author: User
+
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-  deletedGameId: ID
+  deletedGameNodeId: ID
 
   """Reads a single `Edition` that is related to this `Game`."""
-  editionByEditionId: Edition
+  edition: Edition
 
   """The `Game` that was deleted by this mutation."""
   game: Game
@@ -487,23 +490,10 @@ type DeleteGamePayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """Reads a single `User` that is related to this `Game`."""
-  userByAuthorId: User
 }
 
-"""All input for the `deleteHeroDatumById` mutation."""
-input DeleteHeroDatumByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  id: UUID!
-}
-
-"""All input for the `deleteHeroDatum` mutation."""
-input DeleteHeroDatumInput {
+"""All input for the `deleteHeroDatumByNodeId` mutation."""
+input DeleteHeroDatumByNodeIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -516,6 +506,16 @@ input DeleteHeroDatumInput {
   nodeId: ID!
 }
 
+"""All input for the `deleteHeroDatum` mutation."""
+input DeleteHeroDatumInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
 """The output of our delete `HeroDatum` mutation."""
 type DeleteHeroDatumPayload {
   """
@@ -523,7 +523,7 @@ type DeleteHeroDatumPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-  deletedHeroDatumId: ID
+  deletedHeroDatumNodeId: ID
 
   """The `HeroDatum` that was deleted by this mutation."""
   heroDatum: HeroDatum
@@ -540,18 +540,8 @@ type DeleteHeroDatumPayload {
   query: Query
 }
 
-"""All input for the `deleteMenuItemById` mutation."""
-input DeleteMenuItemByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  id: UUID!
-}
-
-"""All input for the `deleteMenuItem` mutation."""
-input DeleteMenuItemInput {
+"""All input for the `deleteMenuItemByNodeId` mutation."""
+input DeleteMenuItemByNodeIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -564,6 +554,16 @@ input DeleteMenuItemInput {
   nodeId: ID!
 }
 
+"""All input for the `deleteMenuItem` mutation."""
+input DeleteMenuItemInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
 """The output of our delete `MenuItem` mutation."""
 type DeleteMenuItemPayload {
   """
@@ -571,7 +571,7 @@ type DeleteMenuItemPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-  deletedMenuItemId: ID
+  deletedMenuItemNodeId: ID
 
   """The `MenuItem` that was deleted by this mutation."""
   menuItem: MenuItem
@@ -588,18 +588,8 @@ type DeleteMenuItemPayload {
   query: Query
 }
 
-"""All input for the `deleteSocialLinkById` mutation."""
-input DeleteSocialLinkByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  id: UUID!
-}
-
-"""All input for the `deleteSocialLink` mutation."""
-input DeleteSocialLinkInput {
+"""All input for the `deleteSocialLinkByNodeId` mutation."""
+input DeleteSocialLinkByNodeIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -612,6 +602,16 @@ input DeleteSocialLinkInput {
   nodeId: ID!
 }
 
+"""All input for the `deleteSocialLink` mutation."""
+input DeleteSocialLinkInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
 """The output of our delete `SocialLink` mutation."""
 type DeleteSocialLinkPayload {
   """
@@ -619,7 +619,7 @@ type DeleteSocialLinkPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-  deletedSocialLinkId: ID
+  deletedSocialLinkNodeId: ID
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -636,16 +636,6 @@ type DeleteSocialLinkPayload {
   ): SocialLinksEdge
 }
 
-"""All input for the `deleteUserById` mutation."""
-input DeleteUserByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  id: UUID!
-}
-
 """All input for the `deleteUserByIdentityId` mutation."""
 input DeleteUserByIdentityIdInput {
   """
@@ -656,8 +646,8 @@ input DeleteUserByIdentityIdInput {
   identityId: String!
 }
 
-"""All input for the `deleteUser` mutation."""
-input DeleteUserInput {
+"""All input for the `deleteUserByNodeId` mutation."""
+input DeleteUserByNodeIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -670,6 +660,16 @@ input DeleteUserInput {
   nodeId: ID!
 }
 
+"""All input for the `deleteUser` mutation."""
+input DeleteUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
 """The output of our delete `User` mutation."""
 type DeleteUserPayload {
   """
@@ -677,7 +677,7 @@ type DeleteUserPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-  deletedUserId: ID
+  deletedUserNodeId: ID
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -699,7 +699,7 @@ type Edition implements Node {
   endsAt: Datetime!
 
   """Reads and enables pagination through a set of `Game`."""
-  gamesByEditionId(
+  games(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -1059,12 +1059,14 @@ input FlywaySchemaHistoryPatch {
 }
 
 type Game implements Node {
+  """Reads a single `User` that is related to this `Game`."""
+  author: User
   authorId: UUID!
   createdAt: Datetime!
   description: String!
 
   """Reads a single `Edition` that is related to this `Game`."""
-  editionByEditionId: Edition
+  edition: Edition
   editionId: UUID!
   githubLink: String!
   id: UUID!
@@ -1076,9 +1078,6 @@ type Game implements Node {
   nodeId: ID!
   photo: String!
   updatedAt: Datetime!
-
-  """Reads a single `User` that is related to this `Game`."""
-  userByAuthorId: User
 }
 
 """
@@ -1698,7 +1697,7 @@ type Mutation {
     input: CreateUserInput!
   ): CreateUserPayload
 
-  """Deletes a single `Edition` using its globally unique id."""
+  """Deletes a single `Edition` using a unique key."""
   deleteEdition(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -1706,15 +1705,15 @@ type Mutation {
     input: DeleteEditionInput!
   ): DeleteEditionPayload
 
-  """Deletes a single `Edition` using a unique key."""
-  deleteEditionById(
+  """Deletes a single `Edition` using its globally unique id."""
+  deleteEditionByNodeId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteEditionByIdInput!
+    input: DeleteEditionByNodeIdInput!
   ): DeleteEditionPayload
 
-  """Deletes a single `FlywaySchemaHistory` using its globally unique id."""
+  """Deletes a single `FlywaySchemaHistory` using a unique key."""
   deleteFlywaySchemaHistory(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -1722,15 +1721,15 @@ type Mutation {
     input: DeleteFlywaySchemaHistoryInput!
   ): DeleteFlywaySchemaHistoryPayload
 
-  """Deletes a single `FlywaySchemaHistory` using a unique key."""
-  deleteFlywaySchemaHistoryByInstalledRank(
+  """Deletes a single `FlywaySchemaHistory` using its globally unique id."""
+  deleteFlywaySchemaHistoryByNodeId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteFlywaySchemaHistoryByInstalledRankInput!
+    input: DeleteFlywaySchemaHistoryByNodeIdInput!
   ): DeleteFlywaySchemaHistoryPayload
 
-  """Deletes a single `Game` using its globally unique id."""
+  """Deletes a single `Game` using a unique key."""
   deleteGame(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -1738,15 +1737,15 @@ type Mutation {
     input: DeleteGameInput!
   ): DeleteGamePayload
 
-  """Deletes a single `Game` using a unique key."""
-  deleteGameById(
+  """Deletes a single `Game` using its globally unique id."""
+  deleteGameByNodeId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteGameByIdInput!
+    input: DeleteGameByNodeIdInput!
   ): DeleteGamePayload
 
-  """Deletes a single `HeroDatum` using its globally unique id."""
+  """Deletes a single `HeroDatum` using a unique key."""
   deleteHeroDatum(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -1754,15 +1753,15 @@ type Mutation {
     input: DeleteHeroDatumInput!
   ): DeleteHeroDatumPayload
 
-  """Deletes a single `HeroDatum` using a unique key."""
-  deleteHeroDatumById(
+  """Deletes a single `HeroDatum` using its globally unique id."""
+  deleteHeroDatumByNodeId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteHeroDatumByIdInput!
+    input: DeleteHeroDatumByNodeIdInput!
   ): DeleteHeroDatumPayload
 
-  """Deletes a single `MenuItem` using its globally unique id."""
+  """Deletes a single `MenuItem` using a unique key."""
   deleteMenuItem(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -1770,15 +1769,15 @@ type Mutation {
     input: DeleteMenuItemInput!
   ): DeleteMenuItemPayload
 
-  """Deletes a single `MenuItem` using a unique key."""
-  deleteMenuItemById(
+  """Deletes a single `MenuItem` using its globally unique id."""
+  deleteMenuItemByNodeId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteMenuItemByIdInput!
+    input: DeleteMenuItemByNodeIdInput!
   ): DeleteMenuItemPayload
 
-  """Deletes a single `SocialLink` using its globally unique id."""
+  """Deletes a single `SocialLink` using a unique key."""
   deleteSocialLink(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -1786,28 +1785,20 @@ type Mutation {
     input: DeleteSocialLinkInput!
   ): DeleteSocialLinkPayload
 
-  """Deletes a single `SocialLink` using a unique key."""
-  deleteSocialLinkById(
+  """Deletes a single `SocialLink` using its globally unique id."""
+  deleteSocialLinkByNodeId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteSocialLinkByIdInput!
+    input: DeleteSocialLinkByNodeIdInput!
   ): DeleteSocialLinkPayload
 
-  """Deletes a single `User` using its globally unique id."""
+  """Deletes a single `User` using a unique key."""
   deleteUser(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
     input: DeleteUserInput!
-  ): DeleteUserPayload
-
-  """Deletes a single `User` using a unique key."""
-  deleteUserById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteUserByIdInput!
   ): DeleteUserPayload
 
   """Deletes a single `User` using a unique key."""
@@ -1817,6 +1808,14 @@ type Mutation {
     """
     input: DeleteUserByIdentityIdInput!
   ): DeleteUserPayload
+
+  """Deletes a single `User` using its globally unique id."""
+  deleteUserByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserByNodeIdInput!
+  ): DeleteUserPayload
   getOrCreateUser(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -1824,7 +1823,7 @@ type Mutation {
     input: GetOrCreateUserInput!
   ): GetOrCreateUserPayload
 
-  """Updates a single `Edition` using its globally unique id and a patch."""
+  """Updates a single `Edition` using a unique key and a patch."""
   updateEdition(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -1832,17 +1831,15 @@ type Mutation {
     input: UpdateEditionInput!
   ): UpdateEditionPayload
 
-  """Updates a single `Edition` using a unique key and a patch."""
-  updateEditionById(
+  """Updates a single `Edition` using its globally unique id and a patch."""
+  updateEditionByNodeId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateEditionByIdInput!
+    input: UpdateEditionByNodeIdInput!
   ): UpdateEditionPayload
 
-  """
-  Updates a single `FlywaySchemaHistory` using its globally unique id and a patch.
-  """
+  """Updates a single `FlywaySchemaHistory` using a unique key and a patch."""
   updateFlywaySchemaHistory(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -1850,15 +1847,17 @@ type Mutation {
     input: UpdateFlywaySchemaHistoryInput!
   ): UpdateFlywaySchemaHistoryPayload
 
-  """Updates a single `FlywaySchemaHistory` using a unique key and a patch."""
-  updateFlywaySchemaHistoryByInstalledRank(
+  """
+  Updates a single `FlywaySchemaHistory` using its globally unique id and a patch.
+  """
+  updateFlywaySchemaHistoryByNodeId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateFlywaySchemaHistoryByInstalledRankInput!
+    input: UpdateFlywaySchemaHistoryByNodeIdInput!
   ): UpdateFlywaySchemaHistoryPayload
 
-  """Updates a single `Game` using its globally unique id and a patch."""
+  """Updates a single `Game` using a unique key and a patch."""
   updateGame(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -1866,15 +1865,15 @@ type Mutation {
     input: UpdateGameInput!
   ): UpdateGamePayload
 
-  """Updates a single `Game` using a unique key and a patch."""
-  updateGameById(
+  """Updates a single `Game` using its globally unique id and a patch."""
+  updateGameByNodeId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateGameByIdInput!
+    input: UpdateGameByNodeIdInput!
   ): UpdateGamePayload
 
-  """Updates a single `HeroDatum` using its globally unique id and a patch."""
+  """Updates a single `HeroDatum` using a unique key and a patch."""
   updateHeroDatum(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -1882,15 +1881,15 @@ type Mutation {
     input: UpdateHeroDatumInput!
   ): UpdateHeroDatumPayload
 
-  """Updates a single `HeroDatum` using a unique key and a patch."""
-  updateHeroDatumById(
+  """Updates a single `HeroDatum` using its globally unique id and a patch."""
+  updateHeroDatumByNodeId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateHeroDatumByIdInput!
+    input: UpdateHeroDatumByNodeIdInput!
   ): UpdateHeroDatumPayload
 
-  """Updates a single `MenuItem` using its globally unique id and a patch."""
+  """Updates a single `MenuItem` using a unique key and a patch."""
   updateMenuItem(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -1898,17 +1897,15 @@ type Mutation {
     input: UpdateMenuItemInput!
   ): UpdateMenuItemPayload
 
-  """Updates a single `MenuItem` using a unique key and a patch."""
-  updateMenuItemById(
+  """Updates a single `MenuItem` using its globally unique id and a patch."""
+  updateMenuItemByNodeId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateMenuItemByIdInput!
+    input: UpdateMenuItemByNodeIdInput!
   ): UpdateMenuItemPayload
 
-  """
-  Updates a single `SocialLink` using its globally unique id and a patch.
-  """
+  """Updates a single `SocialLink` using a unique key and a patch."""
   updateSocialLink(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -1916,15 +1913,17 @@ type Mutation {
     input: UpdateSocialLinkInput!
   ): UpdateSocialLinkPayload
 
-  """Updates a single `SocialLink` using a unique key and a patch."""
-  updateSocialLinkById(
+  """
+  Updates a single `SocialLink` using its globally unique id and a patch.
+  """
+  updateSocialLinkByNodeId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateSocialLinkByIdInput!
+    input: UpdateSocialLinkByNodeIdInput!
   ): UpdateSocialLinkPayload
 
-  """Updates a single `User` using its globally unique id and a patch."""
+  """Updates a single `User` using a unique key and a patch."""
   updateUser(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -1933,19 +1932,19 @@ type Mutation {
   ): UpdateUserPayload
 
   """Updates a single `User` using a unique key and a patch."""
-  updateUserById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateUserByIdInput!
-  ): UpdateUserPayload
-
-  """Updates a single `User` using a unique key and a patch."""
   updateUserByIdentityId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
     input: UpdateUserByIdentityIdInput!
+  ): UpdateUserPayload
+
+  """Updates a single `User` using its globally unique id and a patch."""
+  updateUserByNodeId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserByNodeIdInput!
   ): UpdateUserPayload
 }
 
@@ -1974,8 +1973,16 @@ type PageInfo {
 
 """The root query type which gives access points into the data universe."""
 type Query implements Node {
+  edition(id: UUID!): Edition
+
+  """Reads a single `Edition` using its globally unique `ID`."""
+  editionByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Edition`."""
+    nodeId: ID!
+  ): Edition
+
   """Reads and enables pagination through a set of `Edition`."""
-  allEditions(
+  editions(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -2009,7 +2016,7 @@ type Query implements Node {
   ): EditionsConnection
 
   """Reads and enables pagination through a set of `FlywaySchemaHistory`."""
-  allFlywaySchemaHistories(
+  flywaySchemaHistories(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -2041,9 +2048,25 @@ type Query implements Node {
     """The method to use when ordering `FlywaySchemaHistory`."""
     orderBy: [FlywaySchemaHistoriesOrderBy!] = [PRIMARY_KEY_ASC]
   ): FlywaySchemaHistoriesConnection
+  flywaySchemaHistory(installedRank: Int!): FlywaySchemaHistory
+
+  """Reads a single `FlywaySchemaHistory` using its globally unique `ID`."""
+  flywaySchemaHistoryByNodeId(
+    """
+    The globally unique `ID` to be used in selecting a single `FlywaySchemaHistory`.
+    """
+    nodeId: ID!
+  ): FlywaySchemaHistory
+  game(id: UUID!): Game
+
+  """Reads a single `Game` using its globally unique `ID`."""
+  gameByNodeId(
+    """The globally unique `ID` to be used in selecting a single `Game`."""
+    nodeId: ID!
+  ): Game
 
   """Reads and enables pagination through a set of `Game`."""
-  allGames(
+  games(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -2077,7 +2100,7 @@ type Query implements Node {
   ): GamesConnection
 
   """Reads and enables pagination through a set of `HeroDatum`."""
-  allHeroData(
+  heroData(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -2109,9 +2132,23 @@ type Query implements Node {
     """The method to use when ordering `HeroDatum`."""
     orderBy: [HeroDataOrderBy!] = [PRIMARY_KEY_ASC]
   ): HeroDataConnection
+  heroDatum(id: UUID!): HeroDatum
+
+  """Reads a single `HeroDatum` using its globally unique `ID`."""
+  heroDatumByNodeId(
+    """The globally unique `ID` to be used in selecting a single `HeroDatum`."""
+    nodeId: ID!
+  ): HeroDatum
+  menuItem(id: UUID!): MenuItem
+
+  """Reads a single `MenuItem` using its globally unique `ID`."""
+  menuItemByNodeId(
+    """The globally unique `ID` to be used in selecting a single `MenuItem`."""
+    nodeId: ID!
+  ): MenuItem
 
   """Reads and enables pagination through a set of `MenuItem`."""
-  allMenuItems(
+  menuItems(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -2144,8 +2181,34 @@ type Query implements Node {
     orderBy: [MenuItemsOrderBy!] = [PRIMARY_KEY_ASC]
   ): MenuItemsConnection
 
+  """Fetches an object given its globally unique `ID`."""
+  node(
+    """The globally unique `ID`."""
+    nodeId: ID!
+  ): Node
+
+  """
+  The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.
+  """
+  nodeId: ID!
+
+  """
+  Exposes the root query type nested one level down. This is helpful for Relay 1
+  which can only query top level fields if they are in a particular form.
+  """
+  query: Query!
+  socialLink(id: UUID!): SocialLink
+
+  """Reads a single `SocialLink` using its globally unique `ID`."""
+  socialLinkByNodeId(
+    """
+    The globally unique `ID` to be used in selecting a single `SocialLink`.
+    """
+    nodeId: ID!
+  ): SocialLink
+
   """Reads and enables pagination through a set of `SocialLink`."""
-  allSocialLinks(
+  socialLinks(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -2177,9 +2240,17 @@ type Query implements Node {
     """The method to use when ordering `SocialLink`."""
     orderBy: [SocialLinksOrderBy!] = [PRIMARY_KEY_ASC]
   ): SocialLinksConnection
+  user(id: UUID!): User
+  userByIdentityId(identityId: String!): User
+
+  """Reads a single `User` using its globally unique `ID`."""
+  userByNodeId(
+    """The globally unique `ID` to be used in selecting a single `User`."""
+    nodeId: ID!
+  ): User
 
   """Reads and enables pagination through a set of `User`."""
-  allUsers(
+  users(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -2211,77 +2282,6 @@ type Query implements Node {
     """The method to use when ordering `User`."""
     orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
   ): UsersConnection
-
-  """Reads a single `Edition` using its globally unique `ID`."""
-  edition(
-    """The globally unique `ID` to be used in selecting a single `Edition`."""
-    nodeId: ID!
-  ): Edition
-  editionById(id: UUID!): Edition
-
-  """Reads a single `FlywaySchemaHistory` using its globally unique `ID`."""
-  flywaySchemaHistory(
-    """
-    The globally unique `ID` to be used in selecting a single `FlywaySchemaHistory`.
-    """
-    nodeId: ID!
-  ): FlywaySchemaHistory
-  flywaySchemaHistoryByInstalledRank(installedRank: Int!): FlywaySchemaHistory
-
-  """Reads a single `Game` using its globally unique `ID`."""
-  game(
-    """The globally unique `ID` to be used in selecting a single `Game`."""
-    nodeId: ID!
-  ): Game
-  gameById(id: UUID!): Game
-
-  """Reads a single `HeroDatum` using its globally unique `ID`."""
-  heroDatum(
-    """The globally unique `ID` to be used in selecting a single `HeroDatum`."""
-    nodeId: ID!
-  ): HeroDatum
-  heroDatumById(id: UUID!): HeroDatum
-
-  """Reads a single `MenuItem` using its globally unique `ID`."""
-  menuItem(
-    """The globally unique `ID` to be used in selecting a single `MenuItem`."""
-    nodeId: ID!
-  ): MenuItem
-  menuItemById(id: UUID!): MenuItem
-
-  """Fetches an object given its globally unique `ID`."""
-  node(
-    """The globally unique `ID`."""
-    nodeId: ID!
-  ): Node
-
-  """
-  The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.
-  """
-  nodeId: ID!
-
-  """
-  Exposes the root query type nested one level down. This is helpful for Relay 1
-  which can only query top level fields if they are in a particular form.
-  """
-  query: Query!
-
-  """Reads a single `SocialLink` using its globally unique `ID`."""
-  socialLink(
-    """
-    The globally unique `ID` to be used in selecting a single `SocialLink`.
-    """
-    nodeId: ID!
-  ): SocialLink
-  socialLinkById(id: UUID!): SocialLink
-
-  """Reads a single `User` using its globally unique `ID`."""
-  user(
-    """The globally unique `ID` to be used in selecting a single `User`."""
-    nodeId: ID!
-  ): User
-  userById(id: UUID!): User
-  userByIdentityId(identityId: String!): User
 }
 
 type SocialLink implements Node {
@@ -2589,8 +2589,8 @@ input UUIDFilter {
   notIn: [UUID!]
 }
 
-"""All input for the `updateEditionById` mutation."""
-input UpdateEditionByIdInput {
+"""All input for the `updateEditionByNodeId` mutation."""
+input UpdateEditionByNodeIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -2598,10 +2598,14 @@ input UpdateEditionByIdInput {
   clientMutationId: String
 
   """
+  The globally unique `ID` which will identify a single `Edition` to be updated.
+  """
+  nodeId: ID!
+
+  """
   An object where the defined keys will be set on the `Edition` being updated.
   """
-  editionPatch: EditionPatch!
-  id: UUID!
+  patch: EditionPatch!
 }
 
 """All input for the `updateEdition` mutation."""
@@ -2611,16 +2615,12 @@ input UpdateEditionInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
+  id: UUID!
 
   """
   An object where the defined keys will be set on the `Edition` being updated.
   """
-  editionPatch: EditionPatch!
-
-  """
-  The globally unique `ID` which will identify a single `Edition` to be updated.
-  """
-  nodeId: ID!
+  patch: EditionPatch!
 }
 
 """The output of our update `Edition` mutation."""
@@ -2646,8 +2646,8 @@ type UpdateEditionPayload {
   query: Query
 }
 
-"""All input for the `updateFlywaySchemaHistoryByInstalledRank` mutation."""
-input UpdateFlywaySchemaHistoryByInstalledRankInput {
+"""All input for the `updateFlywaySchemaHistoryByNodeId` mutation."""
+input UpdateFlywaySchemaHistoryByNodeIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -2655,10 +2655,14 @@ input UpdateFlywaySchemaHistoryByInstalledRankInput {
   clientMutationId: String
 
   """
+  The globally unique `ID` which will identify a single `FlywaySchemaHistory` to be updated.
+  """
+  nodeId: ID!
+
+  """
   An object where the defined keys will be set on the `FlywaySchemaHistory` being updated.
   """
-  flywaySchemaHistoryPatch: FlywaySchemaHistoryPatch!
-  installedRank: Int!
+  patch: FlywaySchemaHistoryPatch!
 }
 
 """All input for the `updateFlywaySchemaHistory` mutation."""
@@ -2668,16 +2672,12 @@ input UpdateFlywaySchemaHistoryInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
+  installedRank: Int!
 
   """
   An object where the defined keys will be set on the `FlywaySchemaHistory` being updated.
   """
-  flywaySchemaHistoryPatch: FlywaySchemaHistoryPatch!
-
-  """
-  The globally unique `ID` which will identify a single `FlywaySchemaHistory` to be updated.
-  """
-  nodeId: ID!
+  patch: FlywaySchemaHistoryPatch!
 }
 
 """The output of our update `FlywaySchemaHistory` mutation."""
@@ -2703,8 +2703,8 @@ type UpdateFlywaySchemaHistoryPayload {
   query: Query
 }
 
-"""All input for the `updateGameById` mutation."""
-input UpdateGameByIdInput {
+"""All input for the `updateGameByNodeId` mutation."""
+input UpdateGameByNodeIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -2712,10 +2712,14 @@ input UpdateGameByIdInput {
   clientMutationId: String
 
   """
+  The globally unique `ID` which will identify a single `Game` to be updated.
+  """
+  nodeId: ID!
+
+  """
   An object where the defined keys will be set on the `Game` being updated.
   """
-  gamePatch: GamePatch!
-  id: UUID!
+  patch: GamePatch!
 }
 
 """All input for the `updateGame` mutation."""
@@ -2725,20 +2729,19 @@ input UpdateGameInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
+  id: UUID!
 
   """
   An object where the defined keys will be set on the `Game` being updated.
   """
-  gamePatch: GamePatch!
-
-  """
-  The globally unique `ID` which will identify a single `Game` to be updated.
-  """
-  nodeId: ID!
+  patch: GamePatch!
 }
 
 """The output of our update `Game` mutation."""
 type UpdateGamePayload {
+  """Reads a single `User` that is related to this `Game`."""
+  author: User
+
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
@@ -2746,7 +2749,7 @@ type UpdateGamePayload {
   clientMutationId: String
 
   """Reads a single `Edition` that is related to this `Game`."""
-  editionByEditionId: Edition
+  edition: Edition
 
   """The `Game` that was updated by this mutation."""
   game: Game
@@ -2761,13 +2764,10 @@ type UpdateGamePayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """Reads a single `User` that is related to this `Game`."""
-  userByAuthorId: User
 }
 
-"""All input for the `updateHeroDatumById` mutation."""
-input UpdateHeroDatumByIdInput {
+"""All input for the `updateHeroDatumByNodeId` mutation."""
+input UpdateHeroDatumByNodeIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -2775,10 +2775,14 @@ input UpdateHeroDatumByIdInput {
   clientMutationId: String
 
   """
+  The globally unique `ID` which will identify a single `HeroDatum` to be updated.
+  """
+  nodeId: ID!
+
+  """
   An object where the defined keys will be set on the `HeroDatum` being updated.
   """
-  heroDatumPatch: HeroDatumPatch!
-  id: UUID!
+  patch: HeroDatumPatch!
 }
 
 """All input for the `updateHeroDatum` mutation."""
@@ -2788,16 +2792,12 @@ input UpdateHeroDatumInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
+  id: UUID!
 
   """
   An object where the defined keys will be set on the `HeroDatum` being updated.
   """
-  heroDatumPatch: HeroDatumPatch!
-
-  """
-  The globally unique `ID` which will identify a single `HeroDatum` to be updated.
-  """
-  nodeId: ID!
+  patch: HeroDatumPatch!
 }
 
 """The output of our update `HeroDatum` mutation."""
@@ -2823,8 +2823,27 @@ type UpdateHeroDatumPayload {
   query: Query
 }
 
-"""All input for the `updateMenuItemById` mutation."""
-input UpdateMenuItemByIdInput {
+"""All input for the `updateMenuItemByNodeId` mutation."""
+input UpdateMenuItemByNodeIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `MenuItem` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `MenuItem` being updated.
+  """
+  patch: MenuItemPatch!
+}
+
+"""All input for the `updateMenuItem` mutation."""
+input UpdateMenuItemInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -2835,26 +2854,7 @@ input UpdateMenuItemByIdInput {
   """
   An object where the defined keys will be set on the `MenuItem` being updated.
   """
-  menuItemPatch: MenuItemPatch!
-}
-
-"""All input for the `updateMenuItem` mutation."""
-input UpdateMenuItemInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  An object where the defined keys will be set on the `MenuItem` being updated.
-  """
-  menuItemPatch: MenuItemPatch!
-
-  """
-  The globally unique `ID` which will identify a single `MenuItem` to be updated.
-  """
-  nodeId: ID!
+  patch: MenuItemPatch!
 }
 
 """The output of our update `MenuItem` mutation."""
@@ -2880,23 +2880,8 @@ type UpdateMenuItemPayload {
   query: Query
 }
 
-"""All input for the `updateSocialLinkById` mutation."""
-input UpdateSocialLinkByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  id: UUID!
-
-  """
-  An object where the defined keys will be set on the `SocialLink` being updated.
-  """
-  socialLinkPatch: SocialLinkPatch!
-}
-
-"""All input for the `updateSocialLink` mutation."""
-input UpdateSocialLinkInput {
+"""All input for the `updateSocialLinkByNodeId` mutation."""
+input UpdateSocialLinkByNodeIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -2911,7 +2896,22 @@ input UpdateSocialLinkInput {
   """
   An object where the defined keys will be set on the `SocialLink` being updated.
   """
-  socialLinkPatch: SocialLinkPatch!
+  patch: SocialLinkPatch!
+}
+
+"""All input for the `updateSocialLink` mutation."""
+input UpdateSocialLinkInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+
+  """
+  An object where the defined keys will be set on the `SocialLink` being updated.
+  """
+  patch: SocialLinkPatch!
 }
 
 """The output of our update `SocialLink` mutation."""
@@ -2937,21 +2937,6 @@ type UpdateSocialLinkPayload {
   ): SocialLinksEdge
 }
 
-"""All input for the `updateUserById` mutation."""
-input UpdateUserByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  id: UUID!
-
-  """
-  An object where the defined keys will be set on the `User` being updated.
-  """
-  userPatch: UserPatch!
-}
-
 """All input for the `updateUserByIdentityId` mutation."""
 input UpdateUserByIdentityIdInput {
   """
@@ -2964,11 +2949,11 @@ input UpdateUserByIdentityIdInput {
   """
   An object where the defined keys will be set on the `User` being updated.
   """
-  userPatch: UserPatch!
+  patch: UserPatch!
 }
 
-"""All input for the `updateUser` mutation."""
-input UpdateUserInput {
+"""All input for the `updateUserByNodeId` mutation."""
+input UpdateUserByNodeIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -2983,7 +2968,22 @@ input UpdateUserInput {
   """
   An object where the defined keys will be set on the `User` being updated.
   """
-  userPatch: UserPatch!
+  patch: UserPatch!
+}
+
+"""All input for the `updateUser` mutation."""
+input UpdateUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+
+  """
+  An object where the defined keys will be set on the `User` being updated.
+  """
+  patch: UserPatch!
 }
 
 """The output of our update `User` mutation."""
@@ -3011,13 +3011,9 @@ type UpdateUserPayload {
 
 type User implements Node {
   active: Boolean!
-  avatar: String!
-  createdAt: Datetime!
-  description: String!
-  email: String!
 
   """Reads and enables pagination through a set of `Game`."""
-  gamesByAuthorId(
+  authoredGames(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -3049,6 +3045,10 @@ type User implements Node {
     """The method to use when ordering `Game`."""
     orderBy: [GamesOrderBy!] = [PRIMARY_KEY_ASC]
   ): GamesConnection!
+  avatar: String!
+  createdAt: Datetime!
+  description: String!
+  email: String!
   id: UUID!
   identityId: String!
   kind: UserTypeT!
