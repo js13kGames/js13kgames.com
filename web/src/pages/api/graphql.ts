@@ -1,3 +1,4 @@
+import PgSimplifyInflector from '@graphile-contrib/pg-simplify-inflector';
 import { GraphQLErrorExtended, postgraphile } from 'postgraphile';
 import ConnectionFilterPlugin from 'postgraphile-plugin-connection-filter';
 export const config = {
@@ -13,7 +14,7 @@ const postgraphile_middleware = postgraphile(
 	process.env.DATABASE_URL,
 	schemas,
 	{
-		appendPlugins: [ConnectionFilterPlugin],
+		appendPlugins: [ConnectionFilterPlugin, PgSimplifyInflector],
 		allowExplain: false,
 		disableQueryLog: false, //true,
 		dynamicJson: false,

@@ -158,18 +158,8 @@ export type DatetimeFilter = {
   readonly notIn?: Maybe<ReadonlyArray<Scalars['Datetime']>>;
 };
 
-/** All input for the `deleteEditionById` mutation. */
-export type DeleteEditionByIdInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  readonly clientMutationId?: Maybe<Scalars['String']>;
-  readonly id: Scalars['UUID'];
-};
-
-/** All input for the `deleteEdition` mutation. */
-export type DeleteEditionInput = {
+/** All input for the `deleteEditionByNodeId` mutation. */
+export type DeleteEditionByNodeIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
@@ -179,19 +169,19 @@ export type DeleteEditionInput = {
   readonly nodeId: Scalars['ID'];
 };
 
-
-/** All input for the `deleteFlywaySchemaHistoryByInstalledRank` mutation. */
-export type DeleteFlywaySchemaHistoryByInstalledRankInput = {
+/** All input for the `deleteEdition` mutation. */
+export type DeleteEditionInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   readonly clientMutationId?: Maybe<Scalars['String']>;
-  readonly installedRank: Scalars['Int'];
+  readonly id: Scalars['UUID'];
 };
 
-/** All input for the `deleteFlywaySchemaHistory` mutation. */
-export type DeleteFlywaySchemaHistoryInput = {
+
+/** All input for the `deleteFlywaySchemaHistoryByNodeId` mutation. */
+export type DeleteFlywaySchemaHistoryByNodeIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
@@ -201,19 +191,19 @@ export type DeleteFlywaySchemaHistoryInput = {
   readonly nodeId: Scalars['ID'];
 };
 
-
-/** All input for the `deleteGameById` mutation. */
-export type DeleteGameByIdInput = {
+/** All input for the `deleteFlywaySchemaHistory` mutation. */
+export type DeleteFlywaySchemaHistoryInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   readonly clientMutationId?: Maybe<Scalars['String']>;
-  readonly id: Scalars['UUID'];
+  readonly installedRank: Scalars['Int'];
 };
 
-/** All input for the `deleteGame` mutation. */
-export type DeleteGameInput = {
+
+/** All input for the `deleteGameByNodeId` mutation. */
+export type DeleteGameByNodeIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
@@ -223,9 +213,8 @@ export type DeleteGameInput = {
   readonly nodeId: Scalars['ID'];
 };
 
-
-/** All input for the `deleteHeroDatumById` mutation. */
-export type DeleteHeroDatumByIdInput = {
+/** All input for the `deleteGame` mutation. */
+export type DeleteGameInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
@@ -234,8 +223,9 @@ export type DeleteHeroDatumByIdInput = {
   readonly id: Scalars['UUID'];
 };
 
-/** All input for the `deleteHeroDatum` mutation. */
-export type DeleteHeroDatumInput = {
+
+/** All input for the `deleteHeroDatumByNodeId` mutation. */
+export type DeleteHeroDatumByNodeIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
@@ -245,9 +235,8 @@ export type DeleteHeroDatumInput = {
   readonly nodeId: Scalars['ID'];
 };
 
-
-/** All input for the `deleteMenuItemById` mutation. */
-export type DeleteMenuItemByIdInput = {
+/** All input for the `deleteHeroDatum` mutation. */
+export type DeleteHeroDatumInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
@@ -256,8 +245,9 @@ export type DeleteMenuItemByIdInput = {
   readonly id: Scalars['UUID'];
 };
 
-/** All input for the `deleteMenuItem` mutation. */
-export type DeleteMenuItemInput = {
+
+/** All input for the `deleteMenuItemByNodeId` mutation. */
+export type DeleteMenuItemByNodeIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
@@ -267,9 +257,8 @@ export type DeleteMenuItemInput = {
   readonly nodeId: Scalars['ID'];
 };
 
-
-/** All input for the `deleteSocialLinkById` mutation. */
-export type DeleteSocialLinkByIdInput = {
+/** All input for the `deleteMenuItem` mutation. */
+export type DeleteMenuItemInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
@@ -278,8 +267,9 @@ export type DeleteSocialLinkByIdInput = {
   readonly id: Scalars['UUID'];
 };
 
-/** All input for the `deleteSocialLink` mutation. */
-export type DeleteSocialLinkInput = {
+
+/** All input for the `deleteSocialLinkByNodeId` mutation. */
+export type DeleteSocialLinkByNodeIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
@@ -289,9 +279,8 @@ export type DeleteSocialLinkInput = {
   readonly nodeId: Scalars['ID'];
 };
 
-
-/** All input for the `deleteUserById` mutation. */
-export type DeleteUserByIdInput = {
+/** All input for the `deleteSocialLink` mutation. */
+export type DeleteSocialLinkInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
@@ -299,6 +288,7 @@ export type DeleteUserByIdInput = {
   readonly clientMutationId?: Maybe<Scalars['String']>;
   readonly id: Scalars['UUID'];
 };
+
 
 /** All input for the `deleteUserByIdentityId` mutation. */
 export type DeleteUserByIdentityIdInput = {
@@ -310,8 +300,8 @@ export type DeleteUserByIdentityIdInput = {
   readonly identityId: Scalars['String'];
 };
 
-/** All input for the `deleteUser` mutation. */
-export type DeleteUserInput = {
+/** All input for the `deleteUserByNodeId` mutation. */
+export type DeleteUserByNodeIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
@@ -319,6 +309,16 @@ export type DeleteUserInput = {
   readonly clientMutationId?: Maybe<Scalars['String']>;
   /** The globally unique `ID` which will identify a single `User` to be deleted. */
   readonly nodeId: Scalars['ID'];
+};
+
+/** All input for the `deleteUser` mutation. */
+export type DeleteUserInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  readonly clientMutationId?: Maybe<Scalars['String']>;
+  readonly id: Scalars['UUID'];
 };
 
 
@@ -526,10 +526,14 @@ export type FlywaySchemaHistoryPatch = {
 
 /** A condition to be used against `Game` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type GameCondition = {
+  /** Checks for equality with the object’s `authorId` field. */
+  readonly authorId?: Maybe<Scalars['UUID']>;
   /** Checks for equality with the object’s `createdAt` field. */
   readonly createdAt?: Maybe<Scalars['Datetime']>;
   /** Checks for equality with the object’s `description` field. */
   readonly description?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `editionId` field. */
+  readonly editionId?: Maybe<Scalars['UUID']>;
   /** Checks for equality with the object’s `githubLink` field. */
   readonly githubLink?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `id` field. */
@@ -546,10 +550,14 @@ export type GameCondition = {
 export type GameFilter = {
   /** Checks for all expressions in this list. */
   readonly and?: Maybe<ReadonlyArray<GameFilter>>;
+  /** Filter by the object’s `authorId` field. */
+  readonly authorId?: Maybe<UuidFilter>;
   /** Filter by the object’s `createdAt` field. */
   readonly createdAt?: Maybe<DatetimeFilter>;
   /** Filter by the object’s `description` field. */
   readonly description?: Maybe<StringFilter>;
+  /** Filter by the object’s `editionId` field. */
+  readonly editionId?: Maybe<UuidFilter>;
   /** Filter by the object’s `githubLink` field. */
   readonly githubLink?: Maybe<StringFilter>;
   /** Filter by the object’s `id` field. */
@@ -568,8 +576,10 @@ export type GameFilter = {
 
 /** An input for mutations affecting `Game` */
 export type GameInput = {
+  readonly authorId: Scalars['UUID'];
   readonly createdAt?: Maybe<Scalars['Datetime']>;
   readonly description: Scalars['String'];
+  readonly editionId: Scalars['UUID'];
   readonly githubLink: Scalars['String'];
   readonly id?: Maybe<Scalars['UUID']>;
   readonly name: Scalars['String'];
@@ -579,8 +589,10 @@ export type GameInput = {
 
 /** Represents an update to a `Game`. Fields that are set will be updated. */
 export type GamePatch = {
+  readonly authorId?: Maybe<Scalars['UUID']>;
   readonly createdAt?: Maybe<Scalars['Datetime']>;
   readonly description?: Maybe<Scalars['String']>;
+  readonly editionId?: Maybe<Scalars['UUID']>;
   readonly githubLink?: Maybe<Scalars['String']>;
   readonly id?: Maybe<Scalars['UUID']>;
   readonly name?: Maybe<Scalars['String']>;
@@ -592,10 +604,14 @@ export type GamePatch = {
 
 /** Methods to use when ordering `Game`. */
 export type GamesOrderBy =
+  | 'AUTHOR_ID_ASC'
+  | 'AUTHOR_ID_DESC'
   | 'CREATED_AT_ASC'
   | 'CREATED_AT_DESC'
   | 'DESCRIPTION_ASC'
   | 'DESCRIPTION_DESC'
+  | 'EDITION_ID_ASC'
+  | 'EDITION_ID_DESC'
   | 'GITHUB_LINK_ASC'
   | 'GITHUB_LINK_DESC'
   | 'ID_ASC'
@@ -1038,16 +1054,17 @@ export type UuidFilter = {
   readonly notIn?: Maybe<ReadonlyArray<Scalars['UUID']>>;
 };
 
-/** All input for the `updateEditionById` mutation. */
-export type UpdateEditionByIdInput = {
+/** All input for the `updateEditionByNodeId` mutation. */
+export type UpdateEditionByNodeIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   readonly clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Edition` to be updated. */
+  readonly nodeId: Scalars['ID'];
   /** An object where the defined keys will be set on the `Edition` being updated. */
-  readonly editionPatch: EditionPatch;
-  readonly id: Scalars['UUID'];
+  readonly patch: EditionPatch;
 };
 
 /** All input for the `updateEdition` mutation. */
@@ -1057,23 +1074,23 @@ export type UpdateEditionInput = {
    * payload verbatim. May be used to track mutations by the client.
    */
   readonly clientMutationId?: Maybe<Scalars['String']>;
+  readonly id: Scalars['UUID'];
   /** An object where the defined keys will be set on the `Edition` being updated. */
-  readonly editionPatch: EditionPatch;
-  /** The globally unique `ID` which will identify a single `Edition` to be updated. */
-  readonly nodeId: Scalars['ID'];
+  readonly patch: EditionPatch;
 };
 
 
-/** All input for the `updateFlywaySchemaHistoryByInstalledRank` mutation. */
-export type UpdateFlywaySchemaHistoryByInstalledRankInput = {
+/** All input for the `updateFlywaySchemaHistoryByNodeId` mutation. */
+export type UpdateFlywaySchemaHistoryByNodeIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   readonly clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `FlywaySchemaHistory` to be updated. */
+  readonly nodeId: Scalars['ID'];
   /** An object where the defined keys will be set on the `FlywaySchemaHistory` being updated. */
-  readonly flywaySchemaHistoryPatch: FlywaySchemaHistoryPatch;
-  readonly installedRank: Scalars['Int'];
+  readonly patch: FlywaySchemaHistoryPatch;
 };
 
 /** All input for the `updateFlywaySchemaHistory` mutation. */
@@ -1083,23 +1100,23 @@ export type UpdateFlywaySchemaHistoryInput = {
    * payload verbatim. May be used to track mutations by the client.
    */
   readonly clientMutationId?: Maybe<Scalars['String']>;
+  readonly installedRank: Scalars['Int'];
   /** An object where the defined keys will be set on the `FlywaySchemaHistory` being updated. */
-  readonly flywaySchemaHistoryPatch: FlywaySchemaHistoryPatch;
-  /** The globally unique `ID` which will identify a single `FlywaySchemaHistory` to be updated. */
-  readonly nodeId: Scalars['ID'];
+  readonly patch: FlywaySchemaHistoryPatch;
 };
 
 
-/** All input for the `updateGameById` mutation. */
-export type UpdateGameByIdInput = {
+/** All input for the `updateGameByNodeId` mutation. */
+export type UpdateGameByNodeIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   readonly clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Game` to be updated. */
+  readonly nodeId: Scalars['ID'];
   /** An object where the defined keys will be set on the `Game` being updated. */
-  readonly gamePatch: GamePatch;
-  readonly id: Scalars['UUID'];
+  readonly patch: GamePatch;
 };
 
 /** All input for the `updateGame` mutation. */
@@ -1109,23 +1126,23 @@ export type UpdateGameInput = {
    * payload verbatim. May be used to track mutations by the client.
    */
   readonly clientMutationId?: Maybe<Scalars['String']>;
+  readonly id: Scalars['UUID'];
   /** An object where the defined keys will be set on the `Game` being updated. */
-  readonly gamePatch: GamePatch;
-  /** The globally unique `ID` which will identify a single `Game` to be updated. */
-  readonly nodeId: Scalars['ID'];
+  readonly patch: GamePatch;
 };
 
 
-/** All input for the `updateHeroDatumById` mutation. */
-export type UpdateHeroDatumByIdInput = {
+/** All input for the `updateHeroDatumByNodeId` mutation. */
+export type UpdateHeroDatumByNodeIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   readonly clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `HeroDatum` to be updated. */
+  readonly nodeId: Scalars['ID'];
   /** An object where the defined keys will be set on the `HeroDatum` being updated. */
-  readonly heroDatumPatch: HeroDatumPatch;
-  readonly id: Scalars['UUID'];
+  readonly patch: HeroDatumPatch;
 };
 
 /** All input for the `updateHeroDatum` mutation. */
@@ -1135,23 +1152,23 @@ export type UpdateHeroDatumInput = {
    * payload verbatim. May be used to track mutations by the client.
    */
   readonly clientMutationId?: Maybe<Scalars['String']>;
+  readonly id: Scalars['UUID'];
   /** An object where the defined keys will be set on the `HeroDatum` being updated. */
-  readonly heroDatumPatch: HeroDatumPatch;
-  /** The globally unique `ID` which will identify a single `HeroDatum` to be updated. */
-  readonly nodeId: Scalars['ID'];
+  readonly patch: HeroDatumPatch;
 };
 
 
-/** All input for the `updateMenuItemById` mutation. */
-export type UpdateMenuItemByIdInput = {
+/** All input for the `updateMenuItemByNodeId` mutation. */
+export type UpdateMenuItemByNodeIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   readonly clientMutationId?: Maybe<Scalars['String']>;
-  readonly id: Scalars['UUID'];
+  /** The globally unique `ID` which will identify a single `MenuItem` to be updated. */
+  readonly nodeId: Scalars['ID'];
   /** An object where the defined keys will be set on the `MenuItem` being updated. */
-  readonly menuItemPatch: MenuItemPatch;
+  readonly patch: MenuItemPatch;
 };
 
 /** All input for the `updateMenuItem` mutation. */
@@ -1161,23 +1178,23 @@ export type UpdateMenuItemInput = {
    * payload verbatim. May be used to track mutations by the client.
    */
   readonly clientMutationId?: Maybe<Scalars['String']>;
+  readonly id: Scalars['UUID'];
   /** An object where the defined keys will be set on the `MenuItem` being updated. */
-  readonly menuItemPatch: MenuItemPatch;
-  /** The globally unique `ID` which will identify a single `MenuItem` to be updated. */
-  readonly nodeId: Scalars['ID'];
+  readonly patch: MenuItemPatch;
 };
 
 
-/** All input for the `updateSocialLinkById` mutation. */
-export type UpdateSocialLinkByIdInput = {
+/** All input for the `updateSocialLinkByNodeId` mutation. */
+export type UpdateSocialLinkByNodeIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
   readonly clientMutationId?: Maybe<Scalars['String']>;
-  readonly id: Scalars['UUID'];
+  /** The globally unique `ID` which will identify a single `SocialLink` to be updated. */
+  readonly nodeId: Scalars['ID'];
   /** An object where the defined keys will be set on the `SocialLink` being updated. */
-  readonly socialLinkPatch: SocialLinkPatch;
+  readonly patch: SocialLinkPatch;
 };
 
 /** All input for the `updateSocialLink` mutation. */
@@ -1187,24 +1204,11 @@ export type UpdateSocialLinkInput = {
    * payload verbatim. May be used to track mutations by the client.
    */
   readonly clientMutationId?: Maybe<Scalars['String']>;
-  /** The globally unique `ID` which will identify a single `SocialLink` to be updated. */
-  readonly nodeId: Scalars['ID'];
-  /** An object where the defined keys will be set on the `SocialLink` being updated. */
-  readonly socialLinkPatch: SocialLinkPatch;
-};
-
-
-/** All input for the `updateUserById` mutation. */
-export type UpdateUserByIdInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  readonly clientMutationId?: Maybe<Scalars['String']>;
   readonly id: Scalars['UUID'];
-  /** An object where the defined keys will be set on the `User` being updated. */
-  readonly userPatch: UserPatch;
+  /** An object where the defined keys will be set on the `SocialLink` being updated. */
+  readonly patch: SocialLinkPatch;
 };
+
 
 /** All input for the `updateUserByIdentityId` mutation. */
 export type UpdateUserByIdentityIdInput = {
@@ -1215,7 +1219,20 @@ export type UpdateUserByIdentityIdInput = {
   readonly clientMutationId?: Maybe<Scalars['String']>;
   readonly identityId: Scalars['String'];
   /** An object where the defined keys will be set on the `User` being updated. */
-  readonly userPatch: UserPatch;
+  readonly patch: UserPatch;
+};
+
+/** All input for the `updateUserByNodeId` mutation. */
+export type UpdateUserByNodeIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  readonly clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `User` to be updated. */
+  readonly nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `User` being updated. */
+  readonly patch: UserPatch;
 };
 
 /** All input for the `updateUser` mutation. */
@@ -1225,10 +1242,9 @@ export type UpdateUserInput = {
    * payload verbatim. May be used to track mutations by the client.
    */
   readonly clientMutationId?: Maybe<Scalars['String']>;
-  /** The globally unique `ID` which will identify a single `User` to be updated. */
-  readonly nodeId: Scalars['ID'];
+  readonly id: Scalars['UUID'];
   /** An object where the defined keys will be set on the `User` being updated. */
-  readonly userPatch: UserPatch;
+  readonly patch: UserPatch;
 };
 
 
@@ -1452,7 +1468,7 @@ export type GetOrCreateUserMutationResult = Apollo.MutationResult<GetOrCreateUse
 export type GetOrCreateUserMutationOptions = Apollo.BaseMutationOptions<GetOrCreateUserMutation, GetOrCreateUserMutationVariables>;
 export const HeroDataDocument = gql`
     query heroData {
-  heroData: allHeroData {
+  heroData {
     nodes {
       primaryText
       secondaryText
@@ -1494,7 +1510,7 @@ export function refetchHeroDataQuery(variables?: HeroDataQueryVariables) {
     }
 export const MenuItemsDocument = gql`
     query menuItems {
-  menuItems: allMenuItems(condition: {active: true}, orderBy: [ORDER_NUMBER_ASC]) {
+  menuItems(condition: {active: true}, orderBy: [ORDER_NUMBER_ASC]) {
     nodes {
       title
       url
@@ -1532,7 +1548,7 @@ export function refetchMenuItemsQuery(variables?: MenuItemsQueryVariables) {
     }
 export const SocialLinksDocument = gql`
     query socialLinks {
-  socialLinks: allSocialLinks {
+  socialLinks {
     nodes {
       title
       url
