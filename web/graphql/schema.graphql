@@ -1155,7 +1155,7 @@ input GameFilter {
 
 """An input for mutations affecting `Game`"""
 input GameInput {
-  authorId: UUID!
+  authorId: UUID
   createdAt: Datetime
   description: String!
   editionId: UUID!

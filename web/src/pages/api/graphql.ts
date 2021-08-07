@@ -44,8 +44,6 @@ const postgraphile_middleware = postgraphile(
 				const token = req.cookies.token;
 				console.log({ token });
 				const claims = await validate_token(token);
-
-				// console.log(`authenticated as ${claims.sub}`);
 				return {
 					role: 'js13k_user',
 					'user.id': claims.sub
