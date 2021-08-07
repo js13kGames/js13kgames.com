@@ -26,6 +26,7 @@ export const validate_token = (
 			if (error) {
 				reject(error);
 			} else {
+				// console.log(`LOGGED IN: ${JSON.stringify(decoded, null, 4)}`);
 				resolve(decoded);
 			}
 		});
