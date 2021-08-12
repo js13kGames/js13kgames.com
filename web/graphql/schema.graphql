@@ -1070,6 +1070,8 @@ type Game implements Node {
   editionId: UUID!
   githubLink: String!
   id: UUID!
+  isHidden: Boolean!
+  isPublished: Boolean!
   name: String!
 
   """
@@ -1101,6 +1103,12 @@ input GameCondition {
 
   """Checks for equality with the object’s `id` field."""
   id: UUID
+
+  """Checks for equality with the object’s `isHidden` field."""
+  isHidden: Boolean
+
+  """Checks for equality with the object’s `isPublished` field."""
+  isPublished: Boolean
 
   """Checks for equality with the object’s `name` field."""
   name: String
@@ -1137,6 +1145,12 @@ input GameFilter {
   """Filter by the object’s `id` field."""
   id: UUIDFilter
 
+  """Filter by the object’s `isHidden` field."""
+  isHidden: BooleanFilter
+
+  """Filter by the object’s `isPublished` field."""
+  isPublished: BooleanFilter
+
   """Filter by the object’s `name` field."""
   name: StringFilter
 
@@ -1161,6 +1175,8 @@ input GameInput {
   editionId: UUID!
   githubLink: String!
   id: UUID
+  isHidden: Boolean
+  isPublished: Boolean
   name: String!
   photo: String!
   updatedAt: Datetime
@@ -1174,6 +1190,8 @@ input GamePatch {
   editionId: UUID
   githubLink: String
   id: UUID
+  isHidden: Boolean
+  isPublished: Boolean
   name: String
   photo: String
   updatedAt: Datetime
@@ -1219,6 +1237,10 @@ enum GamesOrderBy {
   GITHUB_LINK_DESC
   ID_ASC
   ID_DESC
+  IS_HIDDEN_ASC
+  IS_HIDDEN_DESC
+  IS_PUBLISHED_ASC
+  IS_PUBLISHED_DESC
   NAME_ASC
   NAME_DESC
   NATURAL
