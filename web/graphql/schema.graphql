@@ -1064,6 +1064,7 @@ type Game implements Node {
   authorId: UUID!
   createdAt: Datetime!
   description: String!
+  editableUntil: Datetime!
 
   """Reads a single `Edition` that is related to this `Game`."""
   edition: Edition
@@ -1094,6 +1095,9 @@ input GameCondition {
 
   """Checks for equality with the object’s `description` field."""
   description: String
+
+  """Checks for equality with the object’s `editableUntil` field."""
+  editableUntil: Datetime
 
   """Checks for equality with the object’s `editionId` field."""
   editionId: UUID
@@ -1136,6 +1140,9 @@ input GameFilter {
   """Filter by the object’s `description` field."""
   description: StringFilter
 
+  """Filter by the object’s `editableUntil` field."""
+  editableUntil: DatetimeFilter
+
   """Filter by the object’s `editionId` field."""
   editionId: UUIDFilter
 
@@ -1172,6 +1179,7 @@ input GameInput {
   authorId: UUID
   createdAt: Datetime
   description: String!
+  editableUntil: Datetime!
   editionId: UUID!
   githubLink: String!
   id: UUID
@@ -1187,6 +1195,7 @@ input GamePatch {
   authorId: UUID
   createdAt: Datetime
   description: String
+  editableUntil: Datetime
   editionId: UUID
   githubLink: String
   id: UUID
@@ -1231,6 +1240,8 @@ enum GamesOrderBy {
   CREATED_AT_DESC
   DESCRIPTION_ASC
   DESCRIPTION_DESC
+  EDITABLE_UNTIL_ASC
+  EDITABLE_UNTIL_DESC
   EDITION_ID_ASC
   EDITION_ID_DESC
   GITHUB_LINK_ASC
