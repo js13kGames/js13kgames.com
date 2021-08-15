@@ -43,14 +43,14 @@ const Submit = () => {
           <div className={styles.checkboxWrapper}>
             <Input
               type="checkbox"
-              // inputClass="checkbox"
-              // placeholder="choose category..."
+              inputClass="checkbox"
+              placeholder="choose category..."
             />
             <label style={{margin: "0 3em 0 1em"}}>one person project</label>
             <Input
               type="checkbox"
-              // inputClass="checkbox"
-              // placeholder="choose category..."
+              inputClass="checkbox"
+              placeholder="choose category..."
             />
             <label style={{margin: "0 3em 0 1em"}}>team</label>
           </div>

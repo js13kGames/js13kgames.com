@@ -1,18 +1,16 @@
 import { useHeroDataQuery } from '../../../graphql';
+import { HeroLayoutProps} from './heroLayout'
 
 const HeroIO = ({ children }) => {
 	const { data, loading, error } = useHeroDataQuery();
 
 	const heroData = data?.heroData?.nodes[0];
 
-	return (
-		<>
-			{children({
-				heroData,
-				loading
-			})}
-		</>
-	);
+	const heroIoData: HeroLayoutProps = {
+		loading,
+		heroData
+	};
+	return <>{children(heroIoData)}</>;
 };
 
 export default HeroIO;

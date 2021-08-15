@@ -36,7 +36,7 @@ const User = () => {
         <title>Rules</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
-      <SocialIcons variant="variant2" />
+      <SocialIcons />
       <div className={styles.container}>
         <InfoWrapper
           image={userData.user001.info.image}

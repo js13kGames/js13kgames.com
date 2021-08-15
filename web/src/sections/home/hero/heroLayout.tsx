@@ -6,8 +6,15 @@ import {useBurgerVisible} from "../../../utils/useBurgerVisible";
 import styles from "./hero.module.scss";
 
 export type HeroLayoutProps = {
-  heroData: ArrayElement<HeroDataQuery["heroData"]["nodes"]>;
-  loading: boolean;
+	heroData: {
+		primaryText: string;
+		secondaryText: string;
+		countdownDate?: string;
+		backgroundImage: string;
+		callToActionText: string;
+		callToActionUrl: string;
+	};
+	loading: boolean;
 };
 
 const HeroLayout = ({heroData, loading}: HeroLayoutProps) => {

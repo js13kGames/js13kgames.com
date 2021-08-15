@@ -67,11 +67,7 @@ const PriviousEditions = ({year}) => {
         <title>Previous Editions</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
-      <Hero
-        primaryText={heroData.primaryText}
-        secondaryText={heroData.secondaryText}
-        prevEdition="prevEditionWrapper"
-      />
+      <Hero/>
       {heroData.prev.map(({description, img, year}) => (
         <PrevEditionWrapper
           year={year}

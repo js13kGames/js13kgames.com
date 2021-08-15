@@ -57,7 +57,7 @@ const Author = () => {
         <title>Rules</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
-      <SocialIcons variant="variant2" />
+      <SocialIcons/>
       <div className={styles.container}>
         <InfoWrapper
           image={authorsData.author001.info.image}
