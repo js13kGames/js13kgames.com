@@ -10,7 +10,7 @@ import Header from './header';
 import Login from './login';
 import styles from './navbar.module.scss';
 import NavItem from './navItem';
-import Select from './select';
+// import Select from './select';
 
 export async function getServerSideProps({ params }) {
 	return {
@@ -116,7 +116,8 @@ const NavbarLayout = ({ loading, menuItems, year }) => {
 							<Link href={'/' + year}>
 								<img className={styles.logoShort} src={ShortLogo} alt='logo' />
 							</Link>
-							<Select yearOptions={years} scrollClass='selectScroll' />
+							{/* disable edition selecting in Beta */}
+							{/* <Select yearOptions={years} scrollClass='selectScroll' /> */}
 						</div>
 						{isBurgerVisible ? (
 							''
