@@ -681,9 +681,13 @@ export type HeroDataOrderBy =
   | 'COUNTDOWN_DATE_DESC'
   | 'CREATED_AT_ASC'
   | 'CREATED_AT_DESC'
+  | 'EDITION_ID_ASC'
+  | 'EDITION_ID_DESC'
   | 'ID_ASC'
   | 'ID_DESC'
   | 'NATURAL'
+  | 'PAGE_ASC'
+  | 'PAGE_DESC'
   | 'PRIMARY_KEY_ASC'
   | 'PRIMARY_KEY_DESC'
   | 'PRIMARY_TEXT_ASC'
@@ -711,8 +715,12 @@ export type HeroDatumCondition = {
   readonly countdownDate?: Maybe<Scalars['Datetime']>;
   /** Checks for equality with the object’s `createdAt` field. */
   readonly createdAt?: Maybe<Scalars['Datetime']>;
+  /** Checks for equality with the object’s `editionId` field. */
+  readonly editionId?: Maybe<Scalars['UUID']>;
   /** Checks for equality with the object’s `id` field. */
   readonly id?: Maybe<Scalars['UUID']>;
+  /** Checks for equality with the object’s `page` field. */
+  readonly page?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `primaryText` field. */
   readonly primaryText?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `secondaryText` field. */
@@ -737,12 +745,16 @@ export type HeroDatumFilter = {
   readonly countdownDate?: Maybe<DatetimeFilter>;
   /** Filter by the object’s `createdAt` field. */
   readonly createdAt?: Maybe<DatetimeFilter>;
+  /** Filter by the object’s `editionId` field. */
+  readonly editionId?: Maybe<UuidFilter>;
   /** Filter by the object’s `id` field. */
   readonly id?: Maybe<UuidFilter>;
   /** Negates the expression. */
   readonly not?: Maybe<HeroDatumFilter>;
   /** Checks for any expressions in this list. */
   readonly or?: Maybe<ReadonlyArray<HeroDatumFilter>>;
+  /** Filter by the object’s `page` field. */
+  readonly page?: Maybe<StringFilter>;
   /** Filter by the object’s `primaryText` field. */
   readonly primaryText?: Maybe<StringFilter>;
   /** Filter by the object’s `secondaryText` field. */
@@ -759,7 +771,9 @@ export type HeroDatumInput = {
   readonly callToActionUrl: Scalars['String'];
   readonly countdownDate?: Maybe<Scalars['Datetime']>;
   readonly createdAt?: Maybe<Scalars['Datetime']>;
+  readonly editionId?: Maybe<Scalars['UUID']>;
   readonly id?: Maybe<Scalars['UUID']>;
+  readonly page?: Maybe<Scalars['String']>;
   readonly primaryText: Scalars['String'];
   readonly secondaryText: Scalars['String'];
   readonly updatedAt?: Maybe<Scalars['Datetime']>;
@@ -773,7 +787,9 @@ export type HeroDatumPatch = {
   readonly callToActionUrl?: Maybe<Scalars['String']>;
   readonly countdownDate?: Maybe<Scalars['Datetime']>;
   readonly createdAt?: Maybe<Scalars['Datetime']>;
+  readonly editionId?: Maybe<Scalars['UUID']>;
   readonly id?: Maybe<Scalars['UUID']>;
+  readonly page?: Maybe<Scalars['String']>;
   readonly primaryText?: Maybe<Scalars['String']>;
   readonly secondaryText?: Maybe<Scalars['String']>;
   readonly updatedAt?: Maybe<Scalars['Datetime']>;
@@ -815,6 +831,8 @@ export type MenuItemCondition = {
   readonly active?: Maybe<Scalars['Boolean']>;
   /** Checks for equality with the object’s `createdAt` field. */
   readonly createdAt?: Maybe<Scalars['Datetime']>;
+  /** Checks for equality with the object’s `editionId` field. */
+  readonly editionId?: Maybe<Scalars['UUID']>;
   /** Checks for equality with the object’s `id` field. */
   readonly id?: Maybe<Scalars['UUID']>;
   /** Checks for equality with the object’s `orderNumber` field. */
@@ -835,6 +853,8 @@ export type MenuItemFilter = {
   readonly and?: Maybe<ReadonlyArray<MenuItemFilter>>;
   /** Filter by the object’s `createdAt` field. */
   readonly createdAt?: Maybe<DatetimeFilter>;
+  /** Filter by the object’s `editionId` field. */
+  readonly editionId?: Maybe<UuidFilter>;
   /** Filter by the object’s `id` field. */
   readonly id?: Maybe<UuidFilter>;
   /** Negates the expression. */
@@ -855,6 +875,7 @@ export type MenuItemFilter = {
 export type MenuItemInput = {
   readonly active?: Maybe<Scalars['Boolean']>;
   readonly createdAt?: Maybe<Scalars['Datetime']>;
+  readonly editionId?: Maybe<Scalars['UUID']>;
   readonly id?: Maybe<Scalars['UUID']>;
   readonly orderNumber?: Maybe<Scalars['Int']>;
   readonly title: Scalars['String'];
@@ -866,6 +887,7 @@ export type MenuItemInput = {
 export type MenuItemPatch = {
   readonly active?: Maybe<Scalars['Boolean']>;
   readonly createdAt?: Maybe<Scalars['Datetime']>;
+  readonly editionId?: Maybe<Scalars['UUID']>;
   readonly id?: Maybe<Scalars['UUID']>;
   readonly orderNumber?: Maybe<Scalars['Int']>;
   readonly title?: Maybe<Scalars['String']>;
@@ -881,6 +903,8 @@ export type MenuItemsOrderBy =
   | 'ACTIVE_DESC'
   | 'CREATED_AT_ASC'
   | 'CREATED_AT_DESC'
+  | 'EDITION_ID_ASC'
+  | 'EDITION_ID_DESC'
   | 'ID_ASC'
   | 'ID_DESC'
   | 'NATURAL'
