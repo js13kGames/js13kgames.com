@@ -1295,6 +1295,7 @@ type Game implements Node {
   editionId: UUID!
   githubLink: String!
   id: UUID!
+  isApproved: Boolean!
   isHidden: Boolean!
   isPublished: Boolean!
   name: String!
@@ -1305,6 +1306,7 @@ type Game implements Node {
   nodeId: ID!
   photo: String!
   updatedAt: Datetime!
+  uploadData: JSON
 }
 
 """
@@ -1332,6 +1334,9 @@ input GameCondition {
   """Checks for equality with the object’s `id` field."""
   id: UUID
 
+  """Checks for equality with the object’s `isApproved` field."""
+  isApproved: Boolean
+
   """Checks for equality with the object’s `isHidden` field."""
   isHidden: Boolean
 
@@ -1346,6 +1351,9 @@ input GameCondition {
 
   """Checks for equality with the object’s `updatedAt` field."""
   updatedAt: Datetime
+
+  """Checks for equality with the object’s `uploadData` field."""
+  uploadData: JSON
 }
 
 """
@@ -1376,6 +1384,9 @@ input GameFilter {
   """Filter by the object’s `id` field."""
   id: UUIDFilter
 
+  """Filter by the object’s `isApproved` field."""
+  isApproved: BooleanFilter
+
   """Filter by the object’s `isHidden` field."""
   isHidden: BooleanFilter
 
@@ -1396,6 +1407,9 @@ input GameFilter {
 
   """Filter by the object’s `updatedAt` field."""
   updatedAt: DatetimeFilter
+
+  """Filter by the object’s `uploadData` field."""
+  uploadData: JSONFilter
 }
 
 """An input for mutations affecting `Game`"""
@@ -1407,11 +1421,13 @@ input GameInput {
   editionId: UUID!
   githubLink: String!
   id: UUID
+  isApproved: Boolean
   isHidden: Boolean
   isPublished: Boolean
   name: String!
   photo: String!
   updatedAt: Datetime
+  uploadData: JSON
 }
 
 """Represents an update to a `Game`. Fields that are set will be updated."""
@@ -1423,11 +1439,13 @@ input GamePatch {
   editionId: UUID
   githubLink: String
   id: UUID
+  isApproved: Boolean
   isHidden: Boolean
   isPublished: Boolean
   name: String
   photo: String
   updatedAt: Datetime
+  uploadData: JSON
 }
 
 """A connection to a list of `Game` values."""
@@ -1472,6 +1490,8 @@ enum GamesOrderBy {
   GITHUB_LINK_DESC
   ID_ASC
   ID_DESC
+  IS_APPROVED_ASC
+  IS_APPROVED_DESC
   IS_HIDDEN_ASC
   IS_HIDDEN_DESC
   IS_PUBLISHED_ASC
@@ -1485,6 +1505,8 @@ enum GamesOrderBy {
   PRIMARY_KEY_DESC
   UPDATED_AT_ASC
   UPDATED_AT_DESC
+  UPLOAD_DATA_ASC
+  UPLOAD_DATA_DESC
 }
 
 """All input for the `getOrCreateUser` mutation."""
@@ -1769,6 +1791,68 @@ input IntFilter {
 
   """Not included in the specified list."""
   notIn: [Int!]
+}
+
+"""
+A JavaScript object encoded in the JSON format as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+A filter to be used against JSON fields. All fields are combined with a logical ‘and.’
+"""
+input JSONFilter {
+  """Contained by the specified JSON."""
+  containedBy: JSON
+
+  """Contains the specified JSON."""
+  contains: JSON
+
+  """Contains all of the specified keys."""
+  containsAllKeys: [String!]
+
+  """Contains any of the specified keys."""
+  containsAnyKeys: [String!]
+
+  """Contains the specified key."""
+  containsKey: String
+
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: JSON
+
+  """Equal to the specified value."""
+  equalTo: JSON
+
+  """Greater than the specified value."""
+  greaterThan: JSON
+
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: JSON
+
+  """Included in the specified list."""
+  in: [JSON!]
+
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+
+  """Less than the specified value."""
+  lessThan: JSON
+
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: JSON
+
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: JSON
+
+  """Not equal to the specified value."""
+  notEqualTo: JSON
+
+  """Not included in the specified list."""
+  notIn: [JSON!]
 }
 
 type MenuItem implements Node {

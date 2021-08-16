@@ -16,6 +16,8 @@ export type Scalars = {
    * 8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone.
    */
   Datetime: any;
+  /** A JavaScript object encoded in the JSON format as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
+  JSON: any;
   /** A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122). */
   UUID: any;
 };
@@ -106,6 +108,18 @@ export type CreateMenuItemInput = {
 };
 
 
+/** All input for the create `Page` mutation. */
+export type CreatePageInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  readonly clientMutationId?: Maybe<Scalars['String']>;
+  /** The `Page` to be created by this mutation. */
+  readonly page: PageInput;
+};
+
+
 /** All input for the create `SocialLink` mutation. */
 export type CreateSocialLinkInput = {
   /**
@@ -156,6 +170,16 @@ export type DatetimeFilter = {
   readonly notEqualTo?: Maybe<Scalars['Datetime']>;
   /** Not included in the specified list. */
   readonly notIn?: Maybe<ReadonlyArray<Scalars['Datetime']>>;
+};
+
+/** All input for the `deleteEditionByName` mutation. */
+export type DeleteEditionByNameInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  readonly clientMutationId?: Maybe<Scalars['String']>;
+  readonly name: Scalars['String'];
 };
 
 /** All input for the `deleteEditionByNodeId` mutation. */
@@ -259,6 +283,39 @@ export type DeleteMenuItemByNodeIdInput = {
 
 /** All input for the `deleteMenuItem` mutation. */
 export type DeleteMenuItemInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  readonly clientMutationId?: Maybe<Scalars['String']>;
+  readonly id: Scalars['UUID'];
+};
+
+
+/** All input for the `deletePageByEditionIdAndKey` mutation. */
+export type DeletePageByEditionIdAndKeyInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  readonly clientMutationId?: Maybe<Scalars['String']>;
+  readonly editionId: Scalars['UUID'];
+  readonly key: Scalars['String'];
+};
+
+/** All input for the `deletePageByNodeId` mutation. */
+export type DeletePageByNodeIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  readonly clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Page` to be deleted. */
+  readonly nodeId: Scalars['ID'];
+};
+
+/** All input for the `deletePage` mutation. */
+export type DeletePageInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
@@ -540,6 +597,8 @@ export type GameCondition = {
   readonly githubLink?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `id` field. */
   readonly id?: Maybe<Scalars['UUID']>;
+  /** Checks for equality with the object’s `isApproved` field. */
+  readonly isApproved?: Maybe<Scalars['Boolean']>;
   /** Checks for equality with the object’s `isHidden` field. */
   readonly isHidden?: Maybe<Scalars['Boolean']>;
   /** Checks for equality with the object’s `isPublished` field. */
@@ -550,6 +609,8 @@ export type GameCondition = {
   readonly photo?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `updatedAt` field. */
   readonly updatedAt?: Maybe<Scalars['Datetime']>;
+  /** Checks for equality with the object’s `uploadData` field. */
+  readonly uploadData?: Maybe<Scalars['JSON']>;
 };
 
 /** A filter to be used against `Game` object types. All fields are combined with a logical ‘and.’ */
@@ -570,6 +631,8 @@ export type GameFilter = {
   readonly githubLink?: Maybe<StringFilter>;
   /** Filter by the object’s `id` field. */
   readonly id?: Maybe<UuidFilter>;
+  /** Filter by the object’s `isApproved` field. */
+  readonly isApproved?: Maybe<BooleanFilter>;
   /** Filter by the object’s `isHidden` field. */
   readonly isHidden?: Maybe<BooleanFilter>;
   /** Filter by the object’s `isPublished` field. */
@@ -584,6 +647,8 @@ export type GameFilter = {
   readonly photo?: Maybe<StringFilter>;
   /** Filter by the object’s `updatedAt` field. */
   readonly updatedAt?: Maybe<DatetimeFilter>;
+  /** Filter by the object’s `uploadData` field. */
+  readonly uploadData?: Maybe<JsonFilter>;
 };
 
 /** An input for mutations affecting `Game` */
@@ -595,11 +660,13 @@ export type GameInput = {
   readonly editionId: Scalars['UUID'];
   readonly githubLink: Scalars['String'];
   readonly id?: Maybe<Scalars['UUID']>;
+  readonly isApproved?: Maybe<Scalars['Boolean']>;
   readonly isHidden?: Maybe<Scalars['Boolean']>;
   readonly isPublished?: Maybe<Scalars['Boolean']>;
   readonly name: Scalars['String'];
   readonly photo: Scalars['String'];
   readonly updatedAt?: Maybe<Scalars['Datetime']>;
+  readonly uploadData?: Maybe<Scalars['JSON']>;
 };
 
 /** Represents an update to a `Game`. Fields that are set will be updated. */
@@ -611,11 +678,13 @@ export type GamePatch = {
   readonly editionId?: Maybe<Scalars['UUID']>;
   readonly githubLink?: Maybe<Scalars['String']>;
   readonly id?: Maybe<Scalars['UUID']>;
+  readonly isApproved?: Maybe<Scalars['Boolean']>;
   readonly isHidden?: Maybe<Scalars['Boolean']>;
   readonly isPublished?: Maybe<Scalars['Boolean']>;
   readonly name?: Maybe<Scalars['String']>;
   readonly photo?: Maybe<Scalars['String']>;
   readonly updatedAt?: Maybe<Scalars['Datetime']>;
+  readonly uploadData?: Maybe<Scalars['JSON']>;
 };
 
 
@@ -636,6 +705,8 @@ export type GamesOrderBy =
   | 'GITHUB_LINK_DESC'
   | 'ID_ASC'
   | 'ID_DESC'
+  | 'IS_APPROVED_ASC'
+  | 'IS_APPROVED_DESC'
   | 'IS_HIDDEN_ASC'
   | 'IS_HIDDEN_DESC'
   | 'IS_PUBLISHED_ASC'
@@ -648,7 +719,9 @@ export type GamesOrderBy =
   | 'PRIMARY_KEY_ASC'
   | 'PRIMARY_KEY_DESC'
   | 'UPDATED_AT_ASC'
-  | 'UPDATED_AT_DESC';
+  | 'UPDATED_AT_DESC'
+  | 'UPLOAD_DATA_ASC'
+  | 'UPLOAD_DATA_DESC';
 
 /** All input for the `getOrCreateUser` mutation. */
 export type GetOrCreateUserInput = {
@@ -822,6 +895,43 @@ export type IntFilter = {
 };
 
 
+/** A filter to be used against JSON fields. All fields are combined with a logical ‘and.’ */
+export type JsonFilter = {
+  /** Contained by the specified JSON. */
+  readonly containedBy?: Maybe<Scalars['JSON']>;
+  /** Contains the specified JSON. */
+  readonly contains?: Maybe<Scalars['JSON']>;
+  /** Contains all of the specified keys. */
+  readonly containsAllKeys?: Maybe<ReadonlyArray<Scalars['String']>>;
+  /** Contains any of the specified keys. */
+  readonly containsAnyKeys?: Maybe<ReadonlyArray<Scalars['String']>>;
+  /** Contains the specified key. */
+  readonly containsKey?: Maybe<Scalars['String']>;
+  /** Not equal to the specified value, treating null like an ordinary value. */
+  readonly distinctFrom?: Maybe<Scalars['JSON']>;
+  /** Equal to the specified value. */
+  readonly equalTo?: Maybe<Scalars['JSON']>;
+  /** Greater than the specified value. */
+  readonly greaterThan?: Maybe<Scalars['JSON']>;
+  /** Greater than or equal to the specified value. */
+  readonly greaterThanOrEqualTo?: Maybe<Scalars['JSON']>;
+  /** Included in the specified list. */
+  readonly in?: Maybe<ReadonlyArray<Scalars['JSON']>>;
+  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
+  readonly isNull?: Maybe<Scalars['Boolean']>;
+  /** Less than the specified value. */
+  readonly lessThan?: Maybe<Scalars['JSON']>;
+  /** Less than or equal to the specified value. */
+  readonly lessThanOrEqualTo?: Maybe<Scalars['JSON']>;
+  /** Equal to the specified value, treating null like an ordinary value. */
+  readonly notDistinctFrom?: Maybe<Scalars['JSON']>;
+  /** Not equal to the specified value. */
+  readonly notEqualTo?: Maybe<Scalars['JSON']>;
+  /** Not included in the specified list. */
+  readonly notIn?: Maybe<ReadonlyArray<Scalars['JSON']>>;
+};
+
+
 /**
  * A condition to be used against `MenuItem` object types. All fields are tested
  * for equality and combined with a logical ‘and.’
@@ -921,6 +1031,93 @@ export type MenuItemsOrderBy =
 
 
 
+
+/** A condition to be used against `Page` object types. All fields are tested for equality and combined with a logical ‘and.’ */
+export type PageCondition = {
+  /** Checks for equality with the object’s `content` field. */
+  readonly content?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `createdAt` field. */
+  readonly createdAt?: Maybe<Scalars['Datetime']>;
+  /** Checks for equality with the object’s `editionId` field. */
+  readonly editionId?: Maybe<Scalars['UUID']>;
+  /** Checks for equality with the object’s `id` field. */
+  readonly id?: Maybe<Scalars['UUID']>;
+  /** Checks for equality with the object’s `key` field. */
+  readonly key?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `title` field. */
+  readonly title?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `updatedAt` field. */
+  readonly updatedAt?: Maybe<Scalars['Datetime']>;
+};
+
+/** A filter to be used against `Page` object types. All fields are combined with a logical ‘and.’ */
+export type PageFilter = {
+  /** Checks for all expressions in this list. */
+  readonly and?: Maybe<ReadonlyArray<PageFilter>>;
+  /** Filter by the object’s `content` field. */
+  readonly content?: Maybe<StringFilter>;
+  /** Filter by the object’s `createdAt` field. */
+  readonly createdAt?: Maybe<DatetimeFilter>;
+  /** Filter by the object’s `editionId` field. */
+  readonly editionId?: Maybe<UuidFilter>;
+  /** Filter by the object’s `id` field. */
+  readonly id?: Maybe<UuidFilter>;
+  /** Filter by the object’s `key` field. */
+  readonly key?: Maybe<StringFilter>;
+  /** Negates the expression. */
+  readonly not?: Maybe<PageFilter>;
+  /** Checks for any expressions in this list. */
+  readonly or?: Maybe<ReadonlyArray<PageFilter>>;
+  /** Filter by the object’s `title` field. */
+  readonly title?: Maybe<StringFilter>;
+  /** Filter by the object’s `updatedAt` field. */
+  readonly updatedAt?: Maybe<DatetimeFilter>;
+};
+
+
+/** An input for mutations affecting `Page` */
+export type PageInput = {
+  readonly content: Scalars['String'];
+  readonly createdAt?: Maybe<Scalars['Datetime']>;
+  readonly editionId?: Maybe<Scalars['UUID']>;
+  readonly id?: Maybe<Scalars['UUID']>;
+  readonly key: Scalars['String'];
+  readonly title: Scalars['String'];
+  readonly updatedAt?: Maybe<Scalars['Datetime']>;
+};
+
+/** Represents an update to a `Page`. Fields that are set will be updated. */
+export type PagePatch = {
+  readonly content?: Maybe<Scalars['String']>;
+  readonly createdAt?: Maybe<Scalars['Datetime']>;
+  readonly editionId?: Maybe<Scalars['UUID']>;
+  readonly id?: Maybe<Scalars['UUID']>;
+  readonly key?: Maybe<Scalars['String']>;
+  readonly title?: Maybe<Scalars['String']>;
+  readonly updatedAt?: Maybe<Scalars['Datetime']>;
+};
+
+
+
+/** Methods to use when ordering `Page`. */
+export type PagesOrderBy =
+  | 'CONTENT_ASC'
+  | 'CONTENT_DESC'
+  | 'CREATED_AT_ASC'
+  | 'CREATED_AT_DESC'
+  | 'EDITION_ID_ASC'
+  | 'EDITION_ID_DESC'
+  | 'ID_ASC'
+  | 'ID_DESC'
+  | 'KEY_ASC'
+  | 'KEY_DESC'
+  | 'NATURAL'
+  | 'PRIMARY_KEY_ASC'
+  | 'PRIMARY_KEY_DESC'
+  | 'TITLE_ASC'
+  | 'TITLE_DESC'
+  | 'UPDATED_AT_ASC'
+  | 'UPDATED_AT_DESC';
 
 
 
@@ -1102,6 +1299,18 @@ export type UuidFilter = {
   readonly notIn?: Maybe<ReadonlyArray<Scalars['UUID']>>;
 };
 
+/** All input for the `updateEditionByName` mutation. */
+export type UpdateEditionByNameInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  readonly clientMutationId?: Maybe<Scalars['String']>;
+  readonly name: Scalars['String'];
+  /** An object where the defined keys will be set on the `Edition` being updated. */
+  readonly patch: EditionPatch;
+};
+
 /** All input for the `updateEditionByNodeId` mutation. */
 export type UpdateEditionByNodeIdInput = {
   /**
@@ -1229,6 +1438,45 @@ export type UpdateMenuItemInput = {
   readonly id: Scalars['UUID'];
   /** An object where the defined keys will be set on the `MenuItem` being updated. */
   readonly patch: MenuItemPatch;
+};
+
+
+/** All input for the `updatePageByEditionIdAndKey` mutation. */
+export type UpdatePageByEditionIdAndKeyInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  readonly clientMutationId?: Maybe<Scalars['String']>;
+  readonly editionId: Scalars['UUID'];
+  readonly key: Scalars['String'];
+  /** An object where the defined keys will be set on the `Page` being updated. */
+  readonly patch: PagePatch;
+};
+
+/** All input for the `updatePageByNodeId` mutation. */
+export type UpdatePageByNodeIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  readonly clientMutationId?: Maybe<Scalars['String']>;
+  /** The globally unique `ID` which will identify a single `Page` to be updated. */
+  readonly nodeId: Scalars['ID'];
+  /** An object where the defined keys will be set on the `Page` being updated. */
+  readonly patch: PagePatch;
+};
+
+/** All input for the `updatePage` mutation. */
+export type UpdatePageInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  readonly clientMutationId?: Maybe<Scalars['String']>;
+  readonly id: Scalars['UUID'];
+  /** An object where the defined keys will be set on the `Page` being updated. */
+  readonly patch: PagePatch;
 };
 
 
