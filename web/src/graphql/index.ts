@@ -532,12 +532,18 @@ export type GameCondition = {
   readonly createdAt?: Maybe<Scalars['Datetime']>;
   /** Checks for equality with the object’s `description` field. */
   readonly description?: Maybe<Scalars['String']>;
+  /** Checks for equality with the object’s `editableUntil` field. */
+  readonly editableUntil?: Maybe<Scalars['Datetime']>;
   /** Checks for equality with the object’s `editionId` field. */
   readonly editionId?: Maybe<Scalars['UUID']>;
   /** Checks for equality with the object’s `githubLink` field. */
   readonly githubLink?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `id` field. */
   readonly id?: Maybe<Scalars['UUID']>;
+  /** Checks for equality with the object’s `isHidden` field. */
+  readonly isHidden?: Maybe<Scalars['Boolean']>;
+  /** Checks for equality with the object’s `isPublished` field. */
+  readonly isPublished?: Maybe<Scalars['Boolean']>;
   /** Checks for equality with the object’s `name` field. */
   readonly name?: Maybe<Scalars['String']>;
   /** Checks for equality with the object’s `photo` field. */
@@ -556,12 +562,18 @@ export type GameFilter = {
   readonly createdAt?: Maybe<DatetimeFilter>;
   /** Filter by the object’s `description` field. */
   readonly description?: Maybe<StringFilter>;
+  /** Filter by the object’s `editableUntil` field. */
+  readonly editableUntil?: Maybe<DatetimeFilter>;
   /** Filter by the object’s `editionId` field. */
   readonly editionId?: Maybe<UuidFilter>;
   /** Filter by the object’s `githubLink` field. */
   readonly githubLink?: Maybe<StringFilter>;
   /** Filter by the object’s `id` field. */
   readonly id?: Maybe<UuidFilter>;
+  /** Filter by the object’s `isHidden` field. */
+  readonly isHidden?: Maybe<BooleanFilter>;
+  /** Filter by the object’s `isPublished` field. */
+  readonly isPublished?: Maybe<BooleanFilter>;
   /** Filter by the object’s `name` field. */
   readonly name?: Maybe<StringFilter>;
   /** Negates the expression. */
@@ -576,12 +588,15 @@ export type GameFilter = {
 
 /** An input for mutations affecting `Game` */
 export type GameInput = {
-  readonly authorId: Scalars['UUID'];
+  readonly authorId?: Maybe<Scalars['UUID']>;
   readonly createdAt?: Maybe<Scalars['Datetime']>;
   readonly description: Scalars['String'];
+  readonly editableUntil: Scalars['Datetime'];
   readonly editionId: Scalars['UUID'];
   readonly githubLink: Scalars['String'];
   readonly id?: Maybe<Scalars['UUID']>;
+  readonly isHidden?: Maybe<Scalars['Boolean']>;
+  readonly isPublished?: Maybe<Scalars['Boolean']>;
   readonly name: Scalars['String'];
   readonly photo: Scalars['String'];
   readonly updatedAt?: Maybe<Scalars['Datetime']>;
@@ -592,9 +607,12 @@ export type GamePatch = {
   readonly authorId?: Maybe<Scalars['UUID']>;
   readonly createdAt?: Maybe<Scalars['Datetime']>;
   readonly description?: Maybe<Scalars['String']>;
+  readonly editableUntil?: Maybe<Scalars['Datetime']>;
   readonly editionId?: Maybe<Scalars['UUID']>;
   readonly githubLink?: Maybe<Scalars['String']>;
   readonly id?: Maybe<Scalars['UUID']>;
+  readonly isHidden?: Maybe<Scalars['Boolean']>;
+  readonly isPublished?: Maybe<Scalars['Boolean']>;
   readonly name?: Maybe<Scalars['String']>;
   readonly photo?: Maybe<Scalars['String']>;
   readonly updatedAt?: Maybe<Scalars['Datetime']>;
@@ -610,12 +628,18 @@ export type GamesOrderBy =
   | 'CREATED_AT_DESC'
   | 'DESCRIPTION_ASC'
   | 'DESCRIPTION_DESC'
+  | 'EDITABLE_UNTIL_ASC'
+  | 'EDITABLE_UNTIL_DESC'
   | 'EDITION_ID_ASC'
   | 'EDITION_ID_DESC'
   | 'GITHUB_LINK_ASC'
   | 'GITHUB_LINK_DESC'
   | 'ID_ASC'
   | 'ID_DESC'
+  | 'IS_HIDDEN_ASC'
+  | 'IS_HIDDEN_DESC'
+  | 'IS_PUBLISHED_ASC'
+  | 'IS_PUBLISHED_DESC'
   | 'NAME_ASC'
   | 'NAME_DESC'
   | 'NATURAL'
