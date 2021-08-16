@@ -4,7 +4,6 @@ import Logo from '../../../assets/logo/js13kgames-logo.svg';
 import { NavSkeleton } from '../../../components';
 import styles from './header.module.scss';
 import Login from './login';
-import Select from './select';
 
 const Header = ({ year, years }) => {
 	const { isLoading } = useAuth0();
@@ -18,7 +17,10 @@ const Header = ({ year, years }) => {
 			<Link href={'/'}>
 				<img className={styles.logo} src={Logo} alt='logo' />
 			</Link>
-			<Select yearOptions={years} />
+			<div>
+				{/* let's disable edition selection in Beta */}
+				{/* <Select yearOptions={years} /> */}
+			</div>
 			<div className={styles.loginWrapper}>
 				<Login />
 			</div>
