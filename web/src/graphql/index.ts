@@ -1695,6 +1695,25 @@ export type UsersOrderBy =
   | 'USER_NAME_ASC'
   | 'USER_NAME_DESC';
 
+export type EditionByNameQueryVariables = Exact<{
+  name: Scalars['String'];
+}>;
+
+
+export type EditionByNameQuery = { readonly editionByName?: Maybe<{ readonly id: any, readonly name: string, readonly theme: string, readonly startsAt: any, readonly endsAt: any }> };
+
+export type EditionByIdQueryVariables = Exact<{
+  id: Scalars['UUID'];
+}>;
+
+
+export type EditionByIdQuery = { readonly edition?: Maybe<{ readonly id: any, readonly name: string, readonly theme: string, readonly startsAt: any, readonly endsAt: any }> };
+
+export type CurrentEditionIdQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CurrentEditionIdQuery = { readonly currentEdition?: Maybe<any> };
+
 export type GetOrCreateUserMutationVariables = Exact<{
   name?: Maybe<Scalars['String']>;
   avatar?: Maybe<Scalars['String']>;
@@ -1722,6 +1741,119 @@ export type SocialLinksQueryVariables = Exact<{ [key: string]: never; }>;
 export type SocialLinksQuery = { readonly socialLinks?: Maybe<{ readonly nodes: ReadonlyArray<{ readonly title: string, readonly url: string }> }> };
 
 
+export const EditionByNameDocument = gql`
+    query editionByName($name: String!) {
+  editionByName(name: $name) {
+    id
+    name
+    theme
+    startsAt
+    endsAt
+  }
+}
+    `;
+
+/**
+ * __useEditionByNameQuery__
+ *
+ * To run a query within a React component, call `useEditionByNameQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEditionByNameQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEditionByNameQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useEditionByNameQuery(baseOptions?: Apollo.QueryHookOptions<EditionByNameQuery, EditionByNameQueryVariables>) {
+        return Apollo.useQuery<EditionByNameQuery, EditionByNameQueryVariables>(EditionByNameDocument, baseOptions);
+      }
+export function useEditionByNameLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<EditionByNameQuery, EditionByNameQueryVariables>) {
+          return Apollo.useLazyQuery<EditionByNameQuery, EditionByNameQueryVariables>(EditionByNameDocument, baseOptions);
+        }
+export type EditionByNameQueryHookResult = ReturnType<typeof useEditionByNameQuery>;
+export type EditionByNameLazyQueryHookResult = ReturnType<typeof useEditionByNameLazyQuery>;
+export type EditionByNameQueryResult = Apollo.QueryResult<EditionByNameQuery, EditionByNameQueryVariables>;
+export function refetchEditionByNameQuery(variables?: EditionByNameQueryVariables) {
+      return { query: EditionByNameDocument, variables: variables }
+    }
+export const EditionByIdDocument = gql`
+    query editionById($id: UUID!) {
+  edition(id: $id) {
+    id
+    name
+    theme
+    startsAt
+    endsAt
+  }
+}
+    `;
+
+/**
+ * __useEditionByIdQuery__
+ *
+ * To run a query within a React component, call `useEditionByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEditionByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEditionByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useEditionByIdQuery(baseOptions?: Apollo.QueryHookOptions<EditionByIdQuery, EditionByIdQueryVariables>) {
+        return Apollo.useQuery<EditionByIdQuery, EditionByIdQueryVariables>(EditionByIdDocument, baseOptions);
+      }
+export function useEditionByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<EditionByIdQuery, EditionByIdQueryVariables>) {
+          return Apollo.useLazyQuery<EditionByIdQuery, EditionByIdQueryVariables>(EditionByIdDocument, baseOptions);
+        }
+export type EditionByIdQueryHookResult = ReturnType<typeof useEditionByIdQuery>;
+export type EditionByIdLazyQueryHookResult = ReturnType<typeof useEditionByIdLazyQuery>;
+export type EditionByIdQueryResult = Apollo.QueryResult<EditionByIdQuery, EditionByIdQueryVariables>;
+export function refetchEditionByIdQuery(variables?: EditionByIdQueryVariables) {
+      return { query: EditionByIdDocument, variables: variables }
+    }
+export const CurrentEditionIdDocument = gql`
+    query currentEditionId {
+  currentEdition
+}
+    `;
+
+/**
+ * __useCurrentEditionIdQuery__
+ *
+ * To run a query within a React component, call `useCurrentEditionIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCurrentEditionIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCurrentEditionIdQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useCurrentEditionIdQuery(baseOptions?: Apollo.QueryHookOptions<CurrentEditionIdQuery, CurrentEditionIdQueryVariables>) {
+        return Apollo.useQuery<CurrentEditionIdQuery, CurrentEditionIdQueryVariables>(CurrentEditionIdDocument, baseOptions);
+      }
+export function useCurrentEditionIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CurrentEditionIdQuery, CurrentEditionIdQueryVariables>) {
+          return Apollo.useLazyQuery<CurrentEditionIdQuery, CurrentEditionIdQueryVariables>(CurrentEditionIdDocument, baseOptions);
+        }
+export type CurrentEditionIdQueryHookResult = ReturnType<typeof useCurrentEditionIdQuery>;
+export type CurrentEditionIdLazyQueryHookResult = ReturnType<typeof useCurrentEditionIdLazyQuery>;
+export type CurrentEditionIdQueryResult = Apollo.QueryResult<CurrentEditionIdQuery, CurrentEditionIdQueryVariables>;
+export function refetchCurrentEditionIdQuery(variables?: CurrentEditionIdQueryVariables) {
+      return { query: CurrentEditionIdDocument, variables: variables }
+    }
 export const GetOrCreateUserDocument = gql`
     mutation getOrCreateUser($name: String, $avatar: String, $email: String, $identity: String, $userName: String) {
   getOrCreateUser(

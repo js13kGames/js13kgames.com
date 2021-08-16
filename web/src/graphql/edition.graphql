@@ -1,0 +1,23 @@
+query editionByName($name: String!) {
+	editionByName(name: $name) {
+		id
+		name
+		theme
+		startsAt
+		endsAt
+	}
+}
+
+query editionById($id: UUID!) {
+	edition(id: $id) {
+		id
+		name
+		theme
+		startsAt
+		endsAt
+	}
+}
+
+query currentEditionId {
+	currentEdition
+}

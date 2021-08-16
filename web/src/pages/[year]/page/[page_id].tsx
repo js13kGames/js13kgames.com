@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import { useContext } from 'react';
+import { EditionContext } from '../../../core/EditionProvider';
 import { Header } from '../../../layouts';
 import styles from '../../../styles/rules.module.scss';
 
@@ -16,6 +18,9 @@ const heroData = {
 };
 
 const Rules = ({ year, page_id }) => {
+	const editionData = useContext(EditionContext);
+
+	console.log({ editionData });
 	return (
 		<>
 			<Head>
