@@ -171,6 +171,9 @@ type CreateHeroDatumPayload {
   """
   clientMutationId: String
 
+  """Reads a single `Edition` that is related to this `HeroDatum`."""
+  edition: Edition
+
   """The `HeroDatum` that was created by this mutation."""
   heroDatum: HeroDatum
 
@@ -205,6 +208,9 @@ type CreateMenuItemPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
+
+  """Reads a single `Edition` that is related to this `MenuItem`."""
+  edition: Edition
 
   """The `MenuItem` that was created by this mutation."""
   menuItem: MenuItem
@@ -525,6 +531,9 @@ type DeleteHeroDatumPayload {
   clientMutationId: String
   deletedHeroDatumNodeId: ID
 
+  """Reads a single `Edition` that is related to this `HeroDatum`."""
+  edition: Edition
+
   """The `HeroDatum` that was deleted by this mutation."""
   heroDatum: HeroDatum
 
@@ -572,6 +581,9 @@ type DeleteMenuItemPayload {
   """
   clientMutationId: String
   deletedMenuItemNodeId: ID
+
+  """Reads a single `Edition` that is related to this `MenuItem`."""
+  edition: Edition
 
   """The `MenuItem` that was deleted by this mutation."""
   menuItem: MenuItem
@@ -731,7 +743,75 @@ type Edition implements Node {
     """The method to use when ordering `Game`."""
     orderBy: [GamesOrderBy!] = [PRIMARY_KEY_ASC]
   ): GamesConnection!
+
+  """Reads and enables pagination through a set of `HeroDatum`."""
+  heroData(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: HeroDatumCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: HeroDatumFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `HeroDatum`."""
+    orderBy: [HeroDataOrderBy!] = [PRIMARY_KEY_ASC]
+  ): HeroDataConnection!
   id: UUID!
+
+  """Reads and enables pagination through a set of `MenuItem`."""
+  menuItems(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MenuItemCondition
+
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: MenuItemFilter
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `MenuItem`."""
+    orderBy: [MenuItemsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MenuItemsConnection!
   name: String!
 
   """
@@ -1339,9 +1419,13 @@ enum HeroDataOrderBy {
   COUNTDOWN_DATE_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
+  EDITION_ID_ASC
+  EDITION_ID_DESC
   ID_ASC
   ID_DESC
   NATURAL
+  PAGE_ASC
+  PAGE_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
   PRIMARY_TEXT_ASC
@@ -1359,12 +1443,17 @@ type HeroDatum implements Node {
   callToActionUrl: String!
   countdownDate: Datetime
   createdAt: Datetime!
+
+  """Reads a single `Edition` that is related to this `HeroDatum`."""
+  edition: Edition
+  editionId: UUID!
   id: UUID!
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   nodeId: ID!
+  page: String
   primaryText: String!
   secondaryText: String!
   updatedAt: Datetime!
@@ -1393,8 +1482,14 @@ input HeroDatumCondition {
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
 
+  """Checks for equality with the object’s `editionId` field."""
+  editionId: UUID
+
   """Checks for equality with the object’s `id` field."""
   id: UUID
+
+  """Checks for equality with the object’s `page` field."""
+  page: String
 
   """Checks for equality with the object’s `primaryText` field."""
   primaryText: String
@@ -1431,6 +1526,9 @@ input HeroDatumFilter {
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
 
+  """Filter by the object’s `editionId` field."""
+  editionId: UUIDFilter
+
   """Filter by the object’s `id` field."""
   id: UUIDFilter
 
@@ -1439,6 +1537,9 @@ input HeroDatumFilter {
 
   """Checks for any expressions in this list."""
   or: [HeroDatumFilter!]
+
+  """Filter by the object’s `page` field."""
+  page: StringFilter
 
   """Filter by the object’s `primaryText` field."""
   primaryText: StringFilter
@@ -1458,7 +1559,9 @@ input HeroDatumInput {
   callToActionUrl: String!
   countdownDate: Datetime
   createdAt: Datetime
+  editionId: UUID
   id: UUID
+  page: String
   primaryText: String!
   secondaryText: String!
   updatedAt: Datetime
@@ -1474,7 +1577,9 @@ input HeroDatumPatch {
   callToActionUrl: String
   countdownDate: Datetime
   createdAt: Datetime
+  editionId: UUID
   id: UUID
+  page: String
   primaryText: String
   secondaryText: String
   updatedAt: Datetime
@@ -1525,6 +1630,10 @@ input IntFilter {
 type MenuItem implements Node {
   active: Boolean!
   createdAt: Datetime!
+
+  """Reads a single `Edition` that is related to this `MenuItem`."""
+  edition: Edition
+  editionId: UUID!
   id: UUID!
 
   """
@@ -1547,6 +1656,9 @@ input MenuItemCondition {
 
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
+
+  """Checks for equality with the object’s `editionId` field."""
+  editionId: UUID
 
   """Checks for equality with the object’s `id` field."""
   id: UUID
@@ -1577,6 +1689,9 @@ input MenuItemFilter {
   """Filter by the object’s `createdAt` field."""
   createdAt: DatetimeFilter
 
+  """Filter by the object’s `editionId` field."""
+  editionId: UUIDFilter
+
   """Filter by the object’s `id` field."""
   id: UUIDFilter
 
@@ -1603,6 +1718,7 @@ input MenuItemFilter {
 input MenuItemInput {
   active: Boolean
   createdAt: Datetime
+  editionId: UUID
   id: UUID
   orderNumber: Int
   title: String!
@@ -1616,6 +1732,7 @@ Represents an update to a `MenuItem`. Fields that are set will be updated.
 input MenuItemPatch {
   active: Boolean
   createdAt: Datetime
+  editionId: UUID
   id: UUID
   orderNumber: Int
   title: String
@@ -1655,6 +1772,8 @@ enum MenuItemsOrderBy {
   ACTIVE_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
+  EDITION_ID_ASC
+  EDITION_ID_DESC
   ID_ASC
   ID_DESC
   NATURAL
@@ -2006,6 +2125,7 @@ type PageInfo {
 
 """The root query type which gives access points into the data universe."""
 type Query implements Node {
+  currentEdition: UUID
   edition(id: UUID!): Edition
 
   """Reads a single `Edition` using its globally unique `ID`."""
@@ -2841,6 +2961,9 @@ type UpdateHeroDatumPayload {
   """
   clientMutationId: String
 
+  """Reads a single `Edition` that is related to this `HeroDatum`."""
+  edition: Edition
+
   """The `HeroDatum` that was updated by this mutation."""
   heroDatum: HeroDatum
 
@@ -2897,6 +3020,9 @@ type UpdateMenuItemPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
+
+  """Reads a single `Edition` that is related to this `MenuItem`."""
+  edition: Edition
 
   """The `MenuItem` that was updated by this mutation."""
   menuItem: MenuItem
