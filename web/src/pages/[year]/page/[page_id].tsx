@@ -1,6 +1,7 @@
 import Head from 'next/head';
-import { useContext } from 'react';
-import { EditionContext } from '../../../core/EditionProvider';
+import { useContext, useEffect } from 'react';
+import { EditionContext, EditionData } from '../../../core/EditionProvider';
+import { usePageByEditionAndKeyLazyQuery } from '../../../graphql';
 import { Header } from '../../../layouts';
 import styles from '../../../styles/rules.module.scss';
 
@@ -13,24 +14,51 @@ export async function getServerSideProps({ params }) {
 	};
 }
 
-const heroData = {
-	primaryText: 'js13kgames rules'
-};
-
 const Rules = ({ year, page_id }) => {
-	const editionData = useContext(EditionContext);
+	const editionData = useContext<EditionData>(EditionContext);
 
-	console.log({ editionData });
+	const [fetchPage, { data, loading, error }] =
+		usePageByEditionAndKeyLazyQuery();
+
+	useEffect(() => {
+		if (editionData?.id) {
+			fetchPage({
+				variables: {
+					editionId: editionData.id,
+					key: page_id
+				}
+			});
+		}
+	}, [editionData, fetchPage]);
+
+	if (loading) {
+		return <h1>Loading</h1>;
+	}
+
+	if (!data?.page.id) {
+		return (
+			<>
+				<Head>
+					<title>Page not found</title>
+				</Head>
+				<Header primaryText={'Page not found'} />
+			</>
+		);
+	}
+
 	return (
 		<>
 			<Head>
-				<title>Page</title>
+				<title>{data?.page?.title || 'Page with no title'}</title>
 				{/* <link rel="icon" href="/favicon.ico" /> */}
 			</Head>
-			<Header primaryText={year + ' ' + page_id} />
-			<div className={styles.mainContainer}>
-				<h1>rules</h1>
-			</div>
+			<Header primaryText={data?.page?.title || 'Page with no title'} />
+			<div
+				className={styles.mainContainer}
+				dangerouslySetInnerHTML={{
+					__html: data?.page?.content || 'Page with no content'
+				}}
+			></div>
 		</>
 	);
 };

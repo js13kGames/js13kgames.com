@@ -1,0 +1,8 @@
+query pageByEditionAndKey($editionId: UUID!, $key: String!) {
+	page: pageByEditionIdAndKey(editionId: $editionId, key: $key) {
+		content
+		id
+		key
+		title
+	}
+}

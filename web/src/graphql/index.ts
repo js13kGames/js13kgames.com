@@ -1735,6 +1735,14 @@ export type MenuItemsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type MenuItemsQuery = { readonly menuItems?: Maybe<{ readonly nodes: ReadonlyArray<{ readonly title: string, readonly url: string }> }> };
 
+export type PageByEditionAndKeyQueryVariables = Exact<{
+  editionId: Scalars['UUID'];
+  key: Scalars['String'];
+}>;
+
+
+export type PageByEditionAndKeyQuery = { readonly page?: Maybe<{ readonly content: string, readonly id: any, readonly key: string, readonly title: string }> };
+
 export type SocialLinksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1973,6 +1981,46 @@ export type MenuItemsLazyQueryHookResult = ReturnType<typeof useMenuItemsLazyQue
 export type MenuItemsQueryResult = Apollo.QueryResult<MenuItemsQuery, MenuItemsQueryVariables>;
 export function refetchMenuItemsQuery(variables?: MenuItemsQueryVariables) {
       return { query: MenuItemsDocument, variables: variables }
+    }
+export const PageByEditionAndKeyDocument = gql`
+    query pageByEditionAndKey($editionId: UUID!, $key: String!) {
+  page: pageByEditionIdAndKey(editionId: $editionId, key: $key) {
+    content
+    id
+    key
+    title
+  }
+}
+    `;
+
+/**
+ * __usePageByEditionAndKeyQuery__
+ *
+ * To run a query within a React component, call `usePageByEditionAndKeyQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePageByEditionAndKeyQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePageByEditionAndKeyQuery({
+ *   variables: {
+ *      editionId: // value for 'editionId'
+ *      key: // value for 'key'
+ *   },
+ * });
+ */
+export function usePageByEditionAndKeyQuery(baseOptions?: Apollo.QueryHookOptions<PageByEditionAndKeyQuery, PageByEditionAndKeyQueryVariables>) {
+        return Apollo.useQuery<PageByEditionAndKeyQuery, PageByEditionAndKeyQueryVariables>(PageByEditionAndKeyDocument, baseOptions);
+      }
+export function usePageByEditionAndKeyLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PageByEditionAndKeyQuery, PageByEditionAndKeyQueryVariables>) {
+          return Apollo.useLazyQuery<PageByEditionAndKeyQuery, PageByEditionAndKeyQueryVariables>(PageByEditionAndKeyDocument, baseOptions);
+        }
+export type PageByEditionAndKeyQueryHookResult = ReturnType<typeof usePageByEditionAndKeyQuery>;
+export type PageByEditionAndKeyLazyQueryHookResult = ReturnType<typeof usePageByEditionAndKeyLazyQuery>;
+export type PageByEditionAndKeyQueryResult = Apollo.QueryResult<PageByEditionAndKeyQuery, PageByEditionAndKeyQueryVariables>;
+export function refetchPageByEditionAndKeyQuery(variables?: PageByEditionAndKeyQueryVariables) {
+      return { query: PageByEditionAndKeyDocument, variables: variables }
     }
 export const SocialLinksDocument = gql`
     query socialLinks {

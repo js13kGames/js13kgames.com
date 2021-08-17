@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useEditionByNameLazyQuery } from '../graphql';
 import { YearProps } from '../pages/_app';
 
-export const EditionContext = React.createContext({});
+export const EditionContext = React.createContext({ name: '' });
 const EditionRawProvider = EditionContext.Provider;
 
 export interface EditionData {
@@ -14,8 +14,6 @@ export interface EditionData {
 }
 
 export const EditionProvider: FC<YearProps> = ({ children, year }) => {
-	const [edition, set_edition] = useState<EditionData>({ name: year });
-
 	const [fetchEdition, { data: editionByNameData, loading, error }] =
 		useEditionByNameLazyQuery();
 
@@ -25,11 +23,11 @@ export const EditionProvider: FC<YearProps> = ({ children, year }) => {
 				name: year
 			}
 		});
-
-		if (editionByNameData?.editionByName) {
-			set_edition(editionByNameData.editionByName);
-		}
 	}, [year, fetchEdition]);
 
-	return <EditionRawProvider value={edition}>{children}</EditionRawProvider>;
+	return (
+		<EditionRawProvider value={editionByNameData?.editionByName}>
+			{children}
+		</EditionRawProvider>
+	);
 };
