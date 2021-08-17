@@ -1748,6 +1748,13 @@ export type SocialLinksQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SocialLinksQuery = { readonly socialLinks?: Maybe<{ readonly nodes: ReadonlyArray<{ readonly title: string, readonly url: string }> }> };
 
+export type UsersQueryVariables = Exact<{
+  userName?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UsersQuery = { readonly users?: Maybe<{ readonly nodes: ReadonlyArray<{ readonly avatar: string, readonly email: string, readonly name: string, readonly description: string }> }> };
+
 
 export const EditionByNameDocument = gql`
     query editionByName($name: String!) {
@@ -2059,4 +2066,45 @@ export type SocialLinksLazyQueryHookResult = ReturnType<typeof useSocialLinksLaz
 export type SocialLinksQueryResult = Apollo.QueryResult<SocialLinksQuery, SocialLinksQueryVariables>;
 export function refetchSocialLinksQuery(variables?: SocialLinksQueryVariables) {
       return { query: SocialLinksDocument, variables: variables }
+    }
+export const UsersDocument = gql`
+    query users($userName: String) {
+  users(filter: {userName: {equalTo: $userName}}) {
+    nodes {
+      avatar
+      email
+      name
+      description
+    }
+  }
+}
+    `;
+
+/**
+ * __useUsersQuery__
+ *
+ * To run a query within a React component, call `useUsersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUsersQuery({
+ *   variables: {
+ *      userName: // value for 'userName'
+ *   },
+ * });
+ */
+export function useUsersQuery(baseOptions?: Apollo.QueryHookOptions<UsersQuery, UsersQueryVariables>) {
+        return Apollo.useQuery<UsersQuery, UsersQueryVariables>(UsersDocument, baseOptions);
+      }
+export function useUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UsersQuery, UsersQueryVariables>) {
+          return Apollo.useLazyQuery<UsersQuery, UsersQueryVariables>(UsersDocument, baseOptions);
+        }
+export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
+export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
+export type UsersQueryResult = Apollo.QueryResult<UsersQuery, UsersQueryVariables>;
+export function refetchUsersQuery(variables?: UsersQueryVariables) {
+      return { query: UsersDocument, variables: variables }
     }

@@ -1,0 +1,10 @@
+query users($userName: String) {
+	users(filter: { userName: { equalTo: $userName } }) {
+		nodes {
+			avatar
+			email
+			name
+			description
+		}
+	}
+}

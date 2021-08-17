@@ -20,7 +20,7 @@ export const EditionProvider: FC<YearProps> = ({ children, year }) => {
 	useEffect(() => {
 		fetchEdition({
 			variables: {
-				name: year
+				name: year || ''
 			}
 		});
 	}, [year, fetchEdition]);
